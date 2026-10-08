@@ -1,0 +1,157 @@
+universe 140 Counter({'Eligible': 49, 'Reject': 46, 'Watchlist': 45}) Counter({'Eligible': 49, 'Watchlist (V7)': 29, 'Reject (V1)': 24, 'Watchlist (V6)': 12, 'Reject (V2)': 8, 'Reject (M1)': 7, 'Reject (M2)': 4, 'Watchlist (V5)': 3, 'Reject (V4)': 2, 'Reject (V3)': 1, 'Watchlist (evidence)': 1})
+
+== Power generation & grids
+  #1  ENEL      IT $   96.9B EV   8.1 cy   3.6% spr   +1.4 nd 3.33 covS 3.71 merit 0.89 -> Eligible 
+  #2  ENGI      FR $   61.9B EV   8.2 cy   3.6% spr   +0.8 nd 4.16 covS 3.35 merit 0.86 -> Eligible 
+  #3  EOAN      DE $   49.4B EV   8.2 cy   4.3% spr   +0.1 nd 3.87 covS 2.48 merit 0.85 -> Eligible 
+  #4  ELE       ES $   48.0B EV   9.2 cy   3.4% spr   +6.2 nd 1.86 covS 9.07 merit 0.84 -> Eligible 
+  #5  VST       US $   56.0B EV  11.4 cy   4.3% spr   +0.0 nd 3.02 covS 2.81 merit 0.74 -> Eligible 
+  #6  EXC       US $   42.8B EV  11.2 cy   3.7% spr   -0.7 nd 6.08 covS 1.78 merit 0.62 -> Eligible 
+  #7  SO        US $   98.3B EV  12.1 cy   3.0% spr   -0.4 nd 5.2 covS 1.86 merit 0.55 -> Eligible 
+  #8  DUK       US $   90.1B EV  10.9 cy   2.7% spr   -1.0 nd 5.51 covS 1.69 merit 0.43 -> Watchlist (V7) merit 0.43 in bottom half of 15 ranked power generation & grids
+  #9  IBE       ES $  152.0B EV  13.6 cy   2.9% spr   -0.5 nd 3.83 covS 3.44 merit 0.43 -> Watchlist (V7) merit 0.43 in bottom half of 15 ranked power generation & grids
+  #10 AEP       US $   66.5B EV  13.2 cy   3.5% spr   -1.3 nd 5.86 covS 1.89 merit 0.39 -> Watchlist (V7) merit 0.39 in bottom half of 15 ranked power generation & grids
+  #11 SSE       GB $   39.2B EV  13.5 cy  -1.8% spr   -0.9 nd 3.17 covS 5.34 merit 0.30 -> Watchlist (V7) merit 0.30 in bottom half of 15 ranked power generation & grids
+  #12 D         US $   54.1B EV  12.9 cy   2.7% spr   -1.3 nd 6.43 covS 2.01 merit 0.27 -> Watchlist (V7) merit 0.27 in bottom half of 15 ranked power generation & grids
+  #13 SRE       US $   52.1B EV  15.1 cy   3.3% spr   -3.0 nd 6.24 covS 1.6 merit 0.14 -> Watchlist (V7) merit 0.14 in bottom half of 15 ranked power generation & grids
+  #14 CEG       US $  106.2B EV  16.4 cy   2.2% spr   -1.5 nd 3.02 covS 4.49 merit 0.11 -> Watchlist (V7) merit 0.11 in bottom half of 15 ranked power generation & grids
+  #15 NG        GB $   76.4B EV  14.2 cy  -2.1% spr   -1.5 nd 6.38 covS 2.69 merit 0.07 -> Watchlist (V7) merit 0.07 in bottom half of 15 ranked power generation & grids
+  -- NEE       US $  160.8B Reject (V2): net debt/EBITDA 7.36× vs type median 4.94× (+2.0 limit)
+  -- ETR       US $   49.1B Reject (V1): stressed interest cover 1.48× < 1.5× (EBITDA −15%; cover today 2.01×)
+  -- RWE       DE $   46.1B Reject (V1): stressed interest cover 0.50× < 1.5× (EBITDA −15%; cover today 0.90×)
+  -- XEL       US $   45.2B Reject (V1): stressed interest cover 1.31× < 1.5× (EBITDA −15%; cover today 1.87×)
+  -- ADANIPOWERIN $   39.3B Reject (V4): Adani group: US DOJ/SEC charges against group founder and executives (Nov 2024)
+
+== Water
+  #1  GDI       HK $    7.3B EV   7.7 cy   8.1% spr   +2.5 nd 0.6 covS 11.06 merit 0.94 -> Eligible 
+  #2  SBS       BR $   22.5B EV  10.0 cy  -5.6% spr   +4.1 nd 2.24 covS 2.27 merit 0.66 -> Eligible 
+  #3  MWC       PH $    1.5B EV   8.2 cy   0.9% spr   +2.4 nd 5.27 covS 4.31 merit 0.59 -> Watchlist (V5) operating cash flow 28% of EBITDA < 50%
+  #4  VIE       FR $   25.3B EV   7.7 cy   4.4% spr   -0.2 nd 4.21 covS 3.03 merit 0.56 -> Eligible 
+  #5  AWR       US $    3.2B EV  14.9 cy   4.5% spr   +0.6 nd 3.23 covS 4.24 merit 0.53 -> Eligible 
+  #6  UU        GB $   13.7B EV  12.6 cy   4.5% spr   +0.4 nd 6.06 covS 2.42 merit 0.53 -> Eligible 
+  #7  CWT       US $    2.8B EV  12.3 cy   4.2% spr   -1.7 nd 4.51 covS 2.36 merit 0.31 -> Watchlist (V7) merit 0.31 in bottom half of 9 ranked water
+  #8  AWK       US $   25.3B EV  14.1 cy   3.4% spr   -1.1 nd 5.44 covS 2.59 merit 0.28 -> Watchlist (V7) merit 0.28 in bottom half of 9 ranked water
+  #9  WTRG      US $   10.9B EV  14.4 cy   3.1% spr   -2.2 nd 6.32 covS 2.26 merit 0.09 -> Watchlist (V7) merit 0.09 in bottom half of 9 ranked water
+  -- SVT       GB $   12.2B Reject (V2): net debt/EBITDA 7.78× vs type median 5.36× (+2.0 limit)
+  -- PNN       GB $    2.2B Reject (V1): stressed interest cover 1.30× < 1.5× (EBITDA −10%; cover today 1.55×)
+  -- BEW       HK $    2.0B Reject (V2): net debt/EBITDA 11.61× vs type median 5.36× (+2.0 limit)
+
+== Digital networks
+  #1  AMX       MX $   67.2B EV   5.8 cy   8.1% spr   +5.4 nd 1.95 covS 2.42 merit 0.86 -> Eligible 
+  #2  STC       SA $   57.2B EV   9.3 cy   6.8% spr  +12.1 nd -0.03 covS 13.88 merit 0.70 -> Eligible 
+  #3  DTE       DE $  145.0B EV   6.3 cy   8.1% spr   +3.9 nd 3.31 covS 2.92 merit 0.68 -> Eligible 
+  #4  CHMOB     HK $  223.0B EV   4.4 cy  10.8% spr   +3.5 nd -0.86 covS 25.13 merit 0.67 -> Eligible 
+  #5  AIRTEL    IN $  118.1B EV  10.6 cy   6.1% spr  +10.5 nd 1.24 covS 2.88 merit 0.62 -> Eligible 
+  #6  KDDI      JP $   69.4B EV   8.6 cy   4.1% spr   +5.1 nd 2.48 covS 22.59 merit 0.57 -> Eligible 
+  #7  T         US $  167.7B EV   7.0 cy   7.2% spr   +3.6 nd 3.3 covS 2.92 merit 0.57 -> Eligible 
+  #8  CHTEL     HK $   81.0B EV   4.1 cy  12.1% spr   -0.5 nd -0.42 covS 8.72 merit 0.57 -> Eligible 
+  #9  VZ        US $  190.2B EV   7.5 cy   5.2% spr   +4.0 nd 3.75 covS 3.32 merit 0.55 -> Eligible 
+  #10 TMUS      US $  179.8B EV   8.7 cy   5.0% spr   +4.3 nd 3.42 covS 3.78 merit 0.50 -> Eligible 
+  #11 ORA       FR $   42.4B EV   6.5 cy   7.1% spr   +2.1 nd 3.74 covS 2.27 merit 0.47 -> Watchlist (V7) merit 0.47 in bottom half of 16 ranked digital networks
+  #12 SBCORP    JP $   72.0B EV  10.5 cy   2.6% spr   +4.6 nd 3.19 covS 6.32 merit 0.45 -> Watchlist (V7) merit 0.45 in bottom half of 16 ranked digital networks
+  #13 SCMN      CH $   40.2B EV   8.4 cy   7.6% spr   +0.9 nd 3.76 covS 3.09 merit 0.40 -> Watchlist (V7) merit 0.40 in bottom half of 16 ranked digital networks
+  #14 NTT       JP $   87.4B EV   7.8 cy  -0.9% spr   +3.1 nd 4.02 covS 5.26 merit 0.32 -> Watchlist (V5) operating cash flow 41% of EBITDA < 50%
+  #15 SINGTEL   SG $   54.2B EV  13.3 cy   3.9% spr   -1.8 nd 2.32 covS 3.4 merit 0.10 -> Watchlist (V7) merit 0.10 in bottom half of 16 ranked digital networks
+  #16 EQIX      US $  101.8B EV  27.4 cy  -2.1% spr   -2.5 nd 4.93 covS 3.35 merit 0.00 -> Watchlist (V6) EV/EBITDA 27.4× > 2× type median 8.1×
+  -- AMT       US $   77.4B Reject (V2): net debt/EBITDA 6.14× vs type median 3.30× (+2.0 limit)
+  -- DLR       US $   68.2B Reject (V2): net debt/EBITDA 5.66× vs type median 3.30× (+2.0 limit)
+  -- EAND      AE $   50.6B Reject (V3): no price history in our sources (Abu Dhabi listing)
+  -- VOD       GB $   38.9B Reject (V1): stressed interest cover 0.48× < 1.5× (EBITDA −15%; cover today 1.42×)
+
+== Ports
+  #1  WPRTS     MY $    5.8B EV  13.0 cy   5.7% spr  +14.3 nd 1.22 covS 8.22 merit 0.81 -> Eligible 
+  #2  ICT       PH $   28.8B EV  14.8 cy   5.0% spr  +13.9 nd 2.18 covS 5.56 merit 0.56 -> Eligible 
+  #3  KAMIGUMI  JP $    2.9B EV   8.8 cy   4.7% spr   +4.5 nd -0.09 covS 43.04 merit 0.50 -> Eligible 
+  #4  CMPORT    HK $    9.2B EV   8.5 cy   7.3% spr   -3.5 nd 2.89 covS 2.49 merit 0.50 -> Eligible 
+  #5  JSWINFRA  IN $    8.5B EV  32.4 cy   1.6% spr   +3.3 nd 1.72 covS 3.7 merit 0.12 -> Watchlist (V6) EV/EBITDA 32.4× > 2× type median 13.0×
+  -- ADPORTS   IN $   41.6B Reject (V4): Adani group: US DOJ/SEC charges against group founder and executives (Nov 2024)
+  -- QUB       AU $    6.3B Reject (V1): stressed interest cover 0.63× < 1.5× (EBITDA −30%; cover today 1.70×)
+  -- COSCOP    HK $    3.2B Reject (V1): stressed interest cover 0.99× < 1.5× (EBITDA −30%; cover today 1.79×)
+  -- HHFA      DE $    1.8B Reject (V1): stressed interest cover 0.51× < 1.5× (EBITDA −30%; cover today 1.73×)
+
+== Airports & toll roads
+  #1  OMAB      MX $    4.4B EV   9.3 cy   6.9% spr  +22.8 nd 1.18 covS 2.09 merit 0.92 -> Eligible 
+  #2  ASR       MX $    6.9B EV   7.6 cy   6.5% spr  +11.5 nd 1.16 covS 1.97 merit 0.75 -> Eligible 
+  #3  AENA      ES $   42.6B EV  11.8 cy   4.9% spr   +8.3 nd 1.66 covS 2.92 merit 0.33 -> Watchlist (V7) merit 0.33 in bottom half of 4 ranked airports & toll roads
+  #4  AOT       TH $   25.3B EV  25.9 cy   3.2% spr   +7.7 nd 0.73 covS 1.79 merit 0.00 -> Watchlist (V6) EV/EBITDA 25.9× > 2× type median 11.3×
+  -- DG        FR $   67.0B Reject (M1): qualifying revenue 16% < 50% (Concessions €12.2bn of €74.6bn, 2025)
+  -- FER       ES $   36.4B Reject (M1): qualifying revenue 15% < 50% (Highways and airports €1.5bn of €9.6bn, 2025)
+  -- TCL       AU $   28.2B Reject (V1): stressed interest cover -0.32× < 1.5× (EBITDA −60%; cover today 1.30×)
+  -- PAC       MX $   12.0B Reject (V1): stressed interest cover 1.01× < 1.5× (EBITDA −60%; cover today 3.86×)
+  -- ADP       FR $   11.7B Reject (V1): stressed interest cover 0.07× < 1.5× (EBITDA −60%; cover today 3.59×)
+  -- GET       FR $   11.2B Reject (V1): stressed interest cover 0.65× < 1.5× (EBITDA −60%; cover today 3.34×)
+  -- GMR       IN $    9.9B Reject (V1): stressed interest cover 0.18× < 1.5× (EBITDA −60%; cover today 1.13×)
+  -- JSEXP     HK $    9.2B Reject (V1): stressed interest cover 0.86× < 1.5× (EBITDA −60%; cover today 7.30×)
+  -- FHZN      CH $    7.0B Reject (V1): stressed interest cover -0.02× < 1.5× (EBITDA −60%; cover today 17.00×)
+  -- FRA       DE $    6.1B Reject (V1): stressed interest cover -0.14× < 1.5× (EBITDA −60%; cover today 2.06×)
+  -- ZJEXP     HK $    4.5B Reject (M2): operating cash flow not positive
+  -- ALX       AU $    3.9B Reject (M2): ROIC -0.5%: not yet earning from its capacity
+  -- JAT       JP $    3.2B Reject (V1): stressed interest cover 0.53× < 1.5× (EBITDA −60%; cover today 12.72×)
+  -- SZEXP     HK $    2.8B Reject (V1): stressed interest cover -0.75× < 1.5× (EBITDA −60%; cover today 2.50×)
+  -- IRB       IN $    2.2B Reject (V1): stressed interest cover -0.07× < 1.5× (EBITDA −60%; cover today 0.84×)
+
+== Grid & power equipment
+  #1  ENR       DE $  137.5B EV  22.3 cy   7.5% spr  +75.5 nd -1.76 covS 9.86 merit 0.85 -> Eligible 
+  #2  HDHE      KR $   16.1B EV  18.3 cy   4.3% spr  +55.3 nd -0.69 covS 51.0 merit 0.70 -> Eligible 
+  #3  GEV       US $  265.6B EV  65.4 cy   5.0% spr  +32.0 nd -2.29 covS None merit 0.60 -> Watchlist (V6) EV/EBITDA 65.4× > 2× type median 21.1×
+  #4  NEX       FR $    6.2B EV   8.6 cy   8.1% spr   +3.7 nd 1.4 covS 4.29 merit 0.60 -> Eligible 
+  #5  ABBIND    IN $   15.4B EV  72.1 cy   1.0% spr  +56.7 nd -3.73 covS 69.73 merit 0.50 -> Watchlist (V6) EV/EBITDA 72.1× > 2× type median 21.1×
+  #6  VRT       US $   94.9B EV  35.5 cy   3.1% spr  +22.6 nd 0.08 covS 25.79 merit 0.45 -> Watchlist (V7) merit 0.45 in bottom half of 11 ranked grid & power equipment
+  #7  SU        FR $  160.6B EV  18.0 cy   3.9% spr   +4.5 nd 1.91 covS 7.81 merit 0.45 -> Watchlist (V7) merit 0.45 in bottom half of 11 ranked grid & power equipment
+  #8  FUJIELEC  JP $   13.6B EV  10.9 cy   4.7% spr   +3.0 nd -0.04 covS 24.35 merit 0.40 -> Watchlist (V7) merit 0.40 in bottom half of 11 ranked grid & power equipment
+  #9  HYOSUNG   KR $   17.4B EV  26.8 cy   2.9% spr   +7.1 nd 0.06 covS 10.38 merit 0.35 -> Watchlist (V7) merit 0.35 in bottom half of 11 ranked grid & power equipment
+  #10 PRY       IT $   40.7B EV  16.9 cy   3.4% spr   +3.4 nd 1.88 covS 4.31 merit 0.35 -> Watchlist (V7) merit 0.35 in bottom half of 11 ranked grid & power equipment
+  #11 CGPOWER   IN $   14.6B EV  85.3 cy   0.4% spr  +12.5 nd -1.81 covS 64.55 merit 0.25 -> Watchlist (V5) operating cash flow 44% of EBITDA < 50%
+  -- SIE       DE $  233.2B Reject (M1): qualifying revenue 29% < 50% (Smart Infrastructure €23.0bn of €78.9bn, FY2025)
+  -- ABB       CH $  174.2B Watchlist (evidence): interest cover not available
+  -- ETN       US $  167.5B Reject (V2): net debt/EBITDA 3.11× vs type median 0.27× (+2.0 limit)
+  -- HITACHI   JP $  158.3B Reject (M1): qualifying revenue 30% < 50% (Energy ¥3,220bn of ¥10,587bn, FY2025)
+  -- PWR       US $  105.4B Reject (M1): Construction & Engineering is not a qualifying sub-industry
+  -- MELCO     JP $   65.9B Reject (M1): qualifying revenue 25% < 50% (Infrastructure ¥1,463bn of ¥5,895bn, FY2025)
+  -- LR        FR $   41.4B Reject (V2): net debt/EBITDA 2.59× vs type median 0.27× (+2.0 limit)
+  -- HUBB      US $   25.1B Reject (V2): net debt/EBITDA 3.39× vs type median 0.27× (+2.0 limit)
+  -- LSELEC    KR $   21.9B Reject (M2): operating cash flow not positive
+
+== Semiconductors
+  #1  MU        US $ 1230.0B EV  10.7 cy   6.9% spr  +77.0 nd -0.63 covS 423.75 merit 0.97 -> Eligible 
+  #2  NVDA      US $ 5730.0B EV  28.4 cy   2.3% spr  +75.7 nd -0.12 covS 208.93 merit 0.83 -> Eligible 
+  #3  SKHYNIX   KR $  951.7B EV   8.5 cy   9.0% spr  +44.4 nd -0.47 covS 74.17 merit 0.81 -> Eligible 
+  #4  TSMC      TW $ 2092.6B EV  20.3 cy   3.0% spr  +43.1 nd -0.77 covS 76.64 merit 0.69 -> Eligible 
+  #5  ADVANTEST JP $  191.2B EV  50.3 cy   1.4% spr  +57.0 nd -0.52 covS None merit 0.55 -> Eligible 
+  #6  KLAC      US $  256.9B EV  42.6 cy   1.5% spr  +54.7 nd 0.21 covS 9.26 merit 0.55 -> Eligible 
+  #7  QCOM      US $  189.1B EV  16.3 cy   5.5% spr  +12.9 nd 0.58 covS 6.41 merit 0.53 -> Eligible 
+  #8  LRCX      US $  412.4B EV  47.5 cy   1.3% spr  +55.7 nd -0.17 covS 24.73 merit 0.52 -> Eligible 
+  #9  ASML      NL $  692.3B EV  45.1 cy   1.7% spr  +54.6 nd -0.42 covS 48.55 merit 0.52 -> Eligible 
+  #10 AMAT      US $  413.2B EV  40.5 cy   1.9% spr  +22.8 nd -0.19 covS 16.43 merit 0.52 -> Eligible 
+  #11 TEL8035   JP $  179.1B EV  35.9 cy   1.8% spr  +20.5 nd -0.53 covS None merit 0.48 -> Watchlist (V7) merit 0.48 in bottom half of 17 ranked semiconductors
+  #12 TXN       US $  263.9B EV  28.5 cy   2.4% spr  +14.3 nd 0.74 covS 4.68 merit 0.48 -> Watchlist (V7) merit 0.48 in bottom half of 17 ranked semiconductors
+  #13 AVGO      US $ 1800.0B EV  35.1 cy   1.7% spr  +18.6 nd 0.68 covS 5.57 merit 0.45 -> Watchlist (V7) merit 0.45 in bottom half of 17 ranked semiconductors
+  #14 ADI       US $  198.7B EV  29.7 cy   1.7% spr   +0.3 nd 0.99 covS 4.25 merit 0.34 -> Watchlist (V7) merit 0.34 in bottom half of 17 ranked semiconductors
+  #15 MEDIATEK  TW $  240.5B EV  65.7 cy   1.2% spr  +16.8 nd -1.52 covS 63.84 merit 0.22 -> Watchlist (V7) merit 0.22 in bottom half of 17 ranked semiconductors
+  #16 AMD       US $ 1050.0B EV 109.3 cy   0.7% spr   -7.9 nd -0.92 covS 11.93 merit 0.06 -> Watchlist (V6) EV/EBITDA 109.3× > 2× type median 35.5×
+  #17 ARM       GB $  314.4B EV 292.4 cy   0.6% spr  -10.9 nd -3.21 covS None merit 0.00 -> Watchlist (V6) EV/EBITDA 292.4× > 2× type median 35.5×
+  -- SAMSUNG   KR $ 1275.8B Reject (M1): qualifying revenue 39% < 50% (Device Solutions KRW 130tn of KRW 334tn, 2025)
+  -- INTC      US $  594.4B Reject (V1): stressed interest cover -3.44× < 1.5× (EBITDA −50%; cover today 3.88×)
+  -- IFX       DE $   88.5B Reject (V1): stressed interest cover 1.36× < 1.5× (EBITDA −50%; cover today 8.35×)
+
+== Healthcare facilities
+  #1  HCA       US $   95.1B EV   9.2 cy   5.1% spr  +13.8 nd 3.2 covS 3.51 merit 0.87 -> Eligible 
+  #2  MOUWASAT  SA $    3.4B EV  11.9 cy   6.6% spr  +13.4 nd 0.89 covS 31.98 merit 0.83 -> Eligible 
+  #3  BH        TH $    4.4B EV  13.9 cy   4.3% spr  +33.0 nd -0.73 covS 1294.32 merit 0.78 -> Eligible 
+  #4  THC       US $   20.9B EV   6.6 cy   9.8% spr   +8.1 nd 2.29 covS 3.34 merit 0.78 -> Eligible 
+  #5  EHC       US $   12.1B EV  10.1 cy   5.8% spr   +7.8 nd 1.87 covS 5.98 merit 0.63 -> Eligible 
+  #6  UHS       US $   10.3B EV   5.7 cy   7.5% spr   +5.1 nd 1.9 covS 8.74 merit 0.62 -> Eligible 
+  #7  SULAIMAN  SA $   21.3B EV  24.9 cy   3.8% spr  +12.3 nd 2.16 covS 4.76 merit 0.58 -> Eligible 
+  #8  BDMS      TH $    9.0B EV  12.1 cy   4.7% spr   +7.6 nd 0.55 covS 40.51 merit 0.53 -> Eligible 
+  #9  APOLLO    IN $   11.8B EV  30.8 cy   1.9% spr   +9.1 nd 1.8 covS 5.85 merit 0.47 -> Watchlist (V6) EV/EBITDA 30.8× > 2× type median 14.1×
+  #10 NH        IN $    3.6B EV  22.7 cy   3.2% spr   +8.1 nd 2.06 covS 2.82 merit 0.45 -> Watchlist (V7) merit 0.45 in bottom half of 16 ranked healthcare facilities
+  #11 MEDANTA   IN $    3.6B EV  36.0 cy   1.4% spr   +8.7 nd 0.06 covS 5.33 merit 0.40 -> Watchlist (V6) EV/EBITDA 36.0× > 2× type median 14.1×
+  #12 IHH       MY $   17.1B EV  14.3 cy   4.5% spr   +1.0 nd 2.37 covS 2.48 merit 0.28 -> Watchlist (V7) merit 0.28 in bottom half of 16 ranked healthcare facilities
+  #13 ENSG      US $    9.8B EV  20.1 cy   4.2% spr   +2.0 nd 3.31 covS 41.51 merit 0.27 -> Watchlist (V7) merit 0.27 in bottom half of 16 ranked healthcare facilities
+  #14 FORTISH   IN $    6.1B EV  29.3 cy   2.0% spr   +2.1 nd 1.45 covS 4.0 merit 0.20 -> Watchlist (V6) EV/EBITDA 29.3× > 2× type median 14.1×
+  #15 MAXH      IN $    9.1B EV  39.5 cy   1.4% spr   +6.7 nd 1.25 covS 5.5 merit 0.20 -> Watchlist (V6) EV/EBITDA 39.5× > 2× type median 14.1×
+  #16 ASTERDM   IN $    6.1B EV  64.8 cy   0.6% spr   +4.7 nd 0.92 covS 3.57 merit 0.10 -> Watchlist (V6) EV/EBITDA 64.8× > 2× type median 14.1×
+  -- RDOR      BR $   19.3B Reject (M2): operating cash flow not positive
+  -- RHC       AU $    8.8B Reject (V1): stressed interest cover 0.87× < 1.5× (EBITDA −25%; cover today 1.81×)
+  -- KIMS      IN $    2.9B Reject (V1): stressed interest cover 1.23× < 1.5× (EBITDA −25%; cover today 2.04×)
+  -- ACHC      US $    2.7B Reject (V1): stressed interest cover 1.36× < 1.5× (EBITDA −25%; cover today 2.24×)

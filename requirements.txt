@@ -1,0 +1,6 @@
+numpy
+pandas
+scipy
+matplotlib
+reportlab
+yfinance  # only used by one data-fetch script

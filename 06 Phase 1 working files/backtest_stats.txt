@@ -1,0 +1,26 @@
+THE FIRSTS FUND — HYPOTHETICAL BACK-TEST
+Gross of fees. Past simulated performance is not a guarantee of future results.
+========================================================================
+Period                          09 Aug 2021 – 07 Aug 2026 (4.99 yrs)
+Fund NAVPS (base 100)           211.46
+Annualised return, GROSS        17.37%
+Annualised return, NET of fees  16.18%
+Annualised volatility           12.55%
+Sharpe ratio                    0.87
+Sortino ratio                   1.35
+Maximum drawdown                -24.94%
+Worst rolling 12-month          -22.18%
+Best rolling 12-month           65.09%
+% of 12-month periods positive  85%
+Management fee applied          1.00%
+Risk-free rate used             5.25%
+Vol overlay                     target 12%, equity 60%-95%, ME reset
+Average equity exposure         74%
+Minimum equity exposure         60%
+Benchmark NAVPS (base 100)      142.94
+Benchmark annualised return     7.42%
+Excess return vs. benchmark     +8.76%
+Beta vs. benchmark              0.50
+Tracking error                  12.58%
+Information ratio               0.57
+Correlation                     0.65
