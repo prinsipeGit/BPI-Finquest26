@@ -11,6 +11,8 @@ and how to rerun everything. Update the **Decision log** and **Open items** when
   for suitable early-career Filipinos with a first five years or more away. ₱100 minimum (proposed), 1.50% fee (proposed), operating cash
   (no fixed reserve), separate account-level glidepath (proposed platform feature). Central message: "Fund your firsts."
 - Team decisions of 7 Oct 2026 ("Firsts Fund — Consolidated Proposed Changes", Sections 1–8) govern all deliverables.
+  Full text: `Firsts Fund — Consolidated Proposed Changes (7 Oct 2026).md` (repo root). Check every pitch, script, video,
+  calculator and mock-up against it, especially Sections 3–5 (customer experience, glidepath, hook) and the Section 8 checklist.
 - Team: Prince Angelo C. Rivera, Luis Tengonciang, Karol Josef Fuñe, Eric Fabian Thirdy Mendez (Ateneo, BS AMDS/MS DS).
 
 ## Decision log
