@@ -1,6 +1,6 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Last updated:** 2026-10-08 (Thu)  
 **Updated by:** Luis Tengonciang
 
@@ -21,21 +21,24 @@ Send by email to **finquest@bpi.com.ph** with the subject **`FINALIST_LosAngeles
 | ID | Deliverable | Format | Owner | Status | Where it lives | Next action |
 | --- | --- | --- | --- | --- | --- | --- |
 | A1 | Final fund fact sheet | PDF | TBD | 🟡 | `01 Phase 2 submission/LosAngeles76ers_FirstsFund_FactSheet.pdf` (v4) | Final proofread. Check it matches the deck numbers (24.95% p.a., NFRA benchmark, 31 holdings) |
-| A2 | 30-second marketing video | .mp4 | TBD | ❔ | Not in repo | Confirm status. Apply the Section 8 consistency edits to the script. Export as .mp4 and time it at 30 seconds or less |
-| A3 | One-slide customer roadmap (discovery → ongoing engagement) | Slide inside deck | TBD | 🔴 | Not in the deck | Design the slide and insert it into the deck |
-| A4 | Final presentation deck (Investment + Marketing + CX pillars) | .pptx | TBD | 🟡 | `Presentation deck/Firsts Fund — Competition Pitch.pptx` | Covers Investment only today. See section B |
+| A2 | 30-second marketing video (team-made) | .mp4 | TBD | 🟡 | Team's own files | Apply the Section 8 consistency edits to the script. Export as .mp4 and time it at 30 seconds or less |
+| A3 | One-slide customer roadmap (discovery → ongoing engagement) | Slide inside A4 | TBD | ❔ | Team's pitch deck | Confirm it's planned in the team deck |
+| A4 | Final presentation deck for the 10-minute pitch (team-made; Investment + Marketing + CX pillars) | .pptx | TBD | 🟡 | Team's own files (add to repo when final) | See section B |
 | A5 | Google Drive folder with A1, A2, A4 (view access for BPI) | Link | TBD | 🔴 | — | Create the folder, set sharing, test the link from a logged-out browser |
 | A6 | Submission email sent | Email | TBD | 🔴 | — | Send by 11 Oct evening as a buffer. Keep the sent confirmation |
 
-## B. Deck gaps (must close before A4 is done)
+## B. Team pitch deck checklist (must all be true before A4 is done)
+
+The 25-slide `Presentation deck/Firsts Fund — Competition Pitch.pptx` is an **internal strategy reference** for the team (and Q&A backup material). It is not the submission deck.
 
 | ID | Item | Owner | Status | Notes |
 | --- | --- | --- | --- | --- |
-| B1 | **Marketing pillar** slides: audience, message ("Fund your firsts."), channels, campaign, how the video fits | TBD | 🔴 | Required by the guidelines. None of the 25 current slides cover it |
-| B2 | **Customer experience pillar** slides: onboarding, ₱100 minimum, account-level glidepath feature, app/site mock-ups | TBD | 🔴 | Required. Use the existing app and site mock-ups after the Section 8 edits |
-| B3 | Customer roadmap slide (= A3) | TBD | 🔴 | — |
-| B4 | Cut the deck to fit **10 minutes** (now 25 Investment slides) and move the extras to an appendix for Q&A | TBD | 🔴 | Timing is strictly enforced |
-| B5 | Speaker split: who presents which section | TBD | 🔴 | — |
+| B1 | **Marketing pillar** covered: audience, message ("Fund your firsts."), channels, campaign, how the video fits | TBD | ❔ | Required by the guidelines |
+| B2 | **Customer experience pillar** covered: onboarding, ₱100 minimum, account-level glidepath feature, app/site mock-ups | TBD | ❔ | Required. Use the app and site mock-ups after the Section 8 edits |
+| B3 | Customer roadmap slide included (= A3) | TBD | ❔ | — |
+| B4 | Investment section draws its figures from the reference deck and fact sheet (v4: 31 holdings, 24.95% p.a., NFRA benchmark) | TBD | ❔ | Any figure on a slide must match A1 |
+| B5 | Fits **10 minutes**; extra detail moved to an appendix for Q&A | TBD | ❔ | Timing is strictly enforced |
+| B6 | Speaker split: who presents which section | TBD | ❔ | — |
 
 ## C. Model and evidence open items (from AGENTS.md)
 
@@ -73,4 +76,5 @@ Send by email to **finquest@bpi.com.ph** with the subject **`FINALIST_LosAngeles
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.1 | 2026-10-08 | Pitch deck and video are team-made; the 25-slide deck is an internal strategy reference. Section B is now a checklist for the team deck. |
 | 1.0 | 2026-10-08 | Tracker created from the Phase 2 Finalist Guidelines and the AGENTS.md open items. Statuses were checked against the repo contents. |
