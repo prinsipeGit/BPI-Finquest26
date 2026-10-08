@@ -1,6 +1,6 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.5  
+**Version:** 1.6  
 **Last updated:** 2026-10-08 (Thu)  
 **Updated by:** Luis Tengonciang
 
@@ -20,7 +20,7 @@ Send by email to **finquest@bpi.com.ph** with the subject **`FINALIST_LosAngeles
 
 | ID | Deliverable | Format | Owner | Status | Where it lives | Next action |
 | --- | --- | --- | --- | --- | --- | --- |
-| A1 | Final fund fact sheet | PDF | TBD | 🟡 | `01 Phase 2 submission/LosAngeles76ers_FirstsFund_FactSheet.pdf` (v4) | Final proofread. Check it matches the deck numbers (24.95% p.a., NFRA benchmark, 31 holdings) |
+| A1 | Final fund fact sheet | PDF | Luis | 🟡 | `01 Phase 2 submission/LosAngeles76ers_FirstsFund_FactSheet.pdf` (v4) | Polished 8 Oct (section G). Team read-through; confirm G9 settlement; check numbers against the team pitch |
 | A2 | 30-second marketing video (team-made) | .mp4 | TBD | 🟡 | Team's own files | Apply the Section 8 consistency edits to the script. Export as .mp4 and time it at 30 seconds or less |
 | A3 | One-slide customer roadmap (discovery → ongoing engagement) | Slide inside A4 | TBD | ❔ | Team's pitch deck | Confirm it's planned in the team deck |
 | A4 | Final presentation deck for the 10-minute pitch (team-made; Investment + Marketing + CX pillars) | .pptx | TBD | 🟡 | Team's own files (add to repo when final) | See section B |
@@ -68,7 +68,7 @@ Current model is v4: 31 holdings plus 3% cash, ERC on 156 weekly peso returns, r
 | F2.4 | ERC solver converges and all limits hold at every rebalance (issuer 20%, group 20%, type 25%, liquidity) | 🟡 | `analyze4.py` logs violations. Confirm the list is empty after F1.1, and spot-check that risk contributions are roughly equal for the final weights |
 | F2.5 | Costs: 1.50% fee (weekly accrual), 0.30% trading cost on turnover (≈0.21% a year), dividend withholding (≈0.37% a year) | 🟡 | Withholding = today's dividend yield × approximate treaty rate, applied to every past year. Small drag, but the rates need C1. Missing weekly returns: **0 of 8,091**, checked ✅ |
 | F2.6 | Sharpe definition: (CAGR − cash rate) / annualised weekly vol, with cash = BSP policy − 0.50 pt | 🟡 | Mixes geometric return with arithmetic vol. Fine if stated. Check the cash-rate series covers 2021–26 |
-| F2.7 | Beta and correlation are measured vs ACWI, but the benchmark is NFRA | 🔴 | Report beta vs NFRA too, or say explicitly "beta vs world market" |
+| F2.7 | Beta and correlation are measured vs ACWI, but the benchmark is NFRA. **vs NFRA: beta 0.59, correlation 0.71** (`bench.json`) | ✅ | Report beta vs NFRA too, or say explicitly "beta vs world market" |
 | F2.8 | NFRA benchmark series: peso conversion, checksum 2523099084, 10.02% p.a. | 🟡 | Re-derive once. The comparison is vs an ETF *after its fee*, while the fund is shown after 1.50%; state that |
 | F2.9 | Currency: all returns are in PHP, unhedged on purpose | 🟡 | Have the one-line rationale ready, plus how much of the return came from USD/PHP |
 | F2.10 | Liquidity cap = (avg daily volume × price × 20% of volume × 5 days) ÷ ₱1bn fund size | 🟡 | Never binds at ₱1bn (tightest: OMA 12.1% vs 1.98% held). A smaller fund only loosens it. It would bind at roughly ₱6bn+ (OMA). Have one line ready on why ₱1bn |
@@ -91,17 +91,17 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 
 | ID | Change | Priority | Owner | Status |
 | --- | --- | --- | --- | --- |
-| G1 | **Benchmark = NFRA everywhere**: Key facts still say "To be selected by the team". Add an NFRA line to the chart and a row to the table (10.02% a year, ₱100 → 161, worst fall −12.6%); keep ACWI and PSEi as references. `map/infra.json` is not in the repo; find the 8 Oct version | P0 | Luis | 🔴 |
-| G2 | Verify the regulatory citation "BSP Circular No. 1234 (2026)". Use the real circular number or drop the number | P0 | TBD | 🔴 |
-| G3 | Reconcile every figure with the team pitch and the proposal (holdings 31, markets 14, PH 4.80%, fee 1.50%, cash 3%) | P0 | Luis | 🔴 |
-| G4 | Performance block leads with **fund vs benchmark** in pesos (headline: ₱100 → 306 vs NFRA 161). Cut the "Read this carefully" paragraph to two plain sentences. The hindsight label stays on page 1, next to the number | P1 | Luis | 🔴 |
-| G5 | Plain-language pass (customer-facing). Replace: "risk model", "industry proxy", "operating cash", "issuer ceiling", "dealing", "Overlaps we watch", "Countries are an outcome, not a target", "data vendor", "sub-industries" | P1 | TBD | 🔴 |
-| G6 | "Why it exists": drop the performance digs at BPI's own index fund (0.52%) and fund of funds (−4.19 pts). The judges are BPI Wealth. Keep the structural point (one fee layer, direct global shares, ₱100) | P1 | TBD | 🔴 |
-| G7 | Add a small "For a regular saver" box: ₱1,000 a month for 5 years, historical range (median 1.33× paid in; 11% of periods ended below paid-in), labelled illustrative. Depends on C5/C6 | P1 | Luis | 🔴 |
-| G8 | Fees: add an estimated total annual cost line (1.50% + about 0.21% trading + about 0.37% withholding ≈ 2.1%) | P1 | Luis | 🔴 |
-| G9 | Replace vague product terms: "Redemption settlement: per plan rules" → the proposed settlement days. Confirm the trustee wording | P1 | Product lead | 🔴 |
-| G10 | Light visual polish within 2 A4 pages: allocation bar or donut, more white space in the performance block. No redesign | P2 | TBD | 🔴 |
-| G11 | Final proofread, export, and file name `LosAngeles76ers_FirstsFund_FactSheet.pdf`; copy into `01 Phase 2 submission/` | P0 | TBD | 🔴 |
+| G1 | **Benchmark = NFRA everywhere** (rebuilt 8 Oct: `bench_nfra.py`, `map/bench_usd.json` → `bench.json`; reproduces stored ACWI to 0.002% over 5 years): Key facts still say "To be selected by the team". Add an NFRA line to the chart and a row to the table (10.02% a year, ₱100 → 161, worst fall −12.6%); keep ACWI and PSEi as references. `map/infra.json` is not in the repo; find the 8 Oct version | P0 | Luis | ✅ |
+| G2 | Verify the regulatory citation "BSP Circular No. 1234 (2026)". Verified: real, issued 20 May 2026, single-issuer limit raised 15% → 20% | P0 | TBD | ✅ |
+| G3 | Reconcile every figure with the team pitch and the proposal (holdings 31, markets 14, PH 4.80%, fee 1.50%, cash 3%). Fact sheet checked against `results4.json` + `bench.json` ✅; team pitch still to check | P0 | Luis | 🟡 |
+| G4 | Performance block leads with **fund vs benchmark** in pesos (headline: ₱100 → 306 vs NFRA 161). Cut the "Read this carefully" paragraph to two plain sentences. The hindsight label stays on page 1, next to the number | P1 | Luis | ✅ |
+| G5 | Plain-language pass (customer-facing). Replace: "risk model", "industry proxy", "operating cash", "issuer ceiling", "dealing", "Overlaps we watch", "Countries are an outcome, not a target", "data vendor", "sub-industries" | P1 | TBD | ✅ |
+| G6 | "Why it exists": drop the performance digs at BPI's own index fund (0.52%) and fund of funds (−4.19 pts). The judges are BPI Wealth. Keep the structural point (one fee layer, direct global shares, ₱100) | P1 | TBD | ✅ |
+| G7 | Add a small "For a regular saver" box: ₱1,000 a month for 5 years, historical range (median 1.33× paid in; 11% of periods ended below paid-in), labelled illustrative. Depends on C5/C6 | P1 | Luis | ✅ |
+| G8 | Fees: add an estimated total annual cost line (1.50% + about 0.21% trading + about 0.37% withholding ≈ 2.1%) | P1 | Luis | ✅ |
+| G9 | Replace vague product terms: "Redemption settlement: per plan rules" → now "paid day 6 (T+5)", matching BPI's peso global equity class. **Product lead: confirm** | P1 | Product lead | 🟡 |
+| G10 | Light visual polish within 2 A4 pages. Done: taller chart, headline line, page-1 gap filled. Not done: allocation chart (optional) | P2 | TBD | 🟡 |
+| G11 | Final proofread, export, and file name `LosAngeles76ers_FirstsFund_FactSheet.pdf`; copy into `01 Phase 2 submission/`. Exported and copied; team proofread pending | P0 | TBD | 🟡 |
 
 ## C. Model and evidence open items (from AGENTS.md)
 
@@ -139,6 +139,7 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.6 | 2026-10-08 | Fact sheet polished: NFRA benchmark rebuilt and added, plain language, saver illustration, all-in cost, settlement terms, citation verified. Beta vs NFRA added (F2.7). |
 | 1.5 | 2026-10-08 | Added section G: fact sheet polish plan. Found the repo fact sheet still has no benchmark (NFRA missing). |
 | 1.4 | 2026-10-08 | F1.1 downgraded: the repo is for team version control; a rerun is needed only if a figure changes. |
 | 1.3 | 2026-10-08 | F2.5, F2.10, F2.12 checked against `sim4.pkl`: no missing returns, liquidity cap never binds, holdings 29→31 by Oct 2022. |
