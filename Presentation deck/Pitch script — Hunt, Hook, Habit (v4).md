@@ -11,10 +11,10 @@ Checked against: `Firsts Fund — Consolidated Proposed Changes (7 Oct 2026).md`
 | Opening | 1 | Speaker 1 | 0:40 | 0:00–0:40 |
 | The Hunt | 2–6 | Speakers 2 & 3 | 4:30 | 0:40–5:10 |
 | The Hook | 7 | Speaker 4 | 1:40 | 5:10–6:50 |
-| The Habit | 8–9 | Speaker 4 → Speaker 1 | 2:20 | 6:50–9:10 |
-| Close | 10 | Speaker 1 | 0:30 | 9:10–9:40 |
+| The Habit | 8 | Speaker 4 | 2:20 | 6:50–9:10 |
+| Close | 9 | Speaker 1 | 0:30 | 9:10–9:40 |
 
-About 1,150 spoken words, roughly 8:15 at 140 words a minute. The section times above include pauses and slide changes.
+About 1,200 spoken words, roughly 8:40 at 140 words a minute. The section times above include pauses and slide changes.
 
 ---
 
@@ -98,52 +98,64 @@ About 1,150 spoken words, roughly 8:15 at 140 words a minute. The section times 
 
 ## THE HOOK: how people start
 
-### Slide 7 · Choose your first
+### Slide 7 · Name your first
 *Speaker 4 · 1:40*
 
 > How do we reach that graduate? Not with retirement. It's forty years away. We use the first.
 >
-> They'll find us through short videos, campus financial-literacy sessions and workplace talks for new hires. Every one of those leads to the same place in the BPI App, a proposed new feature: **Choose your first.** Pick a suggested goal, write your own, or tap "Help me choose."
+> They'll find us through short videos, campus financial-literacy sessions and workplace talks for new hires. Every one of those leads to the same place in the BPI App, a proposed new feature: **Name your first.** Pick a suggested goal, write your own, or tap "Help me choose."
 >
 > Then the calculator. Enter the amount and the date. It shows what your contributions alone would add up to, and separately, a range of investment outcomes, good and bad, with every assumption visible. You choose whether the target is in today's pesos or adjusted for inflation.
 >
 > No raffles, no cash rewards. Research on young Filipino investors found that feeling competent matters most, so the hook is clarity, not hype.
 
-**Slide:** Phone mock-up (labelled *proposed*): **Choose your first** → *Apartment deposit · ₱120,000 · Oct 2031* → *Your contributions alone: ₱X · Investment illustrations: ₱Y–₱Z (assumptions shown)* · Three discovery tiles: *Short-form social · Campus sessions · Workplace sessions*
+**Slide:** Phone mock-up (labelled *proposed*): **Name your first** → *Apartment deposit · ₱120,000 · Oct 2031* → *Your contributions alone: ₱X · Investment illustrations: ₱Y–₱Z (assumptions shown)* · Three discovery tiles: *Short-form social · Campus sessions · Workplace sessions*
 
 ---
 
-## THE HABIT: how people stay
+## THE HABIT: how people stay (the one-slide customer journey)
 
-### Slide 8 · Built to stay invested
-*Speaker 4 · 1:35*
+### Slide 8 · Your first, from start to finish
+*Speaker 4 · 2:20*
 
-> Starting is half the job. Staying is the rest.
+> Starting is half the job. Staying is the rest. So here's the whole journey in eight stages, each built around the question the investor is actually asking.
 >
-> Before anything is committed, the investor completes the suitability assessment, reads the risk disclosures and authorizes their regular contributions. After that, they invest every payday and can top up any time.
+> **One, Discover your first.** "I have so many plans. Where do I begin?" The graduate story reaches them through short videos, creators, campus activities and workplace sessions, and it ends with one action: name your first.
 >
-> If they miss a month, nothing happens automatically. The goal date stays, the projection updates, and they choose: top up, contribute a bit more later, or move the date.
+> **Two, Name your first.** "What am I working toward?" One goal, an estimated cost, and a date at least five years away. Undecided? Tap "Help me choose my first."
 >
-> The dashboard keeps three things separate: what you've put in, what it's worth, and how close you are to your first.
+> **Three, Plan your first.** "What can I afford?" The calculator compares contributions alone with an illustrative investment scenario, with every assumption visible. Suitability is checked before going further.
 >
-> And as the date gets close, a proposed **account-level glidepath** gradually moves part of the investment into a lower-risk fund. The fund itself doesn't change. Only your mix does. In our 36-year illustration of ₱1,000 a month for five years, the worst outcome rose from 0.65 to 0.87 times what was paid in. Lower risk, but never a guarantee.
-
-**Slide:** Journey strip: *Choose → Plan → Understand & authorize → Contribute → Monitor → Review & glide → Use or revise* · Mini dashboard: *Contributed · Current value (both funds) · Progress to goal* · Small table (illustrative, industry proxy): worst outcome **0.65× → 0.87×** paid in · median 1.33× → 1.27×
-
-### Slide 9 · The first, and the next
-*Speaker 1 · 0:45*
-
-> Every year, there's a goal review: is the amount still right, the date, the contribution? When the date arrives, the investor decides: use the money for the first, extend the goal, keep investing, or name the next first. If they fall short, that starts a review, not a broken promise.
+> **Four, Take the first step.** "How do I begin?" Open the account, choose the funding account and schedule, and authorize. Here we explain the optional account-level glidepath, and investors who enroll give standing authorization.
 >
-> That's how we'll measure ourselves. Not by how much money comes in, but by **how many investors are still contributing in month 60.**
+> **Five, Stay with your first.** "How is my plan progressing?" Scheduled contributions, top-ups whenever they like, and a dashboard that shows what they've put in, what it's worth, the gain or loss, their progress and their next contribution.
+>
+> **Six, Prepare for your first.** "How do I get ready to use this money?" As the date nears, they review the amount and timing. For enrolled investors, the platform gradually redeems Firsts Fund units and invests the proceeds in a lower-risk fund. The fund doesn't change. Their mix does.
+>
+> **Seven, Fulfil your first.** "Am I ready?" They see what's available and redeem when they need it, allowing for settlement. If it falls short or plans change, they revise. The date never forces a withdrawal or assumes success.
+>
+> **And eight, Name your next first.** "What comes next?" Same account, a new goal and a new plan, with suitability checked again for the new timeline.
+>
+> That's the habit: not a single sale, but a loop that brings them back for the next first.
 
-**Slide:** Four choices at the goal date: *Use it · Revise it · Keep investing · Name your next first* · Big number: **% still contributing in month 60**
+**Slide (one-slide customer roadmap):** eight stages left to right, in two rows of four or as a loop with stage 8 pointing back to stage 2. Each stage shows its number, its name, the investor's question in quotes and its main touchpoints. Highlight stage 4 (authorization and glidepath enrollment) and stage 6 (glidepath execution).
+
+| Stage | Investor's question | Experience and action | Main touchpoints |
+| --- | --- | --- | --- |
+| 1. Discover your first | "I have so many plans. Where do I begin?" | Encounter the graduate-story campaign and connect a personal aspiration with the habit of investing. Next action: Name your first. | Campaign film, short-form content, creators, campus activities, workplace financial-literacy sessions |
+| 2. Name your first | "What am I working toward?" | Choose one primary goal from suggestions or enter a custom first. Set its estimated cost and a date at least five years away. Offer "Help me choose my first" for undecided users. | Goal-selection screen |
+| 3. Plan your first | "What can I afford to contribute?" | Use the calculator to compare contributions alone with an illustrative investment scenario. Adjust the contribution, target amount, or timeline. Make assumptions and optional inflation adjustments visible. Check suitability before proceeding. | Calculator, concise fund overview, risk assessment and disclosures |
+| 4. Take the first step | "How do I begin?" | Complete account opening, select the funding account and contribution schedule, and authorize investments. Explain the optional account-level glide path and obtain standing authorization from users who enroll. | Account-opening flow, contribution setup, glide-path enrollment, plan confirmation |
+| 5. Stay with your first | "How is my plan progressing?" | Make scheduled contributions and voluntary top-ups. See total contributions, current value, gain/loss, goal progress, and next contribution. Review the plan when circumstances change. | Goal dashboard, contribution confirmations, payday reminders, periodic summaries |
+| 6. Prepare for your first | "How do I prepare to use this money?" | As the goal approaches, review the date and funding needs. For enrolled investors, the platform executes the authorized glide path: gradually redeeming Firsts Fund holdings and investing the proceeds in the designated lower-risk fund. | Advance reminder, allocation view, transfer schedule, transaction confirmations |
+| 7. Fulfil your first | "Am I ready to use my investment?" | Review the amount available and request redemption when needed, allowing for settlement. If the amount falls short or the goal changes, revise the plan. The goal date does not trigger an assumed success or compulsory withdrawal. | Goal review, redemption flow, completion acknowledgement |
+| 8. Name your next first | "What comes next?" | Keep the account, choose another goal, and confirm a new contribution plan. Reassess suitability and the allocation for the new timeline. | Next-goal invitation, saved account details, new plan confirmation |
 
 ---
 
 ## CLOSE
 
-### Slide 10 · There will always be a new first
+### Slide 9 · There will always be a new first
 *Speaker 1 · 0:30*
 
 > Young Filipinos already have access. What they need is a clear place for money with a five-year purpose: a fund that owns the essential capacity everyday life runs on, and an experience that helps them stay with it.
@@ -170,13 +182,13 @@ About 1,150 spoken words, roughly 8:15 at 140 words a minute. The section times 
 | Story: graduate with many dreams, picks one first (5) | Slides 1, 7 |
 | Discovery: short-form social, campus, workplace; no raffles or rewards (5) | Slide 7 |
 | "Help me choose my first"; contributions-only baseline + balanced illustrations; today's pesos vs future cost (3) | Slide 7 |
-| No standalone "bad year first" step; disclosure before commitment (3, 8) | Slides 7, 8 |
-| Suitability, setup, authorization before commitment (3) | Slide 8 |
-| Missed contributions: date unchanged, projection updates, options (3) | Slide 8 |
-| Dashboard separates contributions, value, progress, across both funds (3, 4) | Slide 8 |
-| Glidepath at account level, authorized, proposed, no guarantee (4) | Slide 8 |
-| Annual reviews; goal-completion choices; shortfall triggers review (3) | Slide 9 |
-| BPI App as proposed entry point; features labelled proposed (7) | Slides 7, 10 |
+| No standalone "bad year first" step; disclosure before commitment (3, 8) | Slide 8, stage 3 |
+| Suitability, setup, authorization before commitment (3) | Slide 8, stages 3–4 |
+| Missed contributions: date unchanged, projection updates, options (3) | Slide 8, stage 5 ("review the plan when circumstances change"); detail for Q&A |
+| Dashboard separates contributions, value, gain/loss, progress (3, 4) | Slide 8, stage 5 |
+| Glidepath at account level, authorized, redeems units and reinvests proceeds (4) | Slide 8, stages 4 and 6 |
+| Goal reviews; completion choices; shortfall triggers revision, no compulsory withdrawal (3) | Slide 8, stages 5–8 |
+| BPI App as proposed entry point; features labelled proposed (7) | Slides 7, 9 |
 | No "bets", no blanket safety claims (5) | Throughout |
 
 ## Numbers and sources
@@ -190,9 +202,11 @@ About 1,150 spoken words, roughly 8:15 at 140 words a minute. The section times 
 | Five-year ₱100 | ₱306 vs NFRA ₱161 | `results4.json`, `bench.json` |
 | PSEi, 5 years | ₱100 → ₱92 | `AGENTS.md` (8 Oct) |
 | 36-year proxy | 12.0% a year; worst 12 months −27.3% | `doc_s5.md` |
-| Glidepath illustration | worst 0.65× → 0.87×; median 1.33× → 1.27× | `doc_s5.md` |
+| Glidepath illustration (Q&A backup, not spoken) | worst 0.65× → 0.87×; median 1.33× → 1.27× | `doc_s5.md` |
 
 ## Still to confirm
 - **Benchmark.** The changes doc says it will be added later; the fact sheet uses NFRA. Slide 6 calls it a reference until the team decides.
 - **"Worst 12 months" figure.** 7 Oct calculator decision −27.0%; current v4 proxy −27.3%. "27%" covers both.
+- **Glidepath: optional or default?** The journey makes it optional (enroll at stage 4). The changes doc (Section 4) calls it a core platform concept with prior authorization. Optional enrollment fits that, but say it the same way in the deck, video and app mock-ups.
+- **Month-60 metric.** The old Slide 9 ended with "% still contributing in month 60". It's no longer spoken; keep it as a Q&A answer or add one line to the close.
 - **Susada (2025).** Slide 7 paraphrases the competence finding from the Phase 1 materials. Keep the citation on the slide or in the appendix.
