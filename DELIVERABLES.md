@@ -1,6 +1,6 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.6  
+**Version:** 1.7  
 **Last updated:** 2026-10-08 (Thu)  
 **Updated by:** Luis Tengonciang
 
@@ -112,7 +112,7 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 | C3 | Check GICS sub-industries, especially healthcare facilities and Kamigumi | TBD | 🔴 | Team-assigned today |
 | C4 | Spot-check debt, cash flow and ROIC for the 31 holdings | TBD | 🔴 | Memory makers are at a cyclical peak; flag this in Q&A |
 | C5 | Calculator: contributions-only baseline + balanced scenarios (5-year+ only); label the glidepath schedule illustrative | TBD | 🔴 | — |
-| C6 | Confirm calculator "bad year" = 36-year worst 12 months (−27.0%) | TBD | ❔ | Waiting on team confirmation |
+| C6 | Confirm calculator "bad year" = 36-year worst 12 months. **Under v4 it is −27.3% (Jun 2008–May 2009)**, not the v3 figure of −27.0% (Aug 2001–Jul 2002) | TBD | ❔ | Team to confirm; update the calculator and pitch if they quote −27.0% |
 | C7 | Make sure the superseded v2 "changes" deck is never presented | TBD | ✅ | Note only |
 
 ## D. Consistency pass (Section 8 of the 7 Oct consolidated changes)
@@ -139,6 +139,7 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.7 | 2026-10-08 | 36-year backtest (v4) checked: saved results match the fact sheet. Calculator bad year updated to −27.3% (C6). |
 | 1.6 | 2026-10-08 | Fact sheet polished: NFRA benchmark rebuilt and added, plain language, saver illustration, all-in cost, settlement terms, citation verified. Beta vs NFRA added (F2.7). |
 | 1.5 | 2026-10-08 | Added section G: fact sheet polish plan. Found the repo fact sheet still has no benchmark (NFRA missing). |
 | 1.4 | 2026-10-08 | F1.1 downgraded: the repo is for team version control; a rerun is needed only if a figure changes. |
