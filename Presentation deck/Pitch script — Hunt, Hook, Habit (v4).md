@@ -14,7 +14,7 @@ Checked against: `Firsts Fund — Consolidated Proposed Changes (7 Oct 2026).md`
 | The Habit | 8–9 | Speaker 4 → Speaker 1 | 2:20 | 6:50–9:10 |
 | Close | 10 | Speaker 1 | 0:30 | 9:10–9:40 |
 
-About 1,300 spoken words, roughly 9:15 at 140 words a minute, leaving time for slide changes.
+About 1,150 spoken words, roughly 8:15 at 140 words a minute. The section times above include pauses and slide changes.
 
 ---
 
