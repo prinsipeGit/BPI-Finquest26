@@ -1,6 +1,6 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.3  
+**Version:** 1.4  
 **Last updated:** 2026-10-08 (Thu)  
 **Updated by:** Luis Tengonciang
 
@@ -48,7 +48,7 @@ Current model is v4: 31 holdings plus 3% cash, ERC on 156 weekly peso returns, r
 
 | ID | Deliverable | Status | Next action |
 | --- | --- | --- | --- |
-| F1.1 | **Reproducible v4 run from this repo**: one command regenerates `results4.json` | 🔴 | Fix paths in `engine4.py` / `analyze4.py` (they expect `../v3`, `../yret.json`, `../inputs.py`, `../../compare/ixn.txt`, `../../backtest`). Recover `ixn.txt`, which is missing from the repo and the Downloads folder (check the `_duplicates` .tgz bundles). Rerun and confirm the headline numbers match |
+| F1.1 | Rerunnable v4 model (internal only; judges won't run it). **Needed only if a number changes** (e.g. C1 rates, beta vs NFRA, supplier attribution) | 🔴 | Low priority until then. Fix paths in `engine4.py` / `analyze4.py` (they expect `../v3`, `../yret.json`, `../inputs.py`, `../../compare/ixn.txt`, `../../backtest`). Recover `ixn.txt`, which is missing from the repo and the Downloads folder (check the `_duplicates` .tgz bundles). Rerun and confirm the headline numbers match |
 | F1.2 | Quant slides for the team pitch (about 2–3 slides): how weights are set, the risk limits, performance vs benchmark | 🔴 | Lead with returns vs benchmark (mentor feedback). Keep the method to one line plus one visual |
 | F1.3 | Performance table: 5-year CAGR, vol, Sharpe, max drawdown, worst 12 months, beta, calendar-year returns vs NFRA / ACWI / PSEi | 🟡 | Exists in `results4.json` and the reference deck. Re-verify after F1.1 |
 | F1.4 | Weighting explainer: ERC vs equal-peso weights, why a holding gets a small weight (NVIDIA 1.64% example) | 🟡 | Reference deck slides 8, 11 and 14 have the content. Simplify for the pitch |
@@ -120,6 +120,7 @@ Current model is v4: 31 holdings plus 3% cash, ERC on 156 weekly peso returns, r
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.4 | 2026-10-08 | F1.1 downgraded: the repo is for team version control; a rerun is needed only if a figure changes. |
 | 1.3 | 2026-10-08 | F2.5, F2.10, F2.12 checked against `sim4.pkl`: no missing returns, liquidity cap never binds, holdings 29→31 by Oct 2022. |
 | 1.2 | 2026-10-08 | Added section F: quantitative portfolio and risk deliverables, verification checks and judge questions (owner: Luis). |
 | 1.1 | 2026-10-08 | Pitch deck and video are team-made; the 25-slide deck is an internal strategy reference. Section B is now a checklist for the team deck. |
