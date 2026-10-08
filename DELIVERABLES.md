@@ -1,6 +1,6 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.2  
+**Version:** 1.3  
 **Last updated:** 2026-10-08 (Thu)  
 **Updated by:** Luis Tengonciang
 
@@ -66,14 +66,14 @@ Current model is v4: 31 holdings plus 3% cash, ERC on 156 weekly peso returns, r
 | F2.2 | Survivorship: the universe is today's 20 largest per type ≥ US$1bn | 🔴 | Biases returns up. State it |
 | F2.3 | Weights are walk-forward (only data before each quarterly rebalance) | ✅ | Checked in `engine4.simulate`: `window(R, t, …)` uses data up to t−1 day |
 | F2.4 | ERC solver converges and all limits hold at every rebalance (issuer 20%, group 20%, type 25%, liquidity) | 🟡 | `analyze4.py` logs violations. Confirm the list is empty after F1.1, and spot-check that risk contributions are roughly equal for the final weights |
-| F2.5 | Costs: 1.50% fee (weekly accrual), 0.30% trading cost on turnover, dividend withholding | 🟡 | Withholding uses *today's* dividend yield × an approximate treaty rate for all years (see C1). Missing weekly returns are filled with 0 (check how many) |
+| F2.5 | Costs: 1.50% fee (weekly accrual), 0.30% trading cost on turnover (≈0.21% a year), dividend withholding (≈0.37% a year) | 🟡 | Withholding = today's dividend yield × approximate treaty rate, applied to every past year. Small drag, but the rates need C1. Missing weekly returns: **0 of 8,091**, checked ✅ |
 | F2.6 | Sharpe definition: (CAGR − cash rate) / annualised weekly vol, with cash = BSP policy − 0.50 pt | 🟡 | Mixes geometric return with arithmetic vol. Fine if stated. Check the cash-rate series covers 2021–26 |
 | F2.7 | Beta and correlation are measured vs ACWI, but the benchmark is NFRA | 🔴 | Report beta vs NFRA too, or say explicitly "beta vs world market" |
 | F2.8 | NFRA benchmark series: peso conversion, checksum 2523099084, 10.02% p.a. | 🟡 | Re-derive once. The comparison is vs an ETF *after its fee*, while the fund is shown after 1.50%; state that |
 | F2.9 | Currency: all returns are in PHP, unhedged on purpose | 🟡 | Have the one-line rationale ready, plus how much of the return came from USD/PHP |
-| F2.10 | Liquidity cap assumes ₱1bn AUM | 🔴 | Say why ₱1bn. Check the caps at a smaller launch size |
+| F2.10 | Liquidity cap = (avg daily volume × price × 20% of volume × 5 days) ÷ ₱1bn fund size | 🟡 | Never binds at ₱1bn (tightest: OMA 12.1% vs 1.98% held). A smaller fund only loosens it. It would bind at roughly ₱6bn+ (OMA). Have one line ready on why ₱1bn |
 | F2.11 | Memory makers (SK hynix, Micron) at a cyclical peak; suppliers contributed about 71% p.a. | 🔴 | Show the result with suppliers removed, or at least the attribution |
-| F2.12 | Early quarters hold fewer names (a name needs 104 weeks of history) | 🔴 | Report the holdings count over time. It affects the comparability of early returns |
+| F2.12 | Early quarters hold fewer names (a name needs 104 weeks of history) | ✅ | 29 names (Q4 2021–Q1 2022), 30 (Q2–Q3 2022), 31 from Oct 2022. Footnote only |
 | F2.13 | 36-year proxy is industry-level, not our screens: "context only" label on every chart | ✅ | Already labelled in the reference deck |
 
 ### F3. Judge questions to prepare (v4 versions)
@@ -120,6 +120,7 @@ Current model is v4: 31 holdings plus 3% cash, ERC on 156 weekly peso returns, r
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.3 | 2026-10-08 | F2.5, F2.10, F2.12 checked against `sim4.pkl`: no missing returns, liquidity cap never binds, holdings 29→31 by Oct 2022. |
 | 1.2 | 2026-10-08 | Added section F: quantitative portfolio and risk deliverables, verification checks and judge questions (owner: Luis). |
 | 1.1 | 2026-10-08 | Pitch deck and video are team-made; the 25-slide deck is an internal strategy reference. Section B is now a checklist for the team deck. |
 | 1.0 | 2026-10-08 | Tracker created from the Phase 2 Finalist Guidelines and the AGENTS.md open items. Statuses were checked against the repo contents. |
