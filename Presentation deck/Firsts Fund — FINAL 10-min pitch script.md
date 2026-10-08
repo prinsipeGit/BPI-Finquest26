@@ -17,7 +17,7 @@ Checked against `Firsts Fund — Consolidated Proposed Changes (7 Oct 2026).md` 
 | 8 | Your first, from start to finish | Habit | Speaker 4 | 2:00 | 7:00–9:00 |
 | 9 | There will always be a new first | Close | Speaker 1 | 0:40 | 9:00–9:40 |
 
-About 1,250 spoken words: roughly 9 minutes at a calm pace, with 20 seconds for slide changes and one minute of buffer.
+About 1,200 spoken words: roughly 8:30 at 140 words a minute. The clock above adds time for pauses and slide changes and leaves about 20 seconds of buffer.
 Speaker 3 should be whoever knows the fund model best, since most quant questions will go to them.
 
 ---
