@@ -7,7 +7,9 @@ Team **Los Angeles 76ers** (Ateneo de Manila): Prince Angelo C. Rivera, Luis Ten
 - Phase 2 submission due **12 Oct 2026**
 - Final Showdown **17 Oct 2026**
 
-**Read [`AGENTS.md`](AGENTS.md) first.** It has the decision log, the current rules (v4), the portfolio, headline results, data sources, rerun commands and open items. Update its decision log whenever something changes.
+**Remaining work is tracked in [`DELIVERABLES.md`](DELIVERABLES.md).** Read [`AGENTS.md`](AGENTS.md) first for context.
+
+AGENTS.md has the decision log, the current rules (v4), the portfolio, headline results, data sources, rerun commands and open items. Update its decision log whenever something changes.
 
 ## Layout
 
