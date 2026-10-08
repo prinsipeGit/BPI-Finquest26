@@ -1,6 +1,6 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.1  
+**Version:** 1.2  
 **Last updated:** 2026-10-08 (Thu)  
 **Updated by:** Luis Tengonciang
 
@@ -40,6 +40,50 @@ The 25-slide `Presentation deck/Firsts Fund — Competition Pitch.pptx` is an **
 | B5 | Fits **10 minutes**; extra detail moved to an appendix for Q&A | TBD | ❔ | Timing is strictly enforced |
 | B6 | Speaker split: who presents which section | TBD | ❔ | — |
 
+## F. Quantitative portfolio and risk (owner: Luis): weighting, simulation, performance
+
+Current model is v4: 31 holdings plus 3% cash, ERC on 156 weekly peso returns, rebalanced quarterly, solved on data to 2 Oct 2026. Figures in the old Google Doc role notes (16 holdings, 17.14%, Vertiv vs IHH, 20,000-sequence shuffle, 24-month glidepath) are out of date. Don't present them.
+
+### F1. Deliverables
+
+| ID | Deliverable | Status | Next action |
+| --- | --- | --- | --- |
+| F1.1 | **Reproducible v4 run from this repo**: one command regenerates `results4.json` | 🔴 | Fix paths in `engine4.py` / `analyze4.py` (they expect `../v3`, `../yret.json`, `../inputs.py`, `../../compare/ixn.txt`, `../../backtest`). Recover `ixn.txt`, which is missing from the repo and the Downloads folder (check the `_duplicates` .tgz bundles). Rerun and confirm the headline numbers match |
+| F1.2 | Quant slides for the team pitch (about 2–3 slides): how weights are set, the risk limits, performance vs benchmark | 🔴 | Lead with returns vs benchmark (mentor feedback). Keep the method to one line plus one visual |
+| F1.3 | Performance table: 5-year CAGR, vol, Sharpe, max drawdown, worst 12 months, beta, calendar-year returns vs NFRA / ACWI / PSEi | 🟡 | Exists in `results4.json` and the reference deck. Re-verify after F1.1 |
+| F1.4 | Weighting explainer: ERC vs equal-peso weights, why a holding gets a small weight (NVIDIA 1.64% example) | 🟡 | Reference deck slides 8, 11 and 14 have the content. Simplify for the pitch |
+| F1.5 | Bias and limitations statement (one slide or appendix) | 🟡 | See F2. Every number must carry the label "historical performance of the currently selected portfolio" |
+| F1.6 | Stress / contribution evidence: 36-year proxy, rolling 60-month ₱1,000/month results, glidepath effect | 🟡 | `05 36-year backtest/backtest_v4.py`. Confirm C6 (bad-year figure) with the team |
+| F1.7 | Sensitivity of the holdings count to the P thresholds | 🟡 | `sens4.py` → `sens4.json`. Put one line in the appendix |
+| F1.8 | Q&A answers for the quant judge questions (F3) | 🔴 | Write them, then drill with the backup (Fund lead) |
+| F1.9 | Figures handed to the fact sheet / pitch / video owners match `results4.json` | 🔴 | Same as D4. Do it last |
+
+### F2. Verify before presenting
+
+| ID | Check | Status | Why it matters |
+| --- | --- | --- | --- |
+| F2.1 | **Selection look-ahead**: the 31 holdings were chosen with Oct 2026 ratios and then backtested over 2021–26. The 24.95% is hindsight, an upper bound | 🔴 | The biggest credibility risk. Options: (a) label it clearly (current approach); (b) re-run selection at past dates (point-in-time) if data allow; (c) lead with the 36-year proxy for "expected" behaviour |
+| F2.2 | Survivorship: the universe is today's 20 largest per type ≥ US$1bn | 🔴 | Biases returns up. State it |
+| F2.3 | Weights are walk-forward (only data before each quarterly rebalance) | ✅ | Checked in `engine4.simulate`: `window(R, t, …)` uses data up to t−1 day |
+| F2.4 | ERC solver converges and all limits hold at every rebalance (issuer 20%, group 20%, type 25%, liquidity) | 🟡 | `analyze4.py` logs violations. Confirm the list is empty after F1.1, and spot-check that risk contributions are roughly equal for the final weights |
+| F2.5 | Costs: 1.50% fee (weekly accrual), 0.30% trading cost on turnover, dividend withholding | 🟡 | Withholding uses *today's* dividend yield × an approximate treaty rate for all years (see C1). Missing weekly returns are filled with 0 (check how many) |
+| F2.6 | Sharpe definition: (CAGR − cash rate) / annualised weekly vol, with cash = BSP policy − 0.50 pt | 🟡 | Mixes geometric return with arithmetic vol. Fine if stated. Check the cash-rate series covers 2021–26 |
+| F2.7 | Beta and correlation are measured vs ACWI, but the benchmark is NFRA | 🔴 | Report beta vs NFRA too, or say explicitly "beta vs world market" |
+| F2.8 | NFRA benchmark series: peso conversion, checksum 2523099084, 10.02% p.a. | 🟡 | Re-derive once. The comparison is vs an ETF *after its fee*, while the fund is shown after 1.50%; state that |
+| F2.9 | Currency: all returns are in PHP, unhedged on purpose | 🟡 | Have the one-line rationale ready, plus how much of the return came from USD/PHP |
+| F2.10 | Liquidity cap assumes ₱1bn AUM | 🔴 | Say why ₱1bn. Check the caps at a smaller launch size |
+| F2.11 | Memory makers (SK hynix, Micron) at a cyclical peak; suppliers contributed about 71% p.a. | 🔴 | Show the result with suppliers removed, or at least the attribution |
+| F2.12 | Early quarters hold fewer names (a name needs 104 weeks of history) | 🔴 | Report the holdings count over time. It affects the comparability of early returns |
+| F2.13 | 36-year proxy is industry-level, not our screens: "context only" label on every chart | ✅ | Already labelled in the reference deck |
+
+### F3. Judge questions to prepare (v4 versions)
+
+- "Is a 24.95% return credible?" → No, as a forecast. It's the hindsight performance of today's selection. Point to the proxy (11.96% p.a., about the market's return) and the costs included.
+- "How is ERC calculated?" → Each holding contributes the same share of portfolio volatility, using 3-year weekly covariance in pesos, re-solved quarterly under the limits.
+- "Why does NVIDIA get only 1.64%?" → High volatility and high correlation with the other chip names, so a small weight already carries an equal share of the risk.
+- "What biases exist?" → Selection look-ahead, survivorship, a constant withholding approximation, and the liquidity cap assuming ₱1bn AUM.
+- "Why unhedged?" / "How do you know the glidepath helps?" → Rolling 60-month result: worst 0.65× without the glidepath vs 0.87× with it (proxy, illustrative).
+
 ## C. Model and evidence open items (from AGENTS.md)
 
 | ID | Item | Owner | Status | Notes |
@@ -76,5 +120,6 @@ The 25-slide `Presentation deck/Firsts Fund — Competition Pitch.pptx` is an **
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.2 | 2026-10-08 | Added section F: quantitative portfolio and risk deliverables, verification checks and judge questions (owner: Luis). |
 | 1.1 | 2026-10-08 | Pitch deck and video are team-made; the 25-slide deck is an internal strategy reference. Section B is now a checklist for the team deck. |
 | 1.0 | 2026-10-08 | Tracker created from the Phase 2 Finalist Guidelines and the AGENTS.md open items. Statuses were checked against the repo contents. |
