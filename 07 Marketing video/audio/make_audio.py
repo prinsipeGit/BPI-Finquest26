@@ -60,20 +60,23 @@ def reverb(x, seconds=2.4, decay=1.1, seed=0):
 N = int(DUR * SR)
 t = np.arange(N) / SR
 
-# (start s, MIDI notes). Key of D. The last change resolves on the green wipe (~26.2 s).
+# Scene starts (s), matched to remotion/src/timing.ts and the voiceover.
+S2, S3, S4, RES = 3.8, 9.5, 15.9, 23.13  # RES = green wipe, where the music resolves
+
+# (start s, MIDI notes). Key of D. The last change resolves on the green wipe.
 CHORDS = [
     (0.0, [50, 57, 61, 64, 66]),    # Dmaj9: curious
-    (4.0, [47, 54, 57, 61, 62]),    # Bm9
-    (7.5, [43, 50, 54, 57, 62]),    # Gmaj7
-    (11.0, [42, 50, 54, 57, 62]),   # D/F#
-    (13.0, [45, 52, 57, 59, 61]),   # Aadd9
-    (14.5, [47, 54, 57, 62, 66]),   # Bm7
-    (16.0, [43, 50, 55, 59, 62]),   # G
-    (18.0, [40, 47, 55, 59, 62]),   # Em9 (momentum)
-    (20.0, [43, 50, 54, 59, 62]),   # Gmaj7
-    (22.0, [45, 52, 57, 62, 64]),   # Asus4
-    (24.0, [45, 52, 55, 61, 64]),   # A7: tension
-    (26.2, [38, 50, 57, 61, 64, 66]),  # Dmaj9: resolution
+    (S2, [47, 54, 57, 61, 62]),     # Bm9
+    (6.8, [43, 50, 54, 57, 62]),    # Gmaj7
+    (S3, [42, 50, 54, 57, 62]),     # D/F#
+    (11.3, [45, 52, 57, 59, 61]),   # Aadd9
+    (13.0, [47, 54, 57, 62, 66]),   # Bm7
+    (14.5, [43, 50, 55, 59, 62]),   # G
+    (S4, [40, 47, 55, 59, 62]),     # Em9 (momentum)
+    (18.0, [43, 50, 54, 59, 62]),   # Gmaj7
+    (19.8, [45, 52, 57, 62, 64]),   # Asus4
+    (21.4, [45, 52, 55, 61, 64]),   # A7: tension
+    (RES, [38, 50, 57, 61, 64, 66]),  # Dmaj9: resolution
 ]
 ENDS = [c[0] for c in CHORDS[1:]] + [DUR]
 
@@ -91,9 +94,9 @@ for (start, notes), end in zip(CHORDS, ENDS):
             f0 = hz(m) * 2 ** (cents / 1200)
             v = sum(np.sin(2 * np.pi * f0 * h * t + h) / h ** 1.6 for h in range(1, 6))
             pad[:, side] += v * e
-pad *= 0.6 + 0.4 * np.clip((t - 4) / 20, 0, 1)[:, None]  # pad opens up over time
+pad *= 0.6 + 0.4 * np.clip((t - S2) / 20, 0, 1)[:, None]  # pad opens up over time
 
-# Plucked arpeggio: sparse at first, eighths from 4 s (100 bpm => 0.3 s)
+# Plucked arpeggio: sparse at first, eighths from S2 (100 bpm => 0.3 s)
 pluck = np.zeros((N, 2))
 
 
@@ -114,53 +117,53 @@ def add_pluck(buf, start, m, amp, pan, tau=0.32):
 pattern = [0, 2, 3, 4, 3, 2, 1, 3]
 for (start, notes), end in zip(CHORDS, ENDS):
     upper = [n + 12 for n in notes[1:]]
-    step = 0.6 if start < 4 else 0.3
+    step = 0.6 if start < S2 else 0.3
     k = 0
-    s = start + (0.15 if start < 4 else 0)
-    while s < end - 0.05 and s < 27.5:
+    s = start + (0.15 if start < S2 else 0)
+    while s < end - 0.05 and s < 26.5:
         m = upper[pattern[k % len(pattern)] % len(upper)]
-        amp = 0.55 if start < 4 else 0.45 + 0.25 * min(1, (s - 4) / 20)
+        amp = 0.55 if start < S2 else 0.45 + 0.25 * min(1, (s - S2) / 20)
         add_pluck(pluck, s, m, amp, 0.3 if k % 2 else 0.7)
         k += 1
         s += step
 # Final shimmer on the resolution
 for i, m in enumerate([74, 78, 81, 85, 86]):
-    add_pluck(pluck, 26.2 + i * 0.09, m, 0.5, 0.2 + 0.15 * i, tau=0.9)
+    add_pluck(pluck, RES + i * 0.09, m, 0.5, 0.2 + 0.15 * i, tau=0.9)
 
-# Soft pulse bass and shaker from 11 s (momentum), stops for the resolution, returns softly
+# Soft pulse bass and shaker from S3 (momentum), softer pulse after the resolution
 bass = np.zeros(N)
 shaker = np.zeros(N)
 beat = 0.6
 for (start, notes), end in zip(CHORDS, ENDS):
-    if start < 11:
+    if start < S3:
         continue
     s = start
     while s < end - 0.05:
-        if s > 28.6:
+        if s > 27.4:
             break
         i0 = int(s * SR)
         n = min(int(0.55 * SR), N - i0)
         tt = np.arange(n) / SR
-        amp = 0.8 if start < 18 else 1.0
+        amp = 0.8 if start < S4 else (1.0 if start < RES else 0.6)
         bass[i0:i0 + n] += np.sin(2 * np.pi * hz(notes[0] - 12) * tt) * np.exp(-tt / 0.22) * np.clip(tt / 0.01, 0, 1) * amp
         # off-beat shaker
         j0 = int((s + beat / 2) * SR)
         m = min(int(0.08 * SR), N - j0)
         if m > 0:
-            shaker[j0:j0 + m] += rng.standard_normal(m) * np.exp(-np.arange(m) / SR / 0.018) * (0.25 if start < 18 else 0.4)
+            shaker[j0:j0 + m] += rng.standard_normal(m) * np.exp(-np.arange(m) / SR / 0.018) * (0.25 if start < S4 else (0.4 if start < RES else 0.2))
         s += beat
 shaker = fft_filter(shaker, 5000, 14000)
 
-# Rising swell into the wipe (23.8 → 26.2 s)
+# Rising swell into the wipe
 sw = rng.standard_normal(N)
-sw = fft_filter(sw, 1500, 9000) * np.clip((t - 23.8) / 2.4, 0, 1) ** 3 * (t < 26.2)
+sw = fft_filter(sw, 1500, 9000) * np.clip((t - (RES - 2.4)) / 2.4, 0, 1) ** 3 * (t < RES)
 
 dry = pad * 0.10 + pluck * 0.16 + np.stack([bass, bass], 1) * 0.30 + np.stack([shaker * 0.8, shaker], 1) * 0.5
 dry += np.stack([sw, sw], 1) * 0.10
 wet = np.stack([reverb(dry[:, 0], seed=1), reverb(dry[:, 1], seed=2)], 1)
 music = dry * 0.75 + wet * 0.55
 # Fade in the first 0.3 s, fade out over the last 1.8 s
-fade = np.clip(t / 0.3, 0, 1) * np.clip((DUR - t) / 1.8, 0, 1)
+fade = np.clip(t / 0.3, 0, 1) * np.clip((DUR - t) / 2.5, 0, 1)
 music *= fade[:, None]
 music = norm(music, -3.0)
 os.makedirs(OUT, exist_ok=True)

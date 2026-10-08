@@ -336,7 +336,7 @@ export const FirstsFundAd: React.FC = () => {
             weight={800}
             color={C.white}
             tracking="-0.035em"
-            stagger={5}
+            stagger={7}
             lineHeight={1.05}
             suffix={
               <span

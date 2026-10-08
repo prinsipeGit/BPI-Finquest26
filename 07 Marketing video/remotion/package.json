@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "studio": "remotion studio",
-    "render": "remotion render src/index.ts FirstsFund ../render/FirstsFund_30s_music.mp4"
+    "render": "remotion render src/index.ts FirstsFund ../render/FirstsFund_30s.mp4"
   },
   "dependencies": {
     "@remotion/cli": "4.0.534",

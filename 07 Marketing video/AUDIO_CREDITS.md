@@ -1,6 +1,6 @@
 # Audio credits
 
-All audio in the current cut is **original**, synthesised by the team's script `audio/make_audio.py` (sine waves and seeded noise, no samples). No third-party licence is required.
+Music and sound effects are **original**, synthesised by the team's script `audio/make_audio.py` (sine waves and seeded noise, no samples). No third-party licence is required.
 
 | File | What |
 | --- | --- |
@@ -8,3 +8,5 @@ All audio in the current cut is **original**, synthesised by the team's script `
 | `notif.wav`, `tick.wav`, `whoosh.wav`, `pop.wav`, `tap.wav`, `node0–6.wav`, `chime.wav` | Sound effects placed in `remotion/src/Sound.tsx` |
 
 Font: Plus Jakarta Sans, SIL Open Font License 1.1 (Google Fonts).
+
+Voiceover: generated with ElevenLabs (voice "Hope - upbeat and clear", eleven_multilingual_v2) on the team's ElevenLabs account. Commercial use is subject to that account's ElevenLabs plan terms.
