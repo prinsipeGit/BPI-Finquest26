@@ -4,111 +4,111 @@
   "text": "You just got your first paycheck.",
   "at": 0.0,
   "beat": 0.0,
-  "dur": 1.893
+  "dur": 2.129
  },
  {
   "file": "audio/vo/02.wav",
-  "text": "So\u2026 what do you do first?",
-  "at": 1.935,
-  "beat": 4.0,
-  "dur": 1.722
+  "text": "What do you do first?",
+  "at": 2.177,
+  "beat": 4.5,
+  "dur": 1.192
  },
  {
   "file": "audio/vo/03.wav",
-  "text": "Take Mom and Dad abroad.",
-  "at": 3.629,
-  "beat": 7.5,
-  "dur": 1.471
+  "text": "Take Mom and Dad abroad?",
+  "at": 3.387,
+  "beat": 7.0,
+  "dur": 1.401
  },
  {
   "file": "audio/vo/04.wav",
-  "text": "Your first car.",
-  "at": 5.081,
-  "beat": 10.5,
-  "dur": 1.22
+  "text": "Get your first car?",
+  "at": 4.839,
+  "beat": 10.0,
+  "dur": 1.1
  },
  {
   "file": "audio/vo/05.wav",
-  "text": "Your first home.",
+  "text": "First home?",
   "at": 6.532,
   "beat": 13.5,
-  "dur": 1.138
+  "dur": 0.771
  },
  {
   "file": "audio/vo/06.wav",
-  "text": "Your first business.",
+  "text": "First business?",
   "at": 8.226,
   "beat": 17.0,
-  "dur": 1.481
+  "dur": 1.033
  },
  {
   "file": "audio/vo/07.wav",
-  "text": "Their first day of school.",
+  "text": "Your child's education?",
   "at": 9.919,
   "beat": 20.5,
-  "dur": 1.693
+  "dur": 1.252
  },
  {
   "file": "audio/vo/08.wav",
   "text": "Fund your firsts.",
   "at": 11.855,
   "beat": 24.5,
-  "dur": 1.42
+  "dur": 1.638
  },
  {
   "file": "audio/vo/09.wav",
-  "text": "Name your first.",
+  "text": "First, name it.",
   "at": 13.79,
   "beat": 28.5,
-  "dur": 0.961
+  "dur": 1.213
  },
  {
   "file": "audio/vo/10.wav",
   "text": "Set the amount.",
   "at": 15.0,
   "beat": 31.0,
-  "dur": 0.87
+  "dur": 1.076
  },
  {
   "file": "audio/vo/11.wav",
-  "text": "Pick a date five years or more away.",
+  "text": "Pick a goal date.",
   "at": 16.21,
   "beat": 33.5,
-  "dur": 1.956
+  "dur": 1.091
  },
  {
   "file": "audio/vo/12.wav",
   "text": "See what to set aside each month\u2026",
-  "at": 18.145,
-  "beat": 37.5,
-  "dur": 1.663
+  "at": 17.903,
+  "beat": 37.0,
+  "dur": 1.726
  },
  {
   "file": "audio/vo/13.wav",
-  "text": "and start with as little as one hundred pesos.",
-  "at": 19.839,
-  "beat": 41.0,
-  "dur": 2.563
+  "text": "and start with as low as one hundred pesos.",
+  "at": 19.597,
+  "beat": 40.5,
+  "dur": 2.482
  },
  {
   "file": "audio/vo/14.wav",
-  "text": "Because there will always be a new first.",
-  "at": 22.5,
-  "beat": 46.5,
-  "dur": 2.42
+  "text": "Then, move on to your next first.",
+  "at": 22.258,
+  "beat": 46.0,
+  "dur": 2.409
  },
  {
   "file": "audio/vo/15.wav",
   "text": "Firsts Fund.",
-  "at": 24.919,
-  "beat": 51.5,
-  "dur": 1.004
+  "at": 24.677,
+  "beat": 51.0,
+  "dur": 1.03
  },
  {
   "file": "audio/vo/16.wav",
   "text": "Fund your firsts.",
   "at": 25.887,
   "beat": 53.5,
-  "dur": 1.192
+  "dur": 1.614
  }
 ]

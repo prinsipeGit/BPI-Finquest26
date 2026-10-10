@@ -1,8 +1,8 @@
 """Cut the ElevenLabs voice-over into lines and clean up the ElevenLabs sound effects.
 
 Sources (kept in assets/elevenlabs/):
-  vo_bella_take2.mp3        one take of the whole script, voice "Bella - Professional, Bright, Warm",
-                            model eleven_v4, read with pauses between lines (earlier: vo_justin_case_take3.mp3)
+  vo_emma_take3.mp3         one take of the whole script, voice "Emma - Youthful, Upbeat Commercial",
+                            model eleven_v4, read with pauses between lines (earlier reads: Justin Case, Bella)
   sfx/*.mp3                 eleven_text_to_sound_v2, one variation per effect
 
 Writes public/audio/vo/NN.wav, public/audio/sfx/*.wav and src/vo.json (where each line starts, in seconds).
@@ -16,30 +16,30 @@ import subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "assets", "elevenlabs")
 OUT = os.path.join(ROOT, "public", "audio")
-# Current voice: "Bella - Professional, Bright, Warm" (ElevenLabs premade), eleven_v4, take 2 of 4.
-# The earlier Justin Case read is kept in assets/elevenlabs/vo_justin_case_take3.mp3 for reference.
-TAKE = os.path.join(SRC, "vo_bella_take2.mp3")
+# Current voice: "Emma - Youthful, Upbeat Commercial" (ElevenLabs library), eleven_v4, take 3 of 4.
+# Earlier reads (Justin Case, Bella) are kept in assets/elevenlabs/ for reference.
+TAKE = os.path.join(SRC, "vo_emma_take3.mp3")
 TL = json.load(open(os.path.join(ROOT, "src", "timeline.json")))
 BEAT = 60.0 / TL["bpm"]
 
 # Each line of the script: text, where it starts (in BEATS, on the half-beat grid so the voice rides the music),
-# playback speed. Bella reads a little slower than the cut, so some lines are sped up slightly.
+# playback speed.
 LINES = [
-    ("You just got your first paycheck.", 0.0, 1.2),
-    ("So… what do you do first?", 4.0, 1.2),
-    ("Take Mom and Dad abroad.", 7.5, 1.15),
-    ("Your first car.", 10.5, 1.0),
-    ("Your first home.", 13.5, 1.0),
-    ("Your first business.", 17.0, 1.0),
-    ("Their first day of school.", 20.5, 1.0),
+    ("You just got your first paycheck.", 0.0, 1.05),
+    ("What do you do first?", 4.5, 1.0),
+    ("Take Mom and Dad abroad?", 7.0, 1.0),
+    ("Get your first car?", 10.0, 1.0),
+    ("First home?", 13.5, 1.0),
+    ("First business?", 17.0, 1.0),
+    ("Your child's education?", 20.5, 1.0),
     ("Fund your firsts.", 24.5, 1.0),
-    ("Name your first.", 28.5, 1.1),
-    ("Set the amount.", 31.0, 1.1),
-    ("Pick a date five years or more away.", 33.5, 1.16),
-    ("See what to set aside each month…", 37.5, 1.12),
-    ("and start with as little as one hundred pesos.", 41.0, 1.15),
-    ("Because there will always be a new first.", 46.5, 1.08),
-    ("Firsts Fund.", 51.5, 1.0),
+    ("First, name it.", 28.5, 1.1),
+    ("Set the amount.", 31.0, 1.0),
+    ("Pick a goal date.", 33.5, 1.0),
+    ("See what to set aside each month…", 37.0, 1.1),
+    ("and start with as low as one hundred pesos.", 40.5, 1.1),
+    ("Then, move on to your next first.", 46.0, 1.0),
+    ("Firsts Fund.", 51.0, 1.0),
     ("Fund your firsts.", 53.5, 1.0),
 ]
 
@@ -56,7 +56,7 @@ def run(args):
     return subprocess.run(args, capture_output=True, text=True, check=True)
 
 
-def silences(path, noise="-40dB", dur=0.18):
+def silences(path, noise="-40dB", dur=0.25):  # 0.25 s keeps comma pauses inside a line
     log = subprocess.run(["ffmpeg", "-v", "info", "-i", path, "-af", f"silencedetect=n={noise}:d={dur}", "-f", "null", "-"],
                          capture_output=True, text=True).stderr
     starts = [float(x) for x in re.findall(r"silence_start: ([0-9.]+)", log)]

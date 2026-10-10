@@ -32,10 +32,9 @@ const CUES: {beat: number; sfx: string; vol?: number; max?: number}[] = [
 	{beat: S.logo[0] + 2.1, sfx: 'success', vol: 0.3},
 ];
 
-// Music dips under the voice. The voiced cut uses its own warmer bed (music_vo.wav: felt piano, pad,
-// soft pulse) that leaves room for the voice; the no-voice cut keeps the busier dance beat (music.wav).
-const MUSIC_UP = 0.62;
-const MUSIC_DOWN = 0.3;
+// Music dips under the voice: full level between lines, about a third while she speaks.
+const MUSIC_UP = 0.55;
+const MUSIC_DOWN = 0.2;
 const MUSIC_NO_VO = 0.85; // music-and-effects version: the bed carries the ad, so it sits higher
 const speaking = VO.map((v) => [sec(v.at), sec(v.at + v.dur)]);
 const musicVolume = (frame: number) => {
@@ -85,8 +84,8 @@ export const FirstsAd: React.FC<{voiceOver?: boolean}> = ({voiceOver = true}) =>
 		</Scene>
 
 		{/* placeholder music bed (scripts/make_audio.py) until a licensed or ElevenLabs track is in */}
-		<Audio src={staticFile(voiceOver ? 'audio/music_vo.wav' : 'audio/music.wav')} volume={voiceOver ? musicVolume : MUSIC_NO_VO} />
-		{/* voice-over: ElevenLabs "Bella - Professional, Bright, Warm", one line per clip, starts on the half-beat grid */}
+		<Audio src={staticFile('audio/music.wav')} volume={voiceOver ? musicVolume : MUSIC_NO_VO} />
+		{/* voice-over: ElevenLabs "Emma - Youthful, Upbeat Commercial", one line per clip, starts on the half-beat grid */}
 		{voiceOver && VO.map((v, k) => (
 			<Sequence key={`vo${k}`} from={sec(v.at)} layout="none">
 				<Audio src={staticFile(v.file)} volume={1} />

@@ -39,17 +39,17 @@ The ad shows **contributions only, with no assumed return**, so it promises no g
 
 | Layer | Source | Notes |
 |---|---|---|
-| Voice-over | ElevenLabs, voice **Bella - Professional, Bright, Warm**, model eleven_v4 (take 2 of 4) | One take of the whole script (`assets/elevenlabs/vo_bella_take2.mp3`), cut into 16 lines by `scripts/prepare_audio.py`, each starting on a half-beat of the music (`src/vo.json`). Light EQ, compression and a small room so it sits in the same space as the music. The earlier Justin Case read is kept in `assets/elevenlabs/` |
+| Voice-over | ElevenLabs, voice **Emma - Youthful, Upbeat Commercial**, model eleven_v4 (take 3 of 4) | One take of the whole script (`assets/elevenlabs/vo_emma_take3.mp3`), cut into 16 lines by `scripts/prepare_audio.py`, each starting on a half-beat of the music (`src/vo.json`). Light EQ, compression and a small room. Earlier reads (Justin Case, Bella) are kept in `assets/elevenlabs/` |
 | Sound effects | ElevenLabs Sound Effects v2 | Notification, whoosh, plane, car, stacking blocks, shutter, page flip, pencil, typing, click, success chime, boom, riser (`assets/elevenlabs/sfx/`). In the voiced cut, effects that land on a line play at half volume |
-| Music | Placeholder, synthesised (`scripts/make_audio.py`) | Voiced cut: `music_vo.wav`, a warm bed (felt piano, pad, soft half-time pulse) that dips under the voice. No-voice cut: `music.wav`, the busier dance beat. The ElevenLabs connector here has no music generation |
+| Music | Placeholder, synthesised (`scripts/make_audio.py`) | `music.wav`, the dance beat, in both cuts. In the voiced cut it dips to about a third under the voice. The ElevenLabs connector here has no music generation |
 
 Voice-over script (timings in `src/vo.json`):
 
-> You just got your first paycheck. So… what do you do first?
-> Take Mom and Dad abroad. Your first car. Your first home. Your first business. Their first day of school.
+> You just got your first paycheck. What do you do first?
+> Take Mom and Dad abroad? Get your first car? First home? First business? Your child's education?
 > Fund your firsts.
-> Name your first. Set the amount. Pick a date five years or more away. See what to set aside each month… and start with as little as one hundred pesos.
-> Because there will always be a new first.
+> First, name it. Set the amount. Pick a goal date. See what to set aside each month… and start with as low as one hundred pesos.
+> Then, move on to your next first.
 > Firsts Fund. Fund your firsts.
 
 ## Run it
@@ -84,7 +84,7 @@ Fonts (Geist Sans, plus Inter for the ₱ sign; both OFL) are bundled in `public
 
 ## Before release
 
-- [x] Voice-over (ElevenLabs, Bella) and sound effects (ElevenLabs).
+- [x] Voice-over (ElevenLabs, Emma) and sound effects (ElevenLabs).
 - [ ] **Music:** `public/audio/music.wav` is a synthesised placeholder. Replace it with a licensed 120–128 BPM track (Artlist, Epidemic, Uppbeat, YouTube Audio Library), keep the file name, and line its drops up with 11.6 s ("Fund your firsts.") and 22.7 s. If the tempo differs, change `bpm` in `timeline.json`.
 - [ ] Team check: the lines, the example first (Japan, ₱150,000, 5 years), and the legal text.
 - [ ] Keep calculator wording in line with the real calculator once it is built.

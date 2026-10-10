@@ -206,7 +206,7 @@ def shaker(n=0.08):
 
 
 def build_music_vo():
-    """Warm bed for the voiced cut: felt-piano arpeggios, pad and a soft half-time pulse.
+    """(Not used now: the team preferred the dance beat under the voice too.) Warm bed for the voiced cut: felt-piano arpeggios, pad and a soft half-time pulse.
     Leaves the 1–4 kHz range open for the voice; the busy dance beat stays in music.wav for the no-voice cut."""
     mix = np.zeros(int((TOTAL + 2.5) * SR))
     kick_env = np.zeros_like(mix)
@@ -315,5 +315,4 @@ if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     m = build_music()
     save("music.wav", None, stereo=m)
-    save("music_vo.wav", None, stereo=build_music_vo())
     print("wrote", sorted(os.listdir(OUT)), f"music {len(m) / SR:.2f}s")
