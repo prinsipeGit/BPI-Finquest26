@@ -35,6 +35,7 @@ const CUES: {beat: number; sfx: string; vol?: number; max?: number}[] = [
 // Music dips under the voice: full level between lines, about a third while someone speaks.
 const MUSIC_UP = 0.5;
 const MUSIC_DOWN = 0.18;
+const MUSIC_NO_VO = 0.85; // music-and-effects version: the bed carries the ad, so it sits higher
 const speaking = VO.map((v) => [sec(v.at), sec(v.at + v.dur)]);
 const musicVolume = (frame: number) => {
 	let d = 1; // 1 = no voice nearby, 0 = voice playing
@@ -51,7 +52,8 @@ const Scene: React.FC<{range: number[]; children: React.ReactNode}> = ({range, c
 	</Sequence>
 );
 
-export const FirstsAd: React.FC = () => (
+/** voiceOver=false gives the music-and-effects version: no voice, music at full level throughout. */
+export const FirstsAd: React.FC<{voiceOver?: boolean}> = ({voiceOver = true}) => (
 	<AbsoluteFill style={{background: '#000'}}>
 		<Scene range={S.intro}>
 			<Intro />
@@ -78,9 +80,9 @@ export const FirstsAd: React.FC = () => (
 		</Scene>
 
 		{/* placeholder music bed (scripts/make_audio.py) until a licensed or ElevenLabs track is in */}
-		<Audio src={staticFile('audio/music.wav')} volume={musicVolume} />
+		<Audio src={staticFile('audio/music.wav')} volume={voiceOver ? musicVolume : MUSIC_NO_VO} />
 		{/* voice-over: ElevenLabs "Justin Case - Warm, Trustworthy, Clear", one line per clip */}
-		{VO.map((v, k) => (
+		{voiceOver && VO.map((v, k) => (
 			<Sequence key={`vo${k}`} from={sec(v.at)} layout="none">
 				<Audio src={staticFile(v.file)} volume={1} />
 			</Sequence>

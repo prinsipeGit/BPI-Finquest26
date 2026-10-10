@@ -10,5 +10,8 @@ export const RemotionRoot: React.FC = () => (
 	<>
 		<Composition id="FirstsAdV2" component={FirstsAd} durationInFrames={DURATION} fps={TL.fps} width={1920} height={1080} />
 		<Composition id="FirstsAdV2Vertical" component={FirstsAd} durationInFrames={DURATION} fps={TL.fps} width={1080} height={1920} />
+		{/* music and sound effects only, no voice-over */}
+		<Composition id="FirstsAdV2NoVO" component={FirstsAd} defaultProps={{voiceOver: false}} durationInFrames={DURATION} fps={TL.fps} width={1920} height={1080} />
+		<Composition id="FirstsAdV2NoVOVertical" component={FirstsAd} defaultProps={{voiceOver: false}} durationInFrames={DURATION} fps={TL.fps} width={1080} height={1920} />
 	</>
 );

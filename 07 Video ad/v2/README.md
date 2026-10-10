@@ -61,6 +61,8 @@ python3 scripts/prepare_audio.py   # re-cut the voice-over and clean the SFX (ne
 npm run studio           # preview / edit in the browser
 npm run render           # out/FirstsFund_Ad_v2.mp4      (1920×1080)
 npm run render:vertical  # out/FirstsFund_Ad_v2_9x16.mp4 (1080×1920, Reels/TikTok)
+npm run render:novo      # out/FirstsFund_Ad_v2_noVO.mp4 (music + sound effects, no voice-over)
+npm run render:novo:vertical  # out/FirstsFund_Ad_v2_noVO_9x16.mp4
 ```
 
 If Chrome won't launch (e.g. in a cloud container), point Remotion at a headless shell: `REMOTION_BROWSER=/path/to/headless_shell npm run render`.

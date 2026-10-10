@@ -7,7 +7,9 @@
     "audio": "python3 scripts/make_audio.py",
     "studio": "remotion studio",
     "render": "remotion render FirstsAdV2 out/FirstsFund_Ad_v2.mp4",
-    "render:vertical": "remotion render FirstsAdV2Vertical out/FirstsFund_Ad_v2_9x16.mp4"
+    "render:vertical": "remotion render FirstsAdV2Vertical out/FirstsFund_Ad_v2_9x16.mp4",
+    "render:novo": "remotion render FirstsAdV2NoVO out/FirstsFund_Ad_v2_noVO.mp4",
+    "render:novo:vertical": "remotion render FirstsAdV2NoVOVertical out/FirstsFund_Ad_v2_noVO_9x16.mp4"
   },
   "dependencies": {
     "@fontsource/geist-sans": "^5.2.5",
