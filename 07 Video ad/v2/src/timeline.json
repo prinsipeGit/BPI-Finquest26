@@ -1,0 +1,24 @@
+{
+  "bpm": 124,
+  "fps": 30,
+  "totalBeats": 62,
+  "sections": {
+    "hook":    [0, 4],
+    "montage": [4, 16],
+    "howto":   [16, 18],
+    "phone":   [18, 44],
+    "silence": [44, 46],
+    "always":  [46, 50],
+    "logo":    [50, 56],
+    "legal":   [56, 62]
+  },
+  "phone": {
+    "step1":  [18, 22],
+    "step2":  [22, 26],
+    "step3":  [26, 32],
+    "result": [32, 36],
+    "start":  [36, 40],
+    "next":   [40, 44]
+  },
+  "example": { "name": "Japan with Ma & Pa", "amount": 150000, "years": 5 }
+}

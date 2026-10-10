@@ -27,6 +27,7 @@ and how to rerun everything. Update the **Decision log** and **Open items** when
 | 2026-10-08 | PSEi added as a local reference line (FMETF tracker price from PSE Edge, `map/psei.json`, checksum 1242366098): 5y −1.67% a year, ₱100 → 92. No benchmark chosen yet; MSCI ACWI ETF and PSEi are references only. |
 | 2026-10-08 | NFRA/IGF benchmark series rebuilt (original `map/infra.json` not in the repo): `v4/bench_nfra.py` + `map/bench_usd.json` → `bench.json` (NFRA 10.02% a year, ₱100 → 161, max DD −12.63%; IGF 13.66%; fund beta vs NFRA 0.59). Fact sheet polished and regenerated with NFRA as benchmark. |
 | 2026-10-08 | Testing conventions for v3 and v4 alike: 0.30% trading cost, dividend withholding by listing country (approx.), cash at BSP policy − 0.50 pt. 5-year results labelled "historical performance of the currently selected portfolio"; 36-year proxy "industry proxy, context only" (now incl. Hlth, `backtest_v4.py`). |
+| 2026-10-10 | **Ad v2** (Remotion, `07 Video ad/v2/`): fast-paced (124 BPM, beat-cut), aimed at "is this for me?" with no fund technicals. Story: firsts 5+ years away → onboarding calculator (name, amount, years ≥ 5 → monthly = amount ÷ months, contributions only) → "There's always a new first" → "Fund your firsts." CTA "Start with as little as ₱100". v1 code is not in this repo. Music is a synthesised placeholder until a licensed track is chosen. |
 
 ## The rules (v4, current; full text in `04 Fund model/v4 (31 holdings, current)/RULES_v4.md`)
 - **Theme**: listed businesses that own, operate or supply essential, hard-to-replace capacity and earn from it. Eight types (research
@@ -100,6 +101,7 @@ TW 3.73, US 1.65. Owners 74.94 / Suppliers 15.06. ~5.9 independent bets; top-2 f
 | `04 Fund model/` | One subfolder per version. `v4 (31 holdings, current)/` = current engine (RULES_v4.md, map/, engine4.py, analyze4.py, build_factsheet4.py, gen_deck4.py, gen_doc4.py, notes4.py, sens4.py, results4.json). `v3 (21 holdings, superseded)/`, `v2 (33 holdings, superseded)/`, `v1 (15 holdings, superseded)/` |
 | `05 36-year backtest/` | `backtest.py` (original proxy), `backtest_v3.py` (→ `results_v3.pkl`), `backtest_v4.py` (current, incl. Hlth → `results_v4.pkl`) |
 | `06 Phase 1 working files/` | Original Aug 2026 `finquest` folder |
+| `07 Video ad/v2/` | 30-s ad v2 in Remotion (`README.md` has the storyboard and render steps; renders in `out/`) |
 | `_duplicates/` | Byte-identical extra copies, old AGENTS.md and transfer bundles (.tgz); safe to delete |
 
 ### Files in `04 Fund model/v3 (21 holdings, superseded)/`
@@ -129,6 +131,7 @@ Ken French library. Conglomerate segment shares from annual reports (links in `i
 - [ ] Spot-check debt, cash flow, ROIC for the 31 holdings; memory makers at cyclical peak.
 - [ ] Calculator: contributions-only baseline + balanced scenarios (5-year+ examples only); glidepath schedule labelled illustrative.
 - [ ] Video script, site and app mock-ups: apply Section 8 consistency edits (not in this workspace).
+- [ ] Ad v2: replace placeholder music with a licensed track; team check of Taglish lines and legal text.
 - [ ] Older "changes" deck (v2) is superseded; do not present it.
 
 ## Links

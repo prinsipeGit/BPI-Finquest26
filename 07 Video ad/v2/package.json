@@ -1,0 +1,25 @@
+{
+  "name": "firsts-fund-ad-v2",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Firsts Fund 30-second ad, v2 (fast-paced, onboarding calculator)",
+  "scripts": {
+    "audio": "python3 scripts/make_audio.py",
+    "studio": "remotion studio",
+    "render": "remotion render FirstsAdV2 out/FirstsFund_Ad_v2.mp4",
+    "render:vertical": "remotion render FirstsAdV2Vertical out/FirstsFund_Ad_v2_9x16.mp4"
+  },
+  "dependencies": {
+    "@fontsource/poppins": "^5.1.0",
+    "@remotion/cli": "4.0.526",
+    "@remotion/fonts": "^4.0.526",
+    "@remotion/transitions": "4.0.526",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.526"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}
