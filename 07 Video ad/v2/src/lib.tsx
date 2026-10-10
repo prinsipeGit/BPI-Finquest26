@@ -1,117 +1,129 @@
 import React from 'react';
-import {interpolate, spring, useCurrentFrame, useVideoConfig, Easing} from 'remotion';
-import {staticFile} from 'remotion';
+import {Easing, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {loadFont} from '@remotion/fonts';
 import tl from './timeline.json';
 
-// Poppins (OFL) is bundled in public/fonts so renders work offline. latin-ext carries the ₱ sign.
-export const fontFamily = 'Poppins';
-const RANGES = {
-	latin: 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD',
-	'latin-ext': 'U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF',
-};
-for (const w of ['500', '600', '700', '800']) {
-	for (const [sub, unicodeRange] of Object.entries(RANGES)) {
-		loadFont({family: fontFamily, url: staticFile(`fonts/poppins-${sub}-${w}-normal.woff2`), weight: w, unicodeRange});
-	}
+/* ---------- fonts (bundled, so renders work offline) ---------- */
+// Geist has no ₱ glyph, so Inter (latin-ext) supplies just that character.
+for (const w of ['400', '500', '600', '700']) {
+	loadFont({family: 'Geist', url: staticFile(`fonts/geist-sans-latin-${w}-normal.woff2`), weight: w});
+	loadFont({family: 'PesoFallback', url: staticFile(`fonts/inter-latin-ext-${w}-normal.woff2`), weight: w, unicodeRange: 'U+20B1'});
 }
+for (const w of ['400', '500']) {
+	loadFont({family: 'Geist Mono', url: staticFile(`fonts/geist-mono-latin-${w}-normal.woff2`), weight: w});
+}
+export const SANS = "'Geist', 'PesoFallback', sans-serif";
+export const MONO = "'Geist Mono', 'PesoFallback', monospace";
 
+/* ---------- timing ---------- */
 export const TL = tl;
-export const FPS = tl.fps;
-const FRAMES_PER_BEAT = (tl.fps * 60) / tl.bpm;
-
-/** Frame number of a beat (beats can be fractional). Every cut lands on one. */
-export const f = (beat: number) => Math.round(beat * FRAMES_PER_BEAT);
-/** Length in frames of a [from, to] beat range. */
+const FPB = (tl.fps * 60) / tl.bpm;
+/** Frame of a beat. Every cut lands on one. */
+export const f = (beat: number) => Math.round(beat * FPB);
 export const len = ([a, b]: number[]) => f(b) - f(a);
 
+/* ---------- look ---------- */
 export const C = {
-	green: '#0F7A45',
-	deep: '#0A3B26',
-	ink: '#14201A',
-	cream: '#FFF4E0',
-	amber: '#F2A93B',
-	amberDeep: '#C9761F',
-	mint: '#BFE8CF',
-	white: '#FFFFFF',
-	grey: '#9AA59F',
-	red: '#E2574C',
+	paper: '#F4F3EE',
+	card: '#FFFFFF',
+	ink: '#0E100E',
+	ink2: '#3A3F3B',
+	muted: '#8B908A',
+	line: '#D9D7CF',
+	accent: '#0B7A4B',
+	accentSoft: '#DDEFE5',
+	night: '#0B0D0C',
+	rule: '#B9CDE6',
+	margin: '#E7A1A1',
+	warn: '#D2453B',
+	glow: '#34C17F',
 };
+
+export const E = {
+	out: Easing.bezier(0.16, 1, 0.3, 1),
+	inOut: Easing.bezier(0.83, 0, 0.17, 1),
+	in: Easing.bezier(0.7, 0, 0.84, 0),
+	soft: Easing.bezier(0.33, 1, 0.68, 1),
+};
+
+/** 0→1 between frames a and b, clamped. */
+export const ramp = (frame: number, a: number, b: number, ease: (t: number) => number = E.out) =>
+	interpolate(frame, [a, b], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease});
+export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 
 export const peso = (n: number) => '₱' + Math.round(n).toLocaleString('en-US');
 
+/* ---------- layout ----------
+ * Every first is drawn in one 1000 × 600 "stage" so an end state in one scene can be the
+ * start state of the next. 16:9 puts the stage on the right and the caption on the left;
+ * 9:16 puts the stage on top and the caption underneath.
+ */
 export const useLayout = () => {
 	const {width, height} = useVideoConfig();
 	const vertical = height > width;
-	// type scale follows the short side so 16:9 and 9:16 read the same
 	const u = Math.min(width, height) / 1080;
-	return {width, height, vertical, u};
-};
-
-/** Spring that starts at `delay` frames into the current sequence. */
-export const usePop = (delay = 0, damping = 12, stiffness = 180) => {
-	const frame = useCurrentFrame();
-	const {fps} = useVideoConfig();
-	return spring({frame: frame - delay, fps, config: {damping, stiffness, mass: 0.6}});
-};
-
-/** Whip-in: slides in from the side with motion blur over a few frames. */
-export const WhipIn: React.FC<{children: React.ReactNode; from?: 'left' | 'right' | 'up'; delay?: number; dur?: number; style?: React.CSSProperties}> = ({
-	children,
-	from = 'right',
-	delay = 0,
-	dur = 6,
-	style,
-}) => {
-	const frame = useCurrentFrame();
-	const p = interpolate(frame - delay, [0, dur], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
-	const dist = (1 - p) * 120;
-	const tx = from === 'left' ? -dist : from === 'right' ? dist : 0;
-	const ty = from === 'up' ? dist : 0;
-	return (
-		<div style={{transform: `translate(${tx}%, ${ty}%)`, filter: `blur(${(1 - p) * 24}px)`, opacity: p > 0 ? 1 : 0, ...style}}>{children}</div>
-	);
-};
-
-/** Short camera shake on a hit, starting at `at` frames. */
-export const useShake = (at: number, strength = 14, dur = 6) => {
-	const frame = useCurrentFrame();
-	const k = frame - at;
-	if (k < 0 || k > dur) return 'translate(0,0)';
-	const d = (1 - k / dur) * strength;
-	return `translate(${Math.sin(k * 9.1) * d}px, ${Math.cos(k * 7.3) * d}px)`;
+	const stage = vertical
+		? {x: 40 * u, y: 470 * u, s: u}
+		: {x: width - 1080 * u - 70 * u, y: 190 * u, s: 1.08 * u};
+	const caption = vertical
+		? {left: 80 * u, top: 1200 * u, width: 920 * u}
+		: {left: 120 * u, top: 330 * u, width: 700 * u};
+	const toScreen = (vx: number, vy: number) => ({x: stage.x + vx * stage.s, y: stage.y + vy * stage.s});
+	return {width, height, vertical, u, stage, caption, toScreen};
 };
 
 export const Fill: React.FC<{bg: string; children?: React.ReactNode; style?: React.CSSProperties}> = ({bg, children, style}) => (
-	<div
-		style={{
-			position: 'absolute',
-			inset: 0,
-			background: bg,
-			display: 'flex',
-			alignItems: 'center',
-			justifyContent: 'center',
-			fontFamily,
-			overflow: 'hidden',
-			...style,
-		}}
-	>
-		{children}
-	</div>
+	<div style={{position: 'absolute', inset: 0, background: bg, overflow: 'hidden', fontFamily: SANS, ...style}}>{children}</div>
 );
 
-/** The recurring habit motif: a ring that fills a little at every first. */
-export const Ring: React.FC<{progress: number; size: number; color?: string; track?: string; stroke?: number}> = ({
+/** The 1000 × 600 drawing area shared by the firsts. */
+export const Stage: React.FC<{children: React.ReactNode; style?: React.CSSProperties}> = ({children, style}) => {
+	const {stage} = useLayout();
+	return (
+		<svg
+			viewBox="0 0 1000 600"
+			width={1000 * stage.s}
+			height={600 * stage.s}
+			style={{position: 'absolute', left: stage.x, top: stage.y, overflow: 'visible', ...style}}
+			fill="none"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		>
+			{children}
+		</svg>
+	);
+};
+
+/** Masked line reveal: text rises into place from behind an edge. */
+export const Rise: React.FC<{at: number; children: React.ReactNode; dur?: number; out?: number; style?: React.CSSProperties}> = ({
+	at,
+	children,
+	dur = 12,
+	out,
+	style,
+}) => {
+	const frame = useCurrentFrame();
+	const p = ramp(frame, at, at + dur);
+	const q = out === undefined ? 0 : ramp(frame, out, out + 8, E.in);
+	return (
+		<span style={{display: 'block', overflow: 'hidden', paddingBottom: '0.08em', marginBottom: '-0.08em', ...style}}>
+			<span style={{display: 'block', transform: `translateY(${(1 - p) * 110 - q * 110}%)`}}>{children}</span>
+		</span>
+	);
+};
+
+/** Small habit ring: fills a little more with every first. */
+export const MiniRing: React.FC<{progress: number; size: number; color: string; track: string; stroke?: number}> = ({
 	progress,
 	size,
-	color = C.amber,
-	track = 'rgba(255,255,255,0.18)',
-	stroke = 10,
+	color,
+	track,
+	stroke = 3,
 }) => {
 	const r = (size - stroke) / 2;
 	const c = 2 * Math.PI * r;
 	return (
-		<svg width={size} height={size} style={{transform: 'rotate(-90deg)'}}>
+		<svg width={size} height={size} style={{transform: 'rotate(-90deg)', flexShrink: 0}}>
 			<circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={track} strokeWidth={stroke} />
 			<circle
 				cx={size / 2}
@@ -122,18 +134,41 @@ export const Ring: React.FC<{progress: number; size: number; color?: string; tra
 				strokeWidth={stroke}
 				strokeLinecap="round"
 				strokeDasharray={c}
-				strokeDashoffset={c * (1 - Math.min(1, Math.max(0, progress)))}
+				strokeDashoffset={c * (1 - Math.max(0, Math.min(1, progress)))}
 			/>
 		</svg>
 	);
 };
 
-export const Coin: React.FC<{size: number}> = ({size}) => (
-	<svg width={size} height={size} viewBox="0 0 100 100">
-		<circle cx="50" cy="50" r="46" fill={C.amber} stroke={C.amberDeep} strokeWidth="6" />
-		<circle cx="50" cy="50" r="34" fill="none" stroke={C.amberDeep} strokeWidth="3" opacity="0.6" />
-		<text x="50" y="64" textAnchor="middle" fontSize="40" fontWeight="800" fill={C.amberDeep} fontFamily={fontFamily}>
-			₱
-		</text>
-	</svg>
-);
+/** Caption for each first: mono label with the habit ring, then a two-line headline. */
+export const Caption: React.FC<{n: number; total: number; lines: string[]; dark?: boolean; at?: number}> = ({n, total, lines, dark, at = 4}) => {
+	const frame = useCurrentFrame();
+	const {u, caption, vertical} = useLayout();
+	const fg = dark ? C.card : C.ink;
+	const sub = dark ? 'rgba(255,255,255,0.7)' : C.muted;
+	const ring = mix((n - 1) / total, n / total, ramp(frame, at + 4, at + 16));
+	return (
+		<div style={{position: 'absolute', left: caption.left, top: caption.top, width: caption.width, color: fg}}>
+			<div style={{display: 'flex', alignItems: 'center', gap: 14 * u, opacity: ramp(frame, at, at + 8)}}>
+				<MiniRing progress={ring} size={30 * u} stroke={4 * u} color={dark ? C.card : C.accent} track={dark ? 'rgba(255,255,255,0.25)' : C.line} />
+				<span style={{fontFamily: MONO, fontSize: 24 * u, letterSpacing: '0.12em', color: sub}}>FIRST {String(n).padStart(2, '0')}</span>
+			</div>
+			<div style={{fontSize: (vertical ? 100 : 92) * u, fontWeight: 600, letterSpacing: '-0.045em', lineHeight: 1.0, marginTop: 26 * u}}>
+				{lines.map((l, k) => (
+					<Rise key={k} at={at + 2 + k * 3}>
+						{l}
+					</Rise>
+				))}
+			</div>
+		</div>
+	);
+};
+
+/** Point and tangent angle on a quadratic Bézier. */
+export const quad = (p0: number[], p1: number[], p2: number[], t: number) => {
+	const x = (1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * p1[0] + t * t * p2[0];
+	const y = (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t * t * p2[1];
+	const dx = 2 * (1 - t) * (p1[0] - p0[0]) + 2 * t * (p2[0] - p1[0]);
+	const dy = 2 * (1 - t) * (p1[1] - p0[1]) + 2 * t * (p2[1] - p1[1]);
+	return {x, y, a: (Math.atan2(dy, dx) * 180) / Math.PI};
+};

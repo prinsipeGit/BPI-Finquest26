@@ -2,7 +2,7 @@
 
 Everything is synthesised with numpy, so there is nothing to license. The music
 follows src/timeline.json beat for beat (124 BPM): sparse hook, building montage,
-full groove under the calculator, one beat-pair of silence, piano note, drop, tail.
+drop on "Fund your firsts", groove under the calculator, one beat of silence, piano, drop, tail.
 Swap public/audio/music.wav for a licensed track at the same tempo before release.
 
 Run from the project root: python3 scripts/make_audio.py
@@ -148,13 +148,13 @@ def build_music():
         root, triad = CHORDS[bar % 4]
         on_beat = b16 % 4 == 0
         off = b16 % 4 == 2
-        silent = in_("silence", b) or in_("legal", b) or (S["always"][0] <= b < S["always"][0] + 2)
+        silent = in_("pause", b) or in_("legal", b) or (S["always"][0] <= b < S["always"][0] + 2)
         if silent:
             continue
-        drop = in_("always", b) or in_("logo", b)
-        groove = in_("phone", b) or drop
-        build = in_("montage", b) or in_("howto", b)
-        hook = in_("hook", b)
+        drop = in_("fund", b) or in_("always", b) or in_("logo", b)
+        groove = in_("calc", b) or drop
+        build = in_("firsts", b)
+        hook = in_("intro", b)
 
         if on_beat:
             put(kick(punch=1.15 if drop else 1.0), b, 0.9)
@@ -172,8 +172,8 @@ def build_music():
             put(stab(triad, 0.12), b, 0.12)
 
     # risers into the calculator and into the silence
-    put(riser((S["montage"][1] - 12) * BEAT), 12, 1.0)
-    put(riser(4 * BEAT), S["silence"][0] - 4, 0.9)
+    put(riser(4 * BEAT), S["fund"][0] - 4, 1.0)
+    put(riser(4 * BEAT), S["pause"][0] - 4, 0.9)
     # piano note after the silence, drop two beats later
     pn = tone(440.0, 2.5, (1, 0.6, 0.3, 0.2, 0.1), decay=0.9) + tone(659.25, 2.5, (1, 0.5, 0.2), decay=0.8) * 0.6
     put(norm(pn, 0.5), S["always"][0])
