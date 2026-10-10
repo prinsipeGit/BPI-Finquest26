@@ -41,7 +41,7 @@ The ad shows **contributions only, with no assumed return**, so it promises no g
 |---|---|---|
 | Voice-over | ElevenLabs, voice **Emma - Youthful, Upbeat Commercial**, model eleven_v4 (take 3 of 4) | One take of the whole script (`assets/elevenlabs/vo_emma_take3.mp3`), cut into 16 lines by `scripts/prepare_audio.py`, each starting on a half-beat of the music (`src/vo.json`). Light EQ, compression and a small room. Earlier reads (Justin Case, Bella) are kept in `assets/elevenlabs/` |
 | Sound effects | ElevenLabs Sound Effects v2 | Notification, whoosh, plane, car, stacking blocks, shutter, page flip, pencil, typing, click, success chime, boom, riser (`assets/elevenlabs/sfx/`). In the voiced cut, effects that land on a line play at half volume |
-| Music | Placeholder, synthesised (`scripts/make_audio.py`) | `music.wav`, the dance beat, in both cuts. In the voiced cut it dips to about a third under the voice. The ElevenLabs connector here has no music generation |
+| Music | Placeholder, synthesised (`scripts/make_audio.py`) | `music.wav`, the dance beat, in both cuts. In the voiced cut it dips to about 60% under the voice; the voice plays at 0.6 (about −4.4 dB). The ElevenLabs connector here has no music generation |
 
 Voice-over script (timings in `src/vo.json`):
 

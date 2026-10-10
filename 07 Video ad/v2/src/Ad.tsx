@@ -32,9 +32,11 @@ const CUES: {beat: number; sfx: string; vol?: number; max?: number}[] = [
 	{beat: S.logo[0] + 2.1, sfx: 'success', vol: 0.3},
 ];
 
-// Music dips under the voice: full level between lines, about a third while she speaks.
+// Music dips under the voice: full level between lines, a little over half while she speaks.
 const MUSIC_UP = 0.55;
-const MUSIC_DOWN = 0.2;
+const MUSIC_DOWN = 0.32;
+// Voice level (user: too loud at 1.0). About -4.4 dB, so she sits in the mix rather than on top of it.
+const VO_VOLUME = 0.6;
 const MUSIC_NO_VO = 0.85; // music-and-effects version: the bed carries the ad, so it sits higher
 const speaking = VO.map((v) => [sec(v.at), sec(v.at + v.dur)]);
 const musicVolume = (frame: number) => {
@@ -88,7 +90,7 @@ export const FirstsAd: React.FC<{voiceOver?: boolean}> = ({voiceOver = true}) =>
 		{/* voice-over: ElevenLabs "Emma - Youthful, Upbeat Commercial", one line per clip, starts on the half-beat grid */}
 		{voiceOver && VO.map((v, k) => (
 			<Sequence key={`vo${k}`} from={sec(v.at)} layout="none">
-				<Audio src={staticFile(v.file)} volume={1} />
+				<Audio src={staticFile(v.file)} volume={VO_VOLUME} />
 			</Sequence>
 		))}
 		{CUES.map((c, k) => (
