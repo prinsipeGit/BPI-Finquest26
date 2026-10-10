@@ -1,6 +1,6 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.9  
+**Version:** 1.10  
 **Last updated:** 2026-10-10 (Sat)  
 **Updated by:** Luis Tengonciang
 
@@ -103,6 +103,7 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 | G10 | Light visual polish within 2 A4 pages. Done: taller chart, headline line, page-1 gap filled; Key facts left-aligned and shortened to one line each; "Swings" → "Volatility"; legend matches table (PSEi, price only); "Limit per company: 20% (BSP); largest today 5.8%". Not done: allocation chart (optional) | P2 | Luis | ✅ |
 | G12 | **Portfolio construction section** (guidelines ask for it; Fund Process is 20%): page-2 funnel 140 → 129 → 49 → 31 (Map, Check the fit, Verify the merit, Position the risk) with limits and the quarterly-review rule. Counts computed from `map/universe4.json` in the build | P0 | Luis | ✅ |
 | G13 | Disclose where the return came from: without chips and grid equipment, 18.7% a year (F2.11) | P0 | Luis | ✅ |
+| G14 | **Executive summary combined into the fact sheet** (now 3 pages: p1 executive summary, p2–3 fact sheet). Rewritten on v4 facts (Phase 1 summary had 30% PH and 10 holdings). Unverified Phase 1 stat (participation 36% → 23%) left out. Top-10 table removed; holdings listed once (p3), with the five largest named on p2 | P0 | Luis | ✅ |
 | G11 | Final proofread, export, and file name `LosAngeles76ers_FirstsFund_FactSheet.pdf`; copy into `01 Phase 2 submission/`. Exported and copied; team proofread pending | P0 | TBD | 🟡 |
 
 ## C. Model and evidence open items (from AGENTS.md)
@@ -141,6 +142,7 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.10 | 2026-10-10 | Fact sheet now includes a one-page executive summary (G14); duplicate top-10 table removed. Previous 2-page PDF moved to `superseded/`. |
 | 1.9 | 2026-10-10 | Fact sheet: portfolio-construction funnel (G12), ex-supplier result 18.7% a year (G13, F2.11), Key facts and wording fixes (G10). Previous PDF moved to `superseded/`. |
 | 1.8 | 2026-10-10 | Ad v2 drafted in Remotion (`07 Video ad/v2/`): 16:9 and 9:16 renders, placeholder music (A2). |
 | 1.7 | 2026-10-08 | 36-year backtest (v4) checked: saved results match the fact sheet. Calculator bad year updated to −27.3% (C6). |

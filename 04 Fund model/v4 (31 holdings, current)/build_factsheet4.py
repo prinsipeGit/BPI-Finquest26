@@ -14,9 +14,11 @@ from reportlab.pdfbase.ttfonts import TTFont
 pdfmetrics.registerFont(TTFont('DJ', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
 def P(s): return re.sub('([₱−≤≥→×])', r'<font name="DJ">\1</font>', s)
 
-R = json.load(open('results4.json')); F5 = R['five']; PX = R['proxy']; PF = R['portfolio']
+R = json.load(open('results4.json')); F5 = R['five']; PX = R['proxy']; PF = R['portfolio']; bt = R['by_type']
 B = json.load(open('bench.json')); NF = B['nfra']; nf = NF['stats']
-XS = json.load(open('ex_suppliers.json'))   # same simulation without chip and grid-equipment holdings (ex_suppliers.py)
+XS = json.load(open('ex_suppliers.json'))
+_st = [r['stage'] for r in json.load(open('map/universe4.json'))]
+n_uni0 = sum(x != 'Outside universe' for x in _st); n_m0 = n_uni0 - sum(x.startswith('Reject (M') for x in _st); n_el0 = _st.count('Eligible')   # same simulation without chip and grid-equipment holdings (ex_suppliers.py)
 v4, aw = F5['v4']['stats'], F5['acwi']['stats']; NH = R['n_held']; ps = PX['stats']
 CN = {'PH': 'Philippines', 'IN': 'India', 'ES': 'Spain', 'FR': 'France', 'MY': 'Malaysia', 'TW': 'Taiwan', 'DE': 'Germany', 'JP': 'Japan',
       'US': 'United States', 'HK': 'Hong Kong / China', 'CH': 'Switzerland', 'MX': 'Mexico', 'BR': 'Brazil', 'IT': 'Italy', 'KR': 'South Korea',
@@ -74,20 +76,90 @@ def header(c, doc):
     c.setFillColor(GREEN); c.rect(M, H - M - 18, 14, 18, fill=1, stroke=0)
     c.setFillColor(DARK); c.setFont('Helvetica-Bold', 15); c.drawString(M + 20, H - M - 13, 'FIRSTS FUND')
     c.setFont('Helvetica-Bold', 7.3)
-    c.drawString(M + 20, H - M - 23, 'FUND FACT SHEET · PROPOSED ACTIVELY MANAGED GLOBAL EQUITY UITF' if doc.page == 1 else 'HOLDINGS, RISKS, FEES AND DISCLOSURES')
+    c.drawString(M + 20, H - M - 23, {1: 'EXECUTIVE SUMMARY · PROPOSED ACTIVELY MANAGED GLOBAL EQUITY UITF',
+                                      2: 'FUND FACT SHEET · PROPOSED ACTIVELY MANAGED GLOBAL EQUITY UITF'}.get(doc.page, 'HOLDINGS, PORTFOLIO CONSTRUCTION, RISKS AND FEES'))
     c.setFont('Helvetica', 6.5); c.setFillColor(MUTED)
-    c.drawString(M + 20, H - M - 31, f'A FinQuest 2026 proposal, not an existing BPI product · Portfolio as of 2 October 2026 · Page {doc.page} of 2')
+    c.drawString(M + 20, H - M - 31, f'A FinQuest 2026 proposal, not an existing BPI product · Portfolio as of 2 October 2026 · Page {doc.page} of 3')
     c.setFillColor(GREEN); c.setFont('Helvetica-BoldOblique', 9); c.drawRightString(W - M, H - M - 14, '“Fund your firsts.”')
     c.setStrokeColor(GREEN); c.setLineWidth(1.2); c.line(M, H - M - 36, W - M, H - M - 36)
     c.restoreState()
 doc = BaseDocTemplate('LosAngeles76ers_FirstsFund_FactSheet.pdf', pagesize=A4, leftMargin=M, rightMargin=M, topMargin=M + 40, bottomMargin=M,
-                      title='Firsts Fund — Fund Fact Sheet', author='Team Los Angeles 76ers, Ateneo de Manila University')
+                      title='Firsts Fund — Executive Summary and Fund Fact Sheet', author='Team Los Angeles 76ers, Ateneo de Manila University')
 doc.addPageTemplates([PageTemplate(id='p', frames=[Frame(M, M, CW, H - 2*M - 40, 0, 0, 0, 0)], onPage=header)])
 story = []
 
-# ---------- page 1 ----------
+# ---------- page 1: executive summary ----------
+lead = ParagraphStyle('lead', parent=base, fontSize=10.6, leading=14.2)
+xb = ParagraphStyle('xb', parent=base, fontSize=8.5, leading=11.6)
+xc = ParagraphStyle('xc', parent=cell, fontSize=7.8, leading=9.8); xcb = ParagraphStyle('xcb', parent=xc, fontName='Helvetica-Bold')
+h2 = ParagraphStyle('h2', parent=base, fontName='Helvetica-Bold', fontSize=9.6, leading=12, textColor=GREEN, spaceBefore=2)
+kn = ParagraphStyle('kn', parent=base, fontName='Helvetica-Bold', fontSize=16, leading=18, textColor=DARK, alignment=TA_CENTER)
+kl = ParagraphStyle('kl', parent=base, fontSize=7.2, leading=8.8, textColor=MUTED, alignment=TA_CENTER)
+story += [bandrow('EXECUTIVE SUMMARY', CW), Spacer(1, 5),
+  p('<b>Firsts Fund</b> is a proposed peso UITF that helps early-career Filipinos invest for the big “firsts” that are five or more years '
+    'away: the first trip abroad with their parents, a first car, a first home, a first business. From <b>₱100</b>, it owns shares of companies around '
+    'the world that run the essential, hard-to-replace systems everyday life depends on: power grids, water, digital networks, ports, '
+    'airports, hospitals, and the equipment behind them. One fee, held directly, chosen by published rules.', lead), Spacer(1, 6)]
+kp = [('₱100', 'to start and per top-up'), (f'{NH}', f'companies in {len(R["by_country"])} markets'), ('1.50%', 'a year, one fee layer (proposed)'),
+      ('5+ years', 'recommended horizon'), (f'{pct(v4["cagr"], 1)}', f'a year, holdings (hindsight) · NFRA {pct(nf["cagr"], 1)}')]
+kt = Table([[[p(a, kn), p(b, kl)] for a, b in kp]], colWidths=[CW/5]*5)
+kt.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, -1), SOFT), ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'), ('TOPPADDING', (0, 0), (-1, -1), 7),
+                        ('BOTTOMPADDING', (0, 0), (-1, -1), 7), ('LINEAFTER', (0, 0), (-2, -1), 0.6, colors.white)]))
+story += [kt, Spacer(1, 7)]
+EL, ER = CW*0.49, CW*0.49
+def jt(rows):
+    t = Table([[p(a, xcb), p(b, xc)] for a, b in rows], colWidths=[ER*0.25, ER*0.75])
+    t.setStyle(TableStyle([('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LEFTPADDING', (0, 0), (-1, -1), 3), ('TOPPADDING', (0, 0), (-1, -1), 2.5),
+                           ('BOTTOMPADDING', (0, 0), (-1, -1), 2.5), ('LINEBELOW', (0, 0), (-1, -1), 0.3, RULE),
+                           ('BACKGROUND', (0, 0), (0, -1), SOFT)]))
+    return t
+exl = [p('The problem', h2),
+  p('A young Filipino earns, saves and spends in pesos, so almost everything they own already depends on one economy. The products that are easy '
+    'to start with are mostly savings or money-market funds, which suit short goals but are unlikely to grow enough for a goal five or more '
+    'years away. Global equity is usually reached through feeder funds that add a second layer of fees, often with a ₱1,000 minimum.', xb), Spacer(1, 8),
+  p('Our answer', h2),
+  p('Name the goal, not the product. The investor starts with a “first” and a date; the app turns it into a monthly amount; the money goes into '
+    'one global equity fund built for long horizons. When the date gets close, an optional goal service (proposed) gradually moves part of '
+    'that investor\'s units to a lower-risk fund. Then they set their next first.', xb), Spacer(1, 8),
+  p('What the fund owns', h2),
+  p(f'Listed businesses that own, operate or supply essential capacity and earn from it, in eight kinds: power and grids, water, digital '
+    f'networks, ports, airports and toll roads, and healthcare facilities (owners); grid equipment and semiconductors (suppliers). '
+    f'The largest kinds today are digital networks {pct(bt["Digital networks"], 0)}, healthcare facilities {pct(bt["Healthcare facilities"], 0)} '
+    f'and power {pct(bt["Power generation & grids"], 0)}. The Philippines is held through ICTSI ({pct(R["ph_now"], 1)}), on the same tests as everyone else.', xb), Spacer(1, 8),
+  p('How we choose: four published steps', h2),
+  p(f'<b>Map</b> the largest listed companies in each kind ({n_uni0}); <b>check the fit</b> on revenue and cash flow ({n_m0}); <b>verify the merit</b> with '
+    f'an industry-sized debt stress test and value and quality against peers ({n_el0} eligible); <b>position the risk</b> so each holding adds a similar '
+    f'share of risk, within limits of 20% per company and 25% per kind of capacity ({NH} held). Details on page 3.', xb)]
+exr = [p('What the evidence says, honestly', h2),
+  p(f'Over five years in pesos, today\'s {NH} holdings returned <b>{pct(v4["cagr"], 1)} a year</b> after all costs, against <b>{pct(nf["cagr"], 1)}</b> '
+    f'for the benchmark (NFRA global infrastructure ETF), with a worst fall of {pct(v4["maxdd"], 1)}. This includes hindsight, because the companies '
+    f'were picked in 2026. Two checks keep it honest: without the chip and grid-equipment makers the rest still returned <b>{pct(XS["cagr"], 1)}</b>; and an '
+    f'industry-level version of the strategy returned <b>{pct(ps["cap"]["cagr"], 1)} a year from 1990 to 2026</b>, about the world market, with a worst '
+    f'12 months of {pct(ps["cap"]["worst12"], 0)}. That is the right expectation: market-like growth from businesses people cannot do without.', xb), Spacer(1, 8),
+  p('The customer journey', h2),
+  jt([('1 · Discover', 'A 30-second ad and social content ask one question: what is your next first?'),
+      ('2 · Set a first', 'Calculator: the goal, the amount, the year (at least 5 years away) → a monthly amount.'),
+      ('3 · Start', 'Suitability check, then ₱100 or more, once or monthly, in the BPI app.'),
+      ('4 · Stay on track', 'Progress against the goal; optional glidepath as the date nears (proposed).'),
+      ('5 · Reach it', 'Withdraw any business day (paid T+5), then set the next first.')]), Spacer(1, 7),
+  p('Why it fits BPI Wealth', h2),
+  p('It adds a direct global equity fund with one fee and a ₱100 entry to a shelf where global equity mostly comes through feeder funds, and it '
+    'gives young clients a goal-based reason to start early and stay. It works within existing rules: a UITF with daily NAVPU, the BSP 20% '
+    'single-company ceiling, and standard suitability checks.', xb)]
+story += [two(exl, exr, EL, ER, CW - EL - ER), Spacer(1, 7),
+  p('What could go wrong', h2),
+  p(f'It is an equity fund: in a bad year it can fall sharply (the industry-level history\'s worst 12 months lost {pct(-ps["cap"]["worst12"], 0)}). About '
+    f'{pct(1 - R["ph_now"] - 0.03, 0)} is in foreign currencies, unhedged, so a stronger peso lowers returns. Digital networks sit at the 25% cap and '
+    f'data-centre spending drives about {pct(bt["Semiconductors"] + bt["Grid & power equipment"], 0)}. That is why the fund is only for goals at least '
+    f'five years away, and why the goal service exists for the last stretch.', xb), Spacer(1, 7),
+  boxed(p('<b>Proposed, not existing.</b> Firsts Fund, its ₱100 minimum, 1.50% fee, settlement terms and the goal service are proposals for FinQuest 2026. '
+          'Past results shown are for today\'s holdings and include hindsight; they are not a forecast. Pages 2 and 3 are the fund fact sheet.', small), CW),
+  Spacer(1, 8), p('<b>Team Los Angeles 76ers</b>, Ateneo de Manila University: Prince Angelo C. Rivera · Luis Tengonciang · Karol Josef Fuñe · '
+                  'Eric Fabian Thirdy Mendez. FinQuest 2026, BPI Wealth.', small), PageBreak()]
+
+# ---------- page 2: fact sheet ----------
 LW, RW = CW*0.60, CW*0.38; GAP = CW - LW - RW
-bt = R['by_type']; cnt = R['by_country']
+cnt = R['by_country']
 dca, dcg = PX['contrib']['dca'], PX['contrib']['dca_glide']
 saver_box = boxed([p(f'<b>For a regular saver (illustration, not a forecast).</b> ₱1,000 a month for 5 years is ₱60,000 paid in. Across every '
     f'5-year stretch from 1990 to 2026 in the industry-level history ({dca["n"]} start months), the typical saver ended with about '
@@ -120,16 +192,16 @@ right = [bandrow('KEY FACTS', RW), kv(facts, [RW*0.36, RW*0.64], right_cols=()),
          kv([(k.replace('&', '&amp;'), pct(v)) for k, v in bt.items()] + [('Operating cash', '3.00%')], [RW*0.70, RW*0.30])]
 story += [two(left, right, LW, RW, GAP), Spacer(1, 4)]
 
-top10 = PF[:10]
-t10 = kv([(f'{x["name"].replace("&", "&amp;")}', CN.get(x['country'], x['country']), x['ctype'].replace('&', '&amp;'), pct(x['weight'])) for x in top10],
-         [CW*0.47*0.38, CW*0.47*0.22, CW*0.47*0.27, CW*0.47*0.13], head=['Top 10 holdings', 'Listing', 'Capacity', 'Weight'], right_cols=(3,))
-ctab = kv([(CN.get(k, k), pct(v)) for k, v in list(cnt.items())[:8]] + [(f'{len(cnt) - 8} other markets', pct(sum(list(cnt.values())[8:])))],
-          [CW*0.24*0.62, CW*0.24*0.38], head=['By listing market', ''], right_cols=(1,))
+SH0 = {'Bangkok Dusit Medical Services': 'Bangkok Dusit Medical', 'Dr. Sulaiman Al Habib Medical': 'Dr. Sulaiman Al Habib'}
 other = [p(f'<b>No country quota.</b> Philippine-listed ICTSI is held at {pct(R["ph_now"])} because it passed the same tests as every '
            f'other company. Where a company is listed is not always where it earns its revenue.', small),
          Spacer(1, 2), p(f'<b>Shared drivers.</b> About {pct(bt["Semiconductors"] + bt["Grid & power equipment"], 0)} depends on data-centre spending '
            f'(chips and grid equipment). Digital networks are at the fund\'s 25% cap per kind of capacity.', small)]
-story += [two(t10, two(ctab, other, CW*0.24, CW*0.53 - 16 - CW*0.24), CW*0.47, CW*0.53 - 8), Spacer(1, 4)]
+ctab = kv([(CN.get(k, k), pct(v)) for k, v in list(cnt.items())[:8]] + [(f'{len(cnt) - 8} other markets', pct(sum(list(cnt.values())[8:])))],
+          [CW*0.30*0.65, CW*0.30*0.35], head=['By listing market', ''], right_cols=(1,))
+other = [p(f'<b>Largest holdings.</b> ' + ', '.join(f'{SH0.get(x["name"], x["name"])} {pct(x["weight"], 1)}' for x in PF[:5]) +
+           f'. No company is above {pct(PF[0]["weight"], 1)}; all {NH} are listed on page 3.', small), Spacer(1, 3)] + other
+story += [two(ctab, other, CW*0.30, CW*0.70 - 10, 10), Spacer(1, 4)]
 
 story.append(bandrow('PERFORMANCE VS BENCHMARK · PAST RETURNS OF TODAY\'S HOLDINGS, IN PESOS · NOT ACTUAL FUND PERFORMANCE', CW))
 head = ParagraphStyle('hd', parent=base, fontSize=8.4, leading=10.5)
