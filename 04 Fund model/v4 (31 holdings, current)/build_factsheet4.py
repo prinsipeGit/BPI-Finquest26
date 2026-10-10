@@ -1,7 +1,8 @@
 """Investor fact sheet (2 pages), simplified per the team's 7 Oct 2026 changes, Section 6. Detailed methodology lives in the
 supporting proposal. All numbers from results4.json, plus bench.json (NFRA benchmark and IGF cross-check, in pesos; built by
 bench_nfra.py from map/bench_usd.json). Polished 8 Oct 2026: NFRA benchmark, plain language, saver illustration, total cost."""
-import json, re, numpy as np, pandas as pd
+import json, re, os, numpy as np, pandas as pd
+FO = os.environ.get('FACT_ONLY') == '1'      # FACT_ONLY=1 builds the 2-page fund fact sheet on its own
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
@@ -80,19 +81,19 @@ def header(c, doc):
     c.drawString(M + 20, H - M - 23, {1: 'EXECUTIVE SUMMARY · THE PROBLEM, AND THE FUND THAT ANSWERS IT', 2: 'EXECUTIVE SUMMARY · THE HOOK: WHAT MAKES THEM START',
                                       3: 'EXECUTIVE SUMMARY · THE HABIT: WHAT KEEPS THEM INVESTED', 4: 'FUND FACT SHEET · PROPOSED ACTIVELY MANAGED GLOBAL EQUITY UITF',
                                       5: 'FUND FACT SHEET · HOLDINGS, PORTFOLIO CONSTRUCTION, RISKS AND FEES',
-                                      6: 'ANNEX · EVIDENCE, METHOD, LIMITS AND REGULATORY POSITION'}[doc.page])
+                                      6: 'ANNEX · EVIDENCE, METHOD, LIMITS AND REGULATORY POSITION'}[doc.page + (3 if FO else 0)])
     c.setFont('Helvetica', 6.5); c.setFillColor(MUTED)
-    c.drawString(M + 20, H - M - 31, f'A FinQuest 2026 proposal, not an existing BPI product · Portfolio as of 2 October 2026 · Page {doc.page} of 6')
+    c.drawString(M + 20, H - M - 31, f'A FinQuest 2026 proposal, not an existing BPI product · Portfolio as of 2 October 2026 · Page {doc.page} of {2 if FO else 6}')
     c.setFillColor(GREEN); c.setFont('Helvetica-BoldOblique', 9); c.drawRightString(W - M, H - M - 14, '“Fund your firsts.”')
     c.setStrokeColor(GREEN); c.setLineWidth(1.2); c.line(M, H - M - 36, W - M, H - M - 36)
     c.restoreState()
-doc = BaseDocTemplate('LosAngeles76ers_FirstsFund_FactSheet.pdf', pagesize=A4, leftMargin=M, rightMargin=M, topMargin=M + 40, bottomMargin=M,
+doc = BaseDocTemplate('LosAngeles76ers_FirstsFund_FundFactSheet_only.pdf' if FO else 'LosAngeles76ers_FirstsFund_FactSheet.pdf', pagesize=A4, leftMargin=M, rightMargin=M, topMargin=M + 40, bottomMargin=M,
                       title='Firsts Fund — Executive Summary and Fund Fact Sheet', author='Team Los Angeles 76ers, Ateneo de Manila University')
 doc.addPageTemplates([PageTemplate(id='p', frames=[Frame(M, M, CW, H - 2*M - 40, 0, 0, 0, 0)], onPage=header)])
 story = []
 
 # ---------- pages 1-3: executive summary (Problem, Hook, Habit) ----------
-exec(open('exec_pages4.py').read())
+exec(open('exec_pages4.py').read()) if not FO else None
 
 # ---------- page 4: fact sheet ----------
 LW, RW = CW*0.60, CW*0.38; GAP = CW - LW - RW
@@ -137,7 +138,7 @@ other = [p(f'<b>No country quota.</b> Philippine-listed ICTSI is held at {pct(R[
 ctab = kv([(CN.get(k, k), pct(v)) for k, v in list(cnt.items())[:8]] + [(f'{len(cnt) - 8} other markets', pct(sum(list(cnt.values())[8:])))],
           [CW*0.30*0.65, CW*0.30*0.35], head=['By listing market', ''], right_cols=(1,))
 other = [p(f'<b>Largest holdings.</b> ' + ', '.join(f'{SH0.get(x["name"], x["name"])} {pct(x["weight"], 1)}' for x in PF[:5]) +
-           f'. No company is above {pct(PF[0]["weight"], 1)}; all {NH} are listed on page 3.', small), Spacer(1, 3)] + other
+           f'. No company is above {pct(PF[0]["weight"], 1)}; all {NH} are listed on page {2 if FO else 5}.', small), Spacer(1, 3)] + other
 story += [two(ctab, other, CW*0.30, CW*0.70 - 10, 10), Spacer(1, 4)]
 
 story.append(bandrow('PERFORMANCE VS BENCHMARK · PAST RETURNS OF TODAY\'S HOLDINGS, IN PESOS · NOT ACTUAL FUND PERFORMANCE', CW))
@@ -242,7 +243,10 @@ red = [bandrow('FEES AND CHARGES', fw), kv(fees, [fw*0.45, fw*0.55], boldrows=(f
        p('Buy units with a one-time amount, a regular monthly plan, or top-ups whenever you like. Sell on any business day at that day\'s price '
          'per unit (NAVPU); the money is paid on day 6, end of day, in line with BPI\'s peso global equity funds. A missed monthly contribution '
          'does not change your goal date and is not taken automatically later.', small), Spacer(1, 3),
-       p('<b>Compared with other products</b> a young Filipino can buy today: see page 1.', small)]
+       (p('<b>Compared with other products</b> a young Filipino can buy today: see page 1.', small) if not FO else
+        kv([('Money market fund', 'Short-term debt', 'from ₱50'), ('Pag-IBIG MP2', 'Government savings', '₱500'), ('Local stock index fund', 'PSEi shares', '₱1,000'),
+            ('Global fund-of-funds', 'Owns other funds; two fee layers', '₱1,000'), ('Firsts Fund (proposed)', 'Global companies directly; one fee', '₱100')],
+           [fw*0.37, fw*0.45, fw*0.18], head=['Compared with', 'What it is', 'Min.'], right_cols=(2,)))]
 story += [two([bandrow('KEY RISKS', rw), kv(risks, [rw*0.22, rw*0.78], right_cols=())], red, rw, fw), Spacer(1, 4)]
 story += [p('<b>Sources.</b> Company data: stockanalysis.com (S&amp;P Global Market Intelligence), 8 Oct 2026. Prices: Yahoo Finance total returns and PSE Edge '
             '(with cash dividends), converted to pesos weekly. Benchmark: FlexShares STOXX Global Broad Infrastructure Index Fund (NFRA), Yahoo Finance '
@@ -251,5 +255,5 @@ story += [p('<b>Sources.</b> Company data: stockanalysis.com (S&amp;P Global Mar
             'BSP Circular No. 1234, Series of 2026 (20 May 2026), a 20% ceiling, not a target. Comparison funds: BPI Wealth fund pages and Pag-IBIG. '
             'Industry classifications assigned by the team. Dividend tax rates approximate, to be confirmed.', tiny), Spacer(1, 2),
           p('<b>Team Los Angeles 76ers</b>, Ateneo de Manila University: Prince Angelo C. Rivera · Luis Tengonciang · Karol Josef Fuñe · Eric Fabian Thirdy Mendez.', tiny)]
-story += [PageBreak()] + annex()
+story += ([] if FO else [PageBreak()] + annex())
 doc.build(story); print('built')
