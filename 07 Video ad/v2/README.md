@@ -39,9 +39,9 @@ The ad shows **contributions only, with no assumed return**, so it promises no g
 
 | Layer | Source | Notes |
 |---|---|---|
-| Voice-over | ElevenLabs, voice **Justin Case - Warm, Trustworthy, Clear**, model eleven_v4 | One take of the whole script (`assets/elevenlabs/vo_justin_case_take3.mp3`), cut into 16 lines by `scripts/prepare_audio.py` and placed on the cuts (`src/vo.json`) |
-| Sound effects | ElevenLabs Sound Effects v2 | Notification, whoosh, plane, car, stacking blocks, shutter, page flip, pencil, typing, click, success chime, boom, riser (`assets/elevenlabs/sfx/`) |
-| Music | Placeholder, synthesised (`scripts/make_audio.py`) | The ElevenLabs connector here has no music generation. Dips automatically under the voice |
+| Voice-over | ElevenLabs, voice **Bella - Professional, Bright, Warm**, model eleven_v4 (take 2 of 4) | One take of the whole script (`assets/elevenlabs/vo_bella_take2.mp3`), cut into 16 lines by `scripts/prepare_audio.py`, each starting on a half-beat of the music (`src/vo.json`). Light EQ, compression and a small room so it sits in the same space as the music. The earlier Justin Case read is kept in `assets/elevenlabs/` |
+| Sound effects | ElevenLabs Sound Effects v2 | Notification, whoosh, plane, car, stacking blocks, shutter, page flip, pencil, typing, click, success chime, boom, riser (`assets/elevenlabs/sfx/`). In the voiced cut, effects that land on a line play at half volume |
+| Music | Placeholder, synthesised (`scripts/make_audio.py`) | Voiced cut: `music_vo.wav`, a warm bed (felt piano, pad, soft half-time pulse) that dips under the voice. No-voice cut: `music.wav`, the busier dance beat. The ElevenLabs connector here has no music generation |
 
 Voice-over script (timings in `src/vo.json`):
 
@@ -84,7 +84,7 @@ Fonts (Geist Sans, plus Inter for the ₱ sign; both OFL) are bundled in `public
 
 ## Before release
 
-- [x] Voice-over (ElevenLabs, Justin Case) and sound effects (ElevenLabs).
+- [x] Voice-over (ElevenLabs, Bella) and sound effects (ElevenLabs).
 - [ ] **Music:** `public/audio/music.wav` is a synthesised placeholder. Replace it with a licensed 120–128 BPM track (Artlist, Epidemic, Uppbeat, YouTube Audio Library), keep the file name, and line its drops up with 11.6 s ("Fund your firsts.") and 22.7 s. If the tempo differs, change `bpm` in `timeline.json`.
 - [ ] Team check: the lines, the example first (Japan, ₱150,000, 5 years), and the legal text.
 - [ ] Keep calculator wording in line with the real calculator once it is built.

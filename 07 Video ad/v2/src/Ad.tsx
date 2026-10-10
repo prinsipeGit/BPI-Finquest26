@@ -32,9 +32,10 @@ const CUES: {beat: number; sfx: string; vol?: number; max?: number}[] = [
 	{beat: S.logo[0] + 2.1, sfx: 'success', vol: 0.3},
 ];
 
-// Music dips under the voice: full level between lines, about a third while someone speaks.
-const MUSIC_UP = 0.5;
-const MUSIC_DOWN = 0.18;
+// Music dips under the voice. The voiced cut uses its own warmer bed (music_vo.wav: felt piano, pad,
+// soft pulse) that leaves room for the voice; the no-voice cut keeps the busier dance beat (music.wav).
+const MUSIC_UP = 0.62;
+const MUSIC_DOWN = 0.3;
 const MUSIC_NO_VO = 0.85; // music-and-effects version: the bed carries the ad, so it sits higher
 const speaking = VO.map((v) => [sec(v.at), sec(v.at + v.dur)]);
 const musicVolume = (frame: number) => {
@@ -45,6 +46,10 @@ const musicVolume = (frame: number) => {
 	}
 	return MUSIC_DOWN + (MUSIC_UP - MUSIC_DOWN) * d;
 };
+
+// Effects that land while she is speaking are pulled back so they sit under the voice, not on top of it.
+const SFX_UNDER_VOICE = 0.5;
+const underVoice = (frame: number) => speaking.some(([a, b]) => frame >= a - 3 && frame <= b);
 
 const Scene: React.FC<{range: number[]; children: React.ReactNode}> = ({range, children}) => (
 	<Sequence from={f(range[0])} durationInFrames={len(range)} layout="none">
@@ -80,8 +85,8 @@ export const FirstsAd: React.FC<{voiceOver?: boolean}> = ({voiceOver = true}) =>
 		</Scene>
 
 		{/* placeholder music bed (scripts/make_audio.py) until a licensed or ElevenLabs track is in */}
-		<Audio src={staticFile('audio/music.wav')} volume={voiceOver ? musicVolume : MUSIC_NO_VO} />
-		{/* voice-over: ElevenLabs "Justin Case - Warm, Trustworthy, Clear", one line per clip */}
+		<Audio src={staticFile(voiceOver ? 'audio/music_vo.wav' : 'audio/music.wav')} volume={voiceOver ? musicVolume : MUSIC_NO_VO} />
+		{/* voice-over: ElevenLabs "Bella - Professional, Bright, Warm", one line per clip, starts on the half-beat grid */}
 		{voiceOver && VO.map((v, k) => (
 			<Sequence key={`vo${k}`} from={sec(v.at)} layout="none">
 				<Audio src={staticFile(v.file)} volume={1} />
@@ -89,7 +94,7 @@ export const FirstsAd: React.FC<{voiceOver?: boolean}> = ({voiceOver = true}) =>
 		))}
 		{CUES.map((c, k) => (
 			<Sequence key={k} from={Math.max(0, f(c.beat))} durationInFrames={c.max ? sec(c.max) : undefined} layout="none">
-				<Audio src={staticFile(`audio/sfx/${c.sfx}.wav`)} volume={c.vol ?? 1} />
+				<Audio src={staticFile(`audio/sfx/${c.sfx}.wav`)} volume={(c.vol ?? 1) * (voiceOver && underVoice(f(c.beat)) ? SFX_UNDER_VOICE : 1)} />
 			</Sequence>
 		))}
 	</AbsoluteFill>

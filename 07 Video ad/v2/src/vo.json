@@ -2,97 +2,113 @@
  {
   "file": "audio/vo/01.wav",
   "text": "You just got your first paycheck.",
-  "at": 0.1,
-  "dur": 2.071
+  "at": 0.0,
+  "beat": 0.0,
+  "dur": 1.893
  },
  {
   "file": "audio/vo/02.wav",
   "text": "So\u2026 what do you do first?",
-  "at": 2.18,
-  "dur": 1.685
+  "at": 1.935,
+  "beat": 4.0,
+  "dur": 1.722
  },
  {
   "file": "audio/vo/03.wav",
   "text": "Take Mom and Dad abroad.",
-  "at": 3.9,
-  "dur": 1.255
+  "at": 3.629,
+  "beat": 7.5,
+  "dur": 1.471
  },
  {
   "file": "audio/vo/04.wav",
   "text": "Your first car.",
-  "at": 5.15,
-  "dur": 1.047
+  "at": 5.081,
+  "beat": 10.5,
+  "dur": 1.22
  },
  {
   "file": "audio/vo/05.wav",
   "text": "Your first home.",
-  "at": 6.45,
-  "dur": 0.996
+  "at": 6.532,
+  "beat": 13.5,
+  "dur": 1.138
  },
  {
   "file": "audio/vo/06.wav",
   "text": "Your first business.",
-  "at": 8.2,
-  "dur": 1.379
+  "at": 8.226,
+  "beat": 17.0,
+  "dur": 1.481
  },
  {
   "file": "audio/vo/07.wav",
   "text": "Their first day of school.",
-  "at": 9.95,
-  "dur": 1.486
+  "at": 9.919,
+  "beat": 20.5,
+  "dur": 1.693
  },
  {
   "file": "audio/vo/08.wav",
   "text": "Fund your firsts.",
-  "at": 11.8,
-  "dur": 1.341
+  "at": 11.855,
+  "beat": 24.5,
+  "dur": 1.42
  },
  {
   "file": "audio/vo/09.wav",
   "text": "Name your first.",
-  "at": 13.65,
-  "dur": 0.97
+  "at": 13.79,
+  "beat": 28.5,
+  "dur": 0.961
  },
  {
   "file": "audio/vo/10.wav",
   "text": "Set the amount.",
-  "at": 15.1,
-  "dur": 0.84
+  "at": 15.0,
+  "beat": 31.0,
+  "dur": 0.87
  },
  {
   "file": "audio/vo/11.wav",
   "text": "Pick a date five years or more away.",
-  "at": 16.3,
-  "dur": 1.883
+  "at": 16.21,
+  "beat": 33.5,
+  "dur": 1.956
  },
  {
   "file": "audio/vo/12.wav",
   "text": "See what to set aside each month\u2026",
-  "at": 18.2,
-  "dur": 1.728
+  "at": 18.145,
+  "beat": 37.5,
+  "dur": 1.663
  },
  {
   "file": "audio/vo/13.wav",
   "text": "and start with as little as one hundred pesos.",
-  "at": 19.95,
-  "dur": 2.308
+  "at": 19.839,
+  "beat": 41.0,
+  "dur": 2.563
  },
  {
   "file": "audio/vo/14.wav",
   "text": "Because there will always be a new first.",
-  "at": 22.3,
-  "dur": 2.457
+  "at": 22.5,
+  "beat": 46.5,
+  "dur": 2.42
  },
  {
   "file": "audio/vo/15.wav",
   "text": "Firsts Fund.",
-  "at": 24.85,
-  "dur": 0.899
+  "at": 24.919,
+  "beat": 51.5,
+  "dur": 1.004
  },
  {
   "file": "audio/vo/16.wav",
   "text": "Fund your firsts.",
-  "at": 25.85,
-  "dur": 1.124
+  "at": 25.887,
+  "beat": 53.5,
+  "dur": 1.192
  }
 ]

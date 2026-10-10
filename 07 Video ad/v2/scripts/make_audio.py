@@ -193,6 +193,75 @@ def build_music():
     return st / (np.max(np.abs(st)) or 1) * 0.85
 
 
+def pluck(freq, n=0.5):
+    """Soft felt-piano / pluck: a few sine partials with a quick bloom and a gentle decay."""
+    t = t_of(n)
+    x = np.sin(2 * np.pi * freq * t) + 0.35 * np.sin(2 * np.pi * freq * 2 * t) + 0.12 * np.sin(2 * np.pi * freq * 3 * t)
+    return x * np.clip(t / 0.006, 0, 1) * np.exp(-t / 0.28)
+
+
+def shaker(n=0.08):
+    t = t_of(n)
+    return norm(band(rng.standard_normal(len(t)), 5000, 12000) * np.sin(np.pi * t / n) ** 2, 0.2)
+
+
+def build_music_vo():
+    """Warm bed for the voiced cut: felt-piano arpeggios, pad and a soft half-time pulse.
+    Leaves the 1–4 kHz range open for the voice; the busy dance beat stays in music.wav for the no-voice cut."""
+    mix = np.zeros(int((TOTAL + 2.5) * SR))
+    kick_env = np.zeros_like(mix)
+
+    def put(x, beat, gain=1.0, buf=None):
+        buf = mix if buf is None else buf
+        i = int(beat * BEAT * SR)
+        j = min(len(buf), i + len(x))
+        buf[i:j] += x[: j - i] * gain
+
+    def in_(sec, b):
+        lo, hi = S[sec]
+        return lo <= b < hi
+
+    pads = np.zeros_like(mix)
+    arp_order = [0, 1, 2, 1]
+    for b8 in range(int(TL["totalBeats"] * 2)):
+        b = b8 / 2.0
+        bar = int(b // 4)
+        root, triad = CHORDS[bar % 4]
+        if in_("legal", b):
+            continue
+        quiet = S["always"][0] <= b < S["always"][0] + 2  # piano alone before the payoff
+        lift = in_("fund", b) or in_("logo", b) or (in_("always", b) and not quiet)
+        if not quiet:
+            note = triad[arp_order[b8 % 4]] * (2 if (b8 // 4) % 2 and lift else 1)
+            put(pluck(note), b, 0.30 if lift else 0.24)
+        if b8 % 2 == 0 and not quiet and not in_("intro", b):
+            if int(b) % 2 == 0:
+                k = kick(0.35, 0.8)
+                put(k, b, 0.55 if lift else 0.4)
+                put(np.exp(-t_of(0.35) / 0.12), b, 1.0, kick_env)
+        if b8 % 2 == 1 and (in_("calc", b) or lift):
+            put(shaker(), b, 0.5)
+        if b8 % 8 == 0:
+            put(pad(triad + [root * 2], 4 * BEAT + 0.4), b, 0.55 if lift else 0.4, pads)
+            if not in_("intro", b) and not quiet:
+                put(bassnote(root, 4 * BEAT * 0.95) * 0.6, b, 0.35)
+    # soft sidechain: the pad breathes with the kick
+    mix += pads * (1 - 0.45 * np.clip(kick_env, 0, 1))
+    put(riser(4 * BEAT) * 0.5, S["fund"][0] - 4, 0.6)
+    pn = tone(440.0, 2.5, (1, 0.6, 0.3, 0.2, 0.1), decay=0.9) + tone(659.25, 2.5, (1, 0.5, 0.2), decay=0.8) * 0.6
+    put(norm(pn, 0.5), S["always"][0])
+    put(pad([220.0, 277.18, 329.63, 440.0], (S["legal"][1] - S["logo"][0]) * BEAT + 1.5), S["logo"][0], 0.7)
+    mix = mix[: int(TOTAL * SR)]
+    d = int(0.011 * SR)
+    left = mix
+    right = np.concatenate([np.zeros(d), mix[:-d]]) * 0.9 + mix * 0.1
+    fade = np.ones(len(mix))
+    fl = int(0.8 * SR)
+    fade[-fl:] = np.linspace(1, 0, fl)
+    st = np.stack([left * fade, right * fade], 1)
+    return st / (np.max(np.abs(st)) or 1) * 0.85
+
+
 # ---------- sound effects ----------
 def sfx():
     t = t_of
@@ -246,4 +315,5 @@ if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     m = build_music()
     save("music.wav", None, stereo=m)
+    save("music_vo.wav", None, stereo=build_music_vo())
     print("wrote", sorted(os.listdir(OUT)), f"music {len(m) / SR:.2f}s")
