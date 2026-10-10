@@ -1,6 +1,6 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.11  
+**Version:** 1.12  
 **Last updated:** 2026-10-10 (Sat)  
 **Updated by:** Luis Tengonciang
 
@@ -104,6 +104,7 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 | G12 | **Portfolio construction section** (guidelines ask for it; Fund Process is 20%): page-2 funnel 140 → 129 → 49 → 31 (Map, Check the fit, Verify the merit, Position the risk) with limits and the quarterly-review rule. Counts computed from `map/universe4.json` in the build | P0 | Luis | ✅ |
 | G13 | Disclose where the return came from: without chips and grid equipment, 18.7% a year (F2.11) | P0 | Luis | ✅ |
 | G15 | **Restored the Phase 1 structure (6 pages) on v4 facts** after the 3-page version dropped the Hook and Habit. p1 Problem & fund (sequence test rerun on v4: −0.85 paying in / +0.85 drawing down; risk in pesos), p2 Hook (message incl. Filipino line, bad-year-first calculator, competence evidence, 4 channels, 13th-month launch, unit economics, five frictions), p3 Habit (Sukli, design rules, onboarding, loop, redemption screen, goal service, success metrics), p4–5 fact sheet (+ Sharpe/Sortino/beta/1y/3y/best-worst 12m, peso risk, % of risk column, effective exposures), p6 annex (evidence, what we killed, back-test limits, rule vs actual, regulatory position, what would change our mind). **Team: confirm Sukli, 13th-month launch and channels still hold after 7 Oct** | P0 | Luis | 🟡 |
+| G16 | **Aligned with the BPI meeting notes** (Meeting (1) decision table, Meeting (2) notes): persona (Bea) and audience (graduating students to early-career); one main first + "Help me choose my first"; calculator shows contributions-only + illustrative growth + optional inflation, risk in pesos before committing; "bad year first" step removed; launch = regular plan + top-ups, Sukli a future enhancement starting in the BPI App; missed-month handling (date unchanged, three choices, no auto-increase); dashboard = contributions, value, gain/loss, goal progress (no streaks); reports at least quarterly; goal service = user's own account, yearly review + reminder 2 years before, user decides, no guarantee; channels = campus talks/caravans, workplace sessions, lean short-form social, BPI App "Chat with us"; reinvest into the next first; no raffles/rewards at launch; "bets" and jargon removed; index comparisons labelled market context; holdings reviewed monthly, weights quarterly; same-date withdrawals covered in liquidity risk. **Not done / team to decide:** look-through of where companies earn revenue (needs data); notes say blended benchmark but team chose NFRA on 8 Oct; holdings-assessment examples belong in the pitch | P0 | Luis | ✅ |
 | G14 | **Executive summary combined into the fact sheet** (now 3 pages: p1 executive summary, p2–3 fact sheet). Rewritten on v4 facts (Phase 1 summary had 30% PH and 10 holdings). Unverified Phase 1 stat (participation 36% → 23%) left out. Top-10 table removed; holdings listed once (p3), with the five largest named on p2 | P0 | Luis | ✅ |
 | G11 | Final proofread, export, and file name `LosAngeles76ers_FirstsFund_FactSheet.pdf`; copy into `01 Phase 2 submission/`. Exported and copied; team proofread pending | P0 | TBD | 🟡 |
 
@@ -143,6 +144,7 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.12 | 2026-10-10 | Fact sheet aligned with the BPI meeting notes (G16). Plain-language pass; layout checked on all 6 pages. |
 | 1.11 | 2026-10-10 | Fact sheet restored to 6 pages with Hook, Habit and annex rebuilt on v4 (G15); `seq4.py` → `extra4.json`; page-5 comparison table removed (on page 1). |
 | 1.10 | 2026-10-10 | Fact sheet now includes a one-page executive summary (G14); duplicate top-10 table removed. Previous 2-page PDF moved to `superseded/`. |
 | 1.9 | 2026-10-10 | Fact sheet: portfolio-construction funnel (G12), ex-supplier result 18.7% a year (G13, F2.11), Key facts and wording fixes (G10). Previous PDF moved to `superseded/`. |
