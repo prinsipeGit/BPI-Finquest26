@@ -1,6 +1,6 @@
 import React from 'react';
 import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import {C, E, Fill, MONO, MiniRing, Rise, ramp, mix, peso, useLayout, f, TL} from './lib';
+import {C, E, Fill, LABEL, MiniRing, Rise, ramp, mix, peso, useLayout, f, TL} from './lib';
 
 /*
  * Onboarding calculator. The real one is still being built; it works out the monthly
@@ -53,7 +53,7 @@ const CARD_H = 840;
 const ROW_H = 132;
 
 const FieldLabel: React.FC<{u: number; text: string; active: boolean}> = ({u, text, active}) => (
-	<div style={{fontFamily: MONO, fontSize: 20 * u, letterSpacing: '0.12em', color: active ? C.accent : C.muted}}>{text}</div>
+	<div style={{fontFamily: LABEL, fontWeight: 500, fontSize: 20 * u, letterSpacing: '0.12em', color: active ? C.accent : C.muted}}>{text}</div>
 );
 
 const Underline: React.FC<{u: number; active: boolean; done: boolean}> = ({u, active, done}) => (
@@ -89,7 +89,7 @@ const Form: React.FC<{b: number; frame: number; u: number; w: number}> = ({b, fr
 			<div style={{position: 'absolute', top: 44 * u, left: 0, right: 0, display: 'flex', alignItems: 'center', gap: 14 * u}}>
 				<MiniRing progress={0.75} size={30 * u} stroke={5 * u} color={C.accent} track={C.line} />
 				<div style={{fontSize: 30 * u, fontWeight: 600, letterSpacing: '-0.03em', color: C.ink, flex: 1}}>New first</div>
-				<div style={{fontFamily: MONO, fontSize: 18 * u, letterSpacing: '0.12em', color: C.muted}}>FIRSTS FUND</div>
+				<div style={{fontFamily: LABEL, fontWeight: 500, fontSize: 18 * u, letterSpacing: '0.12em', color: C.muted}}>FIRSTS FUND</div>
 			</div>
 			{/* name */}
 			<div style={{position: 'absolute', top: 130 * u, left: 0, right: 0}}>
@@ -112,7 +112,7 @@ const Form: React.FC<{b: number; frame: number; u: number; w: number}> = ({b, fr
 			<div style={{position: 'absolute', top: 394 * u, left: 0, right: 0}}>
 				<div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
 					<FieldLabel u={u} text="WHEN" active={active(K.when)} />
-					<div style={{fontFamily: MONO, fontSize: 18 * u, letterSpacing: '0.08em', color: warn ? C.warn : C.muted}}>
+					<div style={{fontFamily: LABEL, fontWeight: 500, fontSize: 18 * u, letterSpacing: '0.08em', color: warn ? C.warn : C.muted}}>
 						{warn ? 'FIRSTS START AT 5 YEARS' : 'MINIMUM 5 YEARS'}
 					</div>
 				</div>
@@ -169,7 +169,7 @@ const Form: React.FC<{b: number; frame: number; u: number; w: number}> = ({b, fr
 					{peso(monthly)}
 					<span style={{fontSize: 28 * u, fontWeight: 500, color: C.ink2, letterSpacing: '-0.02em'}}> / month</span>
 				</div>
-				<div style={{fontFamily: MONO, fontSize: 16 * u, letterSpacing: '0.06em', color: C.ink2, marginTop: 2 * u}}>
+				<div style={{fontFamily: LABEL, fontWeight: 500, fontSize: 16 * u, letterSpacing: '0.06em', color: C.ink2, marginTop: 2 * u}}>
 					{peso(EX.amount)} ÷ {EX.years * 12} MONTHS · CONTRIBUTIONS ONLY
 				</div>
 			</div>
@@ -217,7 +217,7 @@ const Row: React.FC<{u: number; name: string; years: number; monthly: number; st
 		<MiniRing progress={started ? 0.15 : 0.03} size={54 * u} stroke={6 * u} color={C.accent} track={C.line} />
 		<div style={{flex: 1, minWidth: 0}}>
 			<div style={{fontSize: 32 * u, fontWeight: 600, letterSpacing: '-0.03em', color: C.ink, whiteSpace: 'nowrap'}}>{name}</div>
-			<div style={{fontFamily: MONO, fontSize: 18 * u, letterSpacing: '0.08em', color: C.muted, marginTop: 4 * u}}>
+			<div style={{fontFamily: LABEL, fontWeight: 500, fontSize: 18 * u, letterSpacing: '0.08em', color: C.muted, marginTop: 4 * u}}>
 				{years} YEARS · {peso(monthly)}/MONTH
 			</div>
 		</div>
@@ -257,7 +257,7 @@ export const Calculator: React.FC = () => {
 					color: C.ink,
 				}}
 			>
-				<div style={{fontFamily: MONO, fontSize: 24 * u, letterSpacing: '0.12em', color: C.accent, opacity: ramp(frame, stepFrame, stepFrame + 6)}}>{step.label}</div>
+				<div style={{fontFamily: LABEL, fontWeight: 500, fontSize: 24 * u, letterSpacing: '0.12em', color: C.accent, opacity: ramp(frame, stepFrame, stepFrame + 6)}}>{step.label}</div>
 				<div style={{fontSize: (vertical ? 84 : 80) * u, fontWeight: 600, letterSpacing: '-0.045em', lineHeight: 1.02, marginTop: 18 * u}}>
 					<Rise at={stepFrame + 1}>{step.title}</Rise>
 				</div>

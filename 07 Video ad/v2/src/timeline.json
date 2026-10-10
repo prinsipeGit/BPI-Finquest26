@@ -3,23 +3,69 @@
   "fps": 30,
   "totalBeats": 62,
   "sections": {
-    "intro":   [0, 6],
-    "firsts":  [6, 21],
-    "fund":    [21, 25],
-    "calc":    [25, 43],
-    "pause":   [43, 44],
-    "always":  [44, 49],
-    "logo":    [49, 55],
-    "legal":   [55, 62]
+    "intro": [
+      0,
+      6
+    ],
+    "firsts": [
+      6,
+      24
+    ],
+    "fund": [
+      24,
+      28
+    ],
+    "calc": [
+      28,
+      44
+    ],
+    "pause": [
+      44,
+      45
+    ],
+    "always": [
+      45,
+      50
+    ],
+    "logo": [
+      50,
+      56
+    ],
+    "legal": [
+      56,
+      62
+    ]
   },
-  "firstBeats": 2.5,
+  "firstBeats": 3.6,
   "calc": {
-    "name":   [0, 3],
-    "amount": [3, 6],
-    "when":   [6, 10],
-    "result": [10, 13],
-    "start":  [13, 15],
-    "next":   [15, 18]
+    "name": [
+      0,
+      3
+    ],
+    "amount": [
+      3,
+      5.5
+    ],
+    "when": [
+      5.5,
+      9
+    ],
+    "result": [
+      9,
+      11.5
+    ],
+    "start": [
+      11.5,
+      13.5
+    ],
+    "next": [
+      13.5,
+      16
+    ]
   },
-  "example": { "name": "Trip to Japan with Mom & Dad", "amount": 150000, "years": 5 }
+  "example": {
+    "name": "Trip to Japan with Mom & Dad",
+    "amount": 150000,
+    "years": 5
+  }
 }

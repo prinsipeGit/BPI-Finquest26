@@ -1,7 +1,7 @@
 import React from 'react';
 import {useCurrentFrame} from 'remotion';
-import {C, E, Fill, MONO, SANS, Rise, ramp, mix, useLayout, f} from './lib';
-import {MNL, NOTEBOOK, Ruled} from './Firsts';
+import {C, E, Fill, LABEL, SANS, Rise, ramp, mix, useLayout, f} from './lib';
+import {MNL, NOTEBOOK, Ruled, FIRST_COUNT} from './Firsts';
 
 const Accent: React.FC<{children: React.ReactNode; color?: string}> = ({children, color = C.accent}) => <span style={{color}}>{children}</span>;
 
@@ -40,8 +40,8 @@ export const Intro: React.FC = () => {
 				}}
 			>
 				<div style={{width: 14 * u, height: 14 * u, borderRadius: 7 * u, background: C.accent}} />
-				<span style={{fontFamily: MONO, fontSize: 24 * u, letterSpacing: '0.1em', color: C.ink2}}>SALARY CREDITED</span>
-				<span style={{fontFamily: MONO, fontSize: 24 * u, color: C.accent}}>+₱28,000.00</span>
+				<span style={{fontFamily: LABEL, fontWeight: 500, fontSize: 24 * u, letterSpacing: '0.1em', color: C.ink2}}>SALARY CREDITED</span>
+				<span style={{fontFamily: LABEL, fontWeight: 500, fontSize: 24 * u, color: C.accent}}>+₱28,000.00</span>
 			</div>
 			<div
 				style={{
@@ -103,7 +103,7 @@ export const Fund: React.FC = () => {
 	const {u, vertical, width, height} = useLayout();
 	const exit = f(4) - 10;
 	const page = 1 - ramp(frame, 6, 14);
-	// six dots, one per first, gather into one ring
+	// five dots, one per first, gather into one ring
 	const cx = width / 2;
 	const cy = height / 2 - (vertical ? 300 : 230) * u;
 	const gather = ramp(frame, 12, 22, E.inOut);
@@ -118,10 +118,10 @@ export const Fund: React.FC = () => {
 				<Ruled u={u} progress={(k) => 1 - ramp(frame, k * 0.6, 9 + k * 0.6, E.in)} marginO={page} />
 			</div>
 			<div style={{position: 'absolute', inset: 0, opacity: 1 - out, transform: `translateY(${-out * 60 * u}px)`}}>
-				{Array.from({length: 6}, (_, k) => {
+				{Array.from({length: FIRST_COUNT}, (_, k) => {
 					const pop = ramp(frame, 4 + k * 1.2, 10 + k * 1.2);
-					const x = mix(cx + (k - 2.5) * 56 * u, cx + Math.cos((k / 6) * Math.PI * 2 - Math.PI / 2) * r, gather);
-					const y = mix(cy, cy + Math.sin((k / 6) * Math.PI * 2 - Math.PI / 2) * r, gather);
+					const x = mix(cx + (k - (FIRST_COUNT - 1) / 2) * 56 * u, cx + Math.cos((k / FIRST_COUNT) * Math.PI * 2 - Math.PI / 2) * r, gather);
+					const y = mix(cy, cy + Math.sin((k / FIRST_COUNT) * Math.PI * 2 - Math.PI / 2) * r, gather);
 					const d = 18 * u * pop * (1 - ringDraw);
 					return <div key={k} style={{position: 'absolute', left: x - d / 2, top: y - d / 2, width: d, height: d, borderRadius: d, background: C.accent}} />;
 				})}
@@ -200,13 +200,13 @@ export const Pause: React.FC = () => {
 const AlwaysText: React.FC<{frame: number}> = ({frame}) => {
 	const {u, vertical, height} = useLayout();
 	const tick = ramp(frame, 0, 34, (t) => t * t);
-	const n = Math.min(99, 7 + Math.floor(tick * 92));
+	const n = Math.min(99, FIRST_COUNT + 1 + Math.floor(tick * (98 - FIRST_COUNT)));
 	const inf = frame >= 36;
 	const size = (vertical ? 100 : 150) * u;
 	return (
 		<div style={{position: 'absolute', left: 0, right: 0, top: height / 2 - (vertical ? 230 : 190) * u, textAlign: 'center', color: C.ink}}>
-			<div style={{fontFamily: MONO, fontSize: 30 * u, letterSpacing: '0.14em', color: C.muted, height: 50 * u}}>
-				FIRST <span style={{color: C.accent, fontFamily: inf ? SANS : MONO, fontSize: inf ? 40 * u : 30 * u}}>{inf ? '∞' : String(n).padStart(2, '0')}</span>
+			<div style={{fontFamily: LABEL, fontWeight: 500, fontSize: 30 * u, letterSpacing: '0.14em', color: C.muted, height: 50 * u}}>
+				FIRST <span style={{color: C.accent, fontFamily: SANS, fontSize: inf ? 40 * u : 30 * u}}>{inf ? '∞' : String(n).padStart(2, '0')}</span>
 			</div>
 			<div style={{fontSize: size, fontWeight: 600, letterSpacing: '-0.05em', lineHeight: 1.02, marginTop: 30 * u}}>
 				<Rise at={4}>There will always be</Rise>

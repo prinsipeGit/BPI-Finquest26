@@ -10,7 +10,6 @@
     "render:vertical": "remotion render FirstsAdV2Vertical out/FirstsFund_Ad_v2_9x16.mp4"
   },
   "dependencies": {
-    "@fontsource/geist-mono": "^5.2.5",
     "@fontsource/geist-sans": "^5.2.5",
     "@fontsource/inter": "^5.2.5",
     "@remotion/cli": "4.0.526",

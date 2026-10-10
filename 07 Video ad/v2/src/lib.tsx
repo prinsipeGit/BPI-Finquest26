@@ -9,11 +9,9 @@ for (const w of ['400', '500', '600', '700']) {
 	loadFont({family: 'Geist', url: staticFile(`fonts/geist-sans-latin-${w}-normal.woff2`), weight: w});
 	loadFont({family: 'PesoFallback', url: staticFile(`fonts/inter-latin-ext-${w}-normal.woff2`), weight: w, unicodeRange: 'U+20B1'});
 }
-for (const w of ['400', '500']) {
-	loadFont({family: 'Geist Mono', url: staticFile(`fonts/geist-mono-latin-${w}-normal.woff2`), weight: w});
-}
 export const SANS = "'Geist', 'PesoFallback', sans-serif";
-export const MONO = "'Geist Mono', 'PesoFallback', monospace";
+/** Small uppercase labels: the main font, medium weight, widely tracked. */
+export const LABEL = SANS;
 
 /* ---------- timing ---------- */
 export const TL = tl;
@@ -73,7 +71,7 @@ export const useLayout = () => {
 };
 
 export const Fill: React.FC<{bg: string; children?: React.ReactNode; style?: React.CSSProperties}> = ({bg, children, style}) => (
-	<div style={{position: 'absolute', inset: 0, background: bg, overflow: 'hidden', fontFamily: SANS, ...style}}>{children}</div>
+	<div style={{position: 'absolute', inset: 0, background: bg, overflow: 'hidden', fontFamily: SANS, fontVariantNumeric: 'tabular-nums', ...style}}>{children}</div>
 );
 
 /** The 1000 × 600 drawing area shared by the firsts. */
@@ -151,7 +149,7 @@ export const Caption: React.FC<{n: number; total: number; lines: string[]; dark?
 		<div style={{position: 'absolute', left: caption.left, top: caption.top, width: caption.width, color: fg}}>
 			<div style={{display: 'flex', alignItems: 'center', gap: 14 * u, opacity: ramp(frame, at, at + 8)}}>
 				<MiniRing progress={ring} size={30 * u} stroke={4 * u} color={dark ? C.card : C.accent} track={dark ? 'rgba(255,255,255,0.25)' : C.line} />
-				<span style={{fontFamily: MONO, fontSize: 24 * u, letterSpacing: '0.12em', color: sub}}>FIRST {String(n).padStart(2, '0')}</span>
+				<span style={{fontFamily: LABEL, fontWeight: 500, fontSize: 24 * u, letterSpacing: '0.12em', color: sub}}>FIRST {String(n).padStart(2, '0')}</span>
 			</div>
 			<div style={{fontSize: (vertical ? 100 : 92) * u, fontWeight: 600, letterSpacing: '-0.045em', lineHeight: 1.0, marginTop: 26 * u}}>
 				{lines.map((l, k) => (

@@ -1,18 +1,21 @@
 import React from 'react';
 import {useCurrentFrame} from 'remotion';
-import {C, E, Fill, MONO, Stage, Caption, ramp, mix, quad, useLayout, TL} from './lib';
+import {C, E, Fill, LABEL, Stage, Caption, ramp, mix, quad, useLayout, TL} from './lib';
 
 /*
- * Six firsts, each 5+ years away. Each scene has its own motion graphic, and each one
+ * Five firsts, each 5+ years away. Each scene has its own motion graphic, and each one
  * starts from the last frame of the one before it, so the transition is part of the story:
  *   01 trip    dot → flight path
  *   02 car     flight path straightens into the road
  *   03 home    car speeds off, the building stacks up from the ground line
- *   04 "I do"  zoom through the lit window into the rings
- *   05 shop    iris out of a ring, the shutter rolls up
- *   06 school  the OPEN sign flips over into a notebook page
+ *   04 shop    zoom through the lit window; the green folds down into the shop's awning
+ *   05 school  the OPEN sign flips over into a notebook page
  */
-export const FIRST_COUNT = 6;
+export const FIRST_COUNT = 5;
+
+// Animations run at 1/SLOW speed so each first has room to breathe (captions keep their own pace).
+const SLOW = 1.3;
+const useT = () => useCurrentFrame() / SLOW;
 const N = FIRST_COUNT;
 
 /* ---------- shared geometry (stage units, 1000 × 600) ---------- */
@@ -27,7 +30,7 @@ const Dot: React.FC<{x: number; y: number; r: number; color?: string; o?: number
 );
 
 const Label: React.FC<{x: number; y: number; text: string; o: number}> = ({x, y, text, o}) => (
-	<text x={x} y={y} textAnchor="middle" fontFamily={MONO} fontSize={22} letterSpacing="0.12em" fill={C.muted} opacity={o}>
+	<text x={x} y={y} textAnchor="middle" fontFamily={LABEL} fontWeight={500} fontSize={22} letterSpacing="0.12em" fill={C.muted} opacity={o}>
 		{text}
 	</text>
 );
@@ -52,7 +55,7 @@ const Plane: React.FC<{x: number; y: number; a: number; s: number}> = ({x, y, a,
 
 /* ---------- 01 · trip abroad ---------- */
 export const Trip: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useT();
 	const t = ramp(frame, 2, 26, E.inOut);
 	const p = quad(MNL, CTRL, TYO, t);
 	const land = ramp(frame, 24, 32);
@@ -96,7 +99,7 @@ const Car: React.FC<{x: number; tilt: number; spin: number}> = ({x, tilt, spin})
 );
 
 export const CarScene: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useT();
 	const m = ramp(frame, 0, 9, E.inOut);
 	const p0 = [mix(MNL[0], -60, m), mix(MNL[1], LANE, m)];
 	const p1 = [mix(CTRL[0], 500, m), mix(CTRL[1], LANE, m)];
@@ -178,7 +181,7 @@ const Building: React.FC<{frame: number; lit: number}> = ({frame, lit}) => {
 const mixColor = (t: number) => (t > 0.5 ? C.accent : C.paper);
 
 export const Home: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useT();
 	const go = ramp(frame, 0, 9, E.in);
 	const lit = ramp(frame, 24, 26);
 	return (
@@ -197,61 +200,11 @@ export const Home: React.FC = () => {
 	);
 };
 
-/* ---------- 04 · "I do" ---------- */
-const RING_L = [452, 300];
-const RING_R = [548, 300];
-export const IDo: React.FC = () => {
-	const frame = useCurrentFrame();
-	const zoom = ramp(frame, 0, 10, E.in);
-	const s = Math.pow(120, zoom);
-	const after = frame >= 10;
-	const inL = ramp(frame, 9, 24);
-	const inR = ramp(frame, 11, 26);
-	const spark = ramp(frame, 22, 32);
-	return (
-		<Fill bg={after ? C.accent : C.paper}>
-			{!after ? (
-				<Stage>
-					<g transform={`translate(${LIT.x} ${LIT.y}) scale(${s}) translate(${-LIT.x} ${-LIT.y})`}>
-						<line x1={-60} y1={GROUND} x2={1060} y2={GROUND} stroke={C.ink} strokeWidth={4} />
-						<Building frame={60} lit={1} />
-					</g>
-				</Stage>
-			) : (
-				<>
-					<Stage>
-						<circle cx={mix(-200, RING_L[0], inL)} cy={RING_L[1]} r={84} stroke={C.card} strokeWidth={16} />
-						<circle cx={mix(1200, RING_R[0], inR)} cy={RING_R[1]} r={84} stroke={C.card} strokeWidth={16} />
-						{Array.from({length: 8}, (_, k) => {
-							const a = (k / 8) * Math.PI * 2;
-							const r0 = 40 + 50 * spark;
-							const r1 = r0 + 26 * (1 - spark);
-							return (
-								<line
-									key={k}
-									x1={500 + Math.cos(a) * r0}
-									y1={170 + Math.sin(a) * r0}
-									x2={500 + Math.cos(a) * r1}
-									y2={170 + Math.sin(a) * r1}
-									stroke={C.card}
-									strokeWidth={5}
-									opacity={spark > 0 ? 1 - spark : 0}
-								/>
-							);
-						})}
-					</Stage>
-					<Caption n={4} total={N} lines={['Say your', 'first “I do.”']} dark at={12} />
-				</>
-			)}
-		</Fill>
-	);
-};
-
-/* ---------- 05 · first business ---------- */
+/* ---------- 04 · first business ---------- */
 export const SIGN = {x: 500, y: 299, w: 140, h: 54};
-const Storefront: React.FC<{frame: number; swing: number}> = ({frame, swing}) => {
+const Storefront: React.FC<{frame: number; swing: number; awning?: boolean}> = ({frame, swing, awning}) => {
 	const draw = ramp(frame, 8, 22, E.inOut);
-	const awn = ramp(frame, 12, 22);
+	const awn = awning ? 1 : ramp(frame, 12, 22);
 	const shutter = 1 - ramp(frame, 18, 28, E.inOut);
 	return (
 		<g>
@@ -272,7 +225,7 @@ const Storefront: React.FC<{frame: number; swing: number}> = ({frame, swing}) =>
 					<line x1={470} y1={236} x2={462} y2={SIGN.y - SIGN.h / 2} stroke={C.ink} strokeWidth={3} />
 					<line x1={530} y1={236} x2={538} y2={SIGN.y - SIGN.h / 2} stroke={C.ink} strokeWidth={3} />
 					<rect x={SIGN.x - SIGN.w / 2} y={SIGN.y - SIGN.h / 2} width={SIGN.w} height={SIGN.h} rx={10} fill={C.accent} />
-					<text x={SIGN.x} y={SIGN.y + 10} textAnchor="middle" fontFamily={MONO} fontSize={28} fontWeight={500} letterSpacing="0.14em" fill={C.card}>
+					<text x={SIGN.x} y={SIGN.y + 10} textAnchor="middle" fontFamily={LABEL} fontSize={28} fontWeight={500} letterSpacing="0.14em" fill={C.card}>
 						OPEN
 					</text>
 				</g>
@@ -293,34 +246,49 @@ const pendulum = (frame: number, from: number) => {
 	return frame < from ? 0 : 14 * Math.exp(-3 * t) * Math.sin(t * 11);
 };
 
+const AWNING = {x: 306, y: 136, w: 388, h: 62, r: 14};
+
 export const Shop: React.FC = () => {
-	const frame = useCurrentFrame();
-	const iris = ramp(frame, 0, 11, E.in);
+	const frame = useT();
+	const {width, height, toScreen, stage} = useLayout();
+	// 1) zoom through the lit window of the home until green fills the frame
+	const zoom = ramp(frame, 0, 9, E.in);
+	const s = Math.pow(120, zoom);
+	// 2) the green folds down into the shop's awning
+	const fold = ramp(frame, 9, 20, E.inOut);
+	const a = toScreen(AWNING.x, AWNING.y);
+	const box = {
+		x: mix(0, a.x, fold),
+		y: mix(0, a.y, fold),
+		w: mix(width, AWNING.w * stage.s, fold),
+		h: mix(height, AWNING.h * stage.s, fold),
+		r: mix(0, AWNING.r * stage.s, fold),
+	};
 	return (
-		<Fill bg={frame < 11 ? C.accent : C.paper}>
-			<Stage>
-				{frame < 11 ? (
-					<>
-						<circle cx={RING_L[0]} cy={RING_L[1]} r={84} stroke={C.card} strokeWidth={16} />
-						<circle cx={RING_R[0]} cy={RING_R[1]} r={84} stroke={C.card} strokeWidth={16} />
-						<circle cx={RING_L[0]} cy={RING_L[1]} r={76 + iris * 1900} fill={C.paper} />
-					</>
-				) : null}
-				<clipPath id="iris">
-					<circle cx={RING_L[0]} cy={RING_L[1]} r={frame < 11 ? 76 + iris * 1900 : 5000} />
-				</clipPath>
-				{frame >= 6 ? (
-					<g clipPath="url(#iris)">
-						<Storefront frame={frame} swing={pendulum(frame, 24)} />
+		<Fill bg={C.paper}>
+			{frame < 9 ? (
+				<Stage>
+					<g transform={`translate(${LIT.x} ${LIT.y}) scale(${s}) translate(${-LIT.x} ${-LIT.y})`}>
+						<line x1={-60} y1={GROUND} x2={1060} y2={GROUND} stroke={C.ink} strokeWidth={4} />
+						<Building frame={60} lit={1} />
 					</g>
-				) : null}
-			</Stage>
-			{frame >= 10 ? <Caption n={5} total={N} lines={['Open your', 'first business.']} at={12} /> : null}
+				</Stage>
+			) : (
+				<>
+					<Stage>
+						<Storefront frame={frame - 6} swing={pendulum(frame, 30)} awning />
+					</Stage>
+					{fold < 1 ? (
+						<div style={{position: 'absolute', left: box.x, top: box.y, width: box.w, height: box.h, borderRadius: box.r, background: C.accent}} />
+					) : null}
+				</>
+			)}
+			<Caption n={4} total={N} lines={['Open your', 'first business.']} at={16} />
 		</Fill>
 	);
 };
 
-/* ---------- 06 · first day of school ---------- */
+/* ---------- 05 · first day of school ---------- */
 export const NOTEBOOK = '#FBFAF6';
 export const RULE_GAP = 54;
 export const Ruled: React.FC<{u: number; progress?: (k: number) => number; marginO?: number}> = ({u, progress, marginO = 1}) => {
@@ -373,7 +341,7 @@ const Doodle: React.FC<{frame: number}> = ({frame}) => {
 };
 
 export const School: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useT();
 	const {u, width, height, toScreen, stage} = useLayout();
 	const flip = ramp(frame, 0, 13, E.inOut);
 	const c = toScreen(SIGN.x, SIGN.y);
@@ -404,7 +372,7 @@ export const School: React.FC = () => {
 									alignItems: 'center',
 									justifyContent: 'center',
 									color: C.card,
-									fontFamily: MONO,
+									fontFamily: LABEL, fontWeight: 500,
 									fontSize: 28 * stage.s,
 									letterSpacing: '0.14em',
 								}}
@@ -422,16 +390,16 @@ export const School: React.FC = () => {
 					<Ruled u={u} />
 					<Stage>
 						<Doodle frame={frame} />
-						<text x={330} y={420} fontFamily={MONO} fontSize={22} letterSpacing="0.12em" fill={C.muted} opacity={ramp(frame, 26, 32)}>
+						<text x={330} y={420} fontFamily={LABEL} fontWeight={500} fontSize={22} letterSpacing="0.12em" fill={C.muted} opacity={ramp(frame, 26, 32)}>
 							DAY 1
 						</text>
 					</Stage>
-					<Caption n={6} total={N} lines={['Their first', 'day of school.']} at={13} />
+					<Caption n={5} total={N} lines={['Their first', 'day of school.']} at={16} />
 				</>
 			)}
 		</Fill>
 	);
 };
 
-export const FIRST_SCENES = [Trip, CarScene, Home, IDo, Shop, School];
+export const FIRST_SCENES = [Trip, CarScene, Home, Shop, School];
 export const FIRST_BEATS = TL.firstBeats;
