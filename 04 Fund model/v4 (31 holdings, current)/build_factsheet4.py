@@ -193,9 +193,9 @@ assert n_m - n_rej - n_wl == n_el, (n_m, n_rej, n_wl, n_el)
 FN = R['funnel']; assert (FN['universe'], FN['m_pass'], FN['eligible'], FN['held']) == (n_uni, n_m, n_el, NH)
 letter = ParagraphStyle('letter', parent=base, fontName='Helvetica-Bold', fontSize=26, leading=27, textColor=GREEN)
 stp = ParagraphStyle('stp', parent=base, fontName='Helvetica-Bold', fontSize=9.2, leading=11, textColor=DARK)
-num = ParagraphStyle('num', parent=base, fontName='Helvetica-Bold', fontSize=17, leading=19, textColor=DARK)
+num = ParagraphStyle('num', parent=base, fontName='Helvetica-Bold', fontSize=11.5, leading=13.5, textColor=DARK)
 numl = ParagraphStyle('numl', parent=base, fontSize=6.6, leading=8, textColor=MUTED)
-arw = ParagraphStyle('arw', parent=base, fontName='DJ', fontSize=15, leading=17, textColor=GREEN, alignment=TA_CENTER)
+arw = ParagraphStyle('arw', parent=base, fontName='DJ', fontSize=12, leading=14, textColor=GREEN, alignment=TA_CENTER)
 mvp = [('M', 'Map the capacity', 'Find the companies that own, run or supply essential services: up to the 20 largest listed (at least US$1bn) in each of eight kinds, '
               'anywhere in the world. Keep those that earn at least half their revenue from that service and generate cash.',
         f'{n_uni} → {n_m}', f'{n_uni} screened · {n_m} fit the theme'),
