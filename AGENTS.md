@@ -36,6 +36,7 @@ and how to rerun everything. Update the **Decision log** and **Open items** when
 | 2026-10-10 | Ad v2 retimed (user: second half felt rushed): firsts 1.55 s each (was 1.7), calculator 8.7 s (was 8.2, longer "when" and "result" steps), payoff 2.4 s, logo 3.4 s (was 2.9); voice lines re-placed with almost no speed-up. |
 | 2026-10-10 | Ad v2 mix (user: voice too loud): voice at 0.6 (≈ −4.4 dB), music dips to 0.32 instead of 0.2 under it. |
 | 2026-10-10 | Fact sheet: page-2 portfolio-construction funnel (140 → 129 → 49 → 31); without the 7 chip and grid-equipment holdings the same simulation gives 18.7% a year, ₱100 → 237 (`v4/ex_suppliers.py`, reproduces 24.95% first), disclosed on page 1 and in Key risks; Key facts tidied. |
+| 2026-10-10 | User: features from the 6-page Phase 1 submission must not be lost. Fact sheet is now 6 pages: executive summary (Problem & fund, Hook, Habit; `exec_pages4.py`), fact sheet (pp 4–5), annex (p 6). Sequence test rerun on v4 (`seq4.py` → `extra4.json`: −0.85 / +0.85, 20,000 orderings). Retired by v3/v4 decisions and not restored: 30% PH, 10% reserve, role quotas, MSCI ACWI benchmark, dated-target test, performance digs at BPI funds. |
 | 2026-10-10 | User: fact sheet must include the executive summary, and holdings should appear once. PDF is now 3 pages (executive summary, then fact sheet); top-10 table dropped. Same file name, built by `build_factsheet4.py`. |
 
 ## The rules (v4, current; full text in `04 Fund model/v4 (31 holdings, current)/RULES_v4.md`)
@@ -104,7 +105,7 @@ TW 3.73, US 1.65. Owners 74.94 / Suppliers 15.06. ~5.9 independent bets; top-2 f
 | Folder | Contents |
 | --- | --- |
 | `AGENTS.md` | This file |
-| `01 Phase 2 submission/` | `LosAngeles76ers_FirstsFund_FactSheet.pdf`: 3 pages, executive summary + investor fact sheet, v4. `superseded/` holds older versions |
+| `01 Phase 2 submission/` | `LosAngeles76ers_FirstsFund_FactSheet.pdf`: 6 pages: executive summary (3), fact sheet (2), annex (1), v4. `superseded/` holds older versions |
 | `02 Phase 1 submission/` | Phase 1 PDFs and HTML drafts |
 | `03 Competition rules/` | Primers and Phase 2 finalist guidelines |
 | `04 Fund model/` | One subfolder per version. `v4 (31 holdings, current)/` = current engine (RULES_v4.md, map/, engine4.py, analyze4.py, build_factsheet4.py, gen_deck4.py, gen_doc4.py, notes4.py, sens4.py, results4.json). `v3 (21 holdings, superseded)/`, `v2 (33 holdings, superseded)/`, `v1 (15 holdings, superseded)/` |
