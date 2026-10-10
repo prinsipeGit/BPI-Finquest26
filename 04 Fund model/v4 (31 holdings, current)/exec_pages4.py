@@ -69,12 +69,14 @@ p1r = [bandrow('THE FUND', R2), Spacer(1, 3),
   p(f'<b>The proposed Firsts Fund</b> is a peso UITF that owns, directly, {NH} listed companies around the world that run essential, '
     'hard-to-replace services: power and water, phone and internet networks, ports, airports, hospitals, and the equipment behind them. '
     '<b>₱100 to start. One fee. No fund-of-funds layer.</b>', xb), Spacer(1, 3),
-  grid([('1 · Map', f'{n_uni0} of the largest listed companies in 8 kinds of essential service'), ('2 · Check the fit', f'{n_m0} earn mostly from that service and generate cash'),
-        ('3 · Verify', f'{n_el0} pass a debt stress test and compare well with peers on price and quality'), ('4 · Position', f'{NH} held, sized so no single company dominates the risk')],
-       [R2*0.27, R2*0.73]), Spacer(1, 2),
+  p('<b>Chosen by our M · V · P framework:</b>', xb), Spacer(1, 1),
+  grid([('<font color="#0F7A45" size="11">M</font> · Map', f'Find essential-service companies worldwide: <b>{n_uni0}</b> screened, <b>{n_m0}</b> fit the theme'),
+        ('<font color="#0F7A45" size="11">V</font> · Verify', f'Debt stress test and value and quality against peers: <b>{n_el0}</b> pass'),
+        ('<font color="#0F7A45" size="11">P</font> · Position', f'Add only what improves diversification, size by risk: <b>{NH}</b> held')],
+       [R2*0.25, R2*0.75]), Spacer(1, 2),
   p('Same published rules for every company, including the Philippines\' ICTSI. Full process on page 5.', xs), Spacer(1, 5),
-  tiles([(pct(v4['cagr'], 1), 'a year, today\'s holdings, past 5 yrs (hindsight)'), (pct(nf['cagr'], 1), 'benchmark: global infrastructure fund')], 4, R2), Spacer(1, 2),
-  tiles([(pct(XS['cagr'], 1), 'same, without chip and grid-equipment makers'), (pct(ps['cap']['cagr'], 1), 'a year over 36 years, industry-level')], 4, R2), Spacer(1, 3),
+  tiles([(f'{pct(v4["cagr"], 1)} <font color="#58635C" size="10">vs</font> {pct(nf["cagr"], 1)}', 'a year over the past 5 years: today\'s holdings (hindsight) vs the benchmark, NFRA global infrastructure ETF')], 4, R2), Spacer(1, 2),
+  tiles([(pct(XS['cagr'], 1), 'holdings without chip and grid-equipment makers, same 5 years'), (pct(ps['cap']['cagr'], 1), 'a year over 36 years, industry-level history')], 4, R2), Spacer(1, 3),
   p(f'<b>Read honestly.</b> The companies were picked in 2026 and tested backwards, so {pct(v4["cagr"], 1)} is a best case, not a forecast. The two lower '
     f'numbers are the checks: the result does not rest on chipmakers, and over 36 years the approach grew about as fast as the world market '
     f'({pct(ps["mkt"]["cagr"], 1)}) with a worst year of −{bad*100:.0f}%. Expect market-like growth from businesses people cannot do without.', xs), Spacer(1, 5),
@@ -108,7 +110,7 @@ p2l = [bandrow('ONE MESSAGE', L2), Spacer(1, 4),
   grid([('Take Mom and Dad abroad', 'First car', 'First home'), ('First business', 'First time sending money home and keeping some', 'Something else: type it in')],
        [L2/3]*3, bold_first=False), Spacer(1, 5),
   bandrow('WHY WE BUILD CONFIDENCE, NOT HYPE', L2), Spacer(1, 3),
-  p('A study of Filipino students (Susada, 2025) found that feeling capable, through knowledge and confidence, was the strongest driver of '
+  p('A survey of 191 Filipino students (Susada, 2025) found that feeling capable, through knowledge and confidence, was the strongest driver of '
     'intending to invest; pressure from friends and family was not. The BSP also measures financial literacy rising (74%, from 69%). So we '
     'explain, we do not push: no raffles, cash rewards, leaderboards or countdown timers in the launch. Rewards stay a future idea if costs and '
     'approvals allow.', xb)]
@@ -138,7 +140,7 @@ p2r = [bandrow('THE GOAL CALCULATOR: THE CENTRE OF THE CAMPAIGN', R2), Spacer(1,
     'seed money and a minimum size before opening, to cover custody and audit costs. A sketch, not a costed model.', xs)]
 story += [two(p2l, p2r, L2, R2, G2), Spacer(1, 4),
   p('Bea and her budget are illustrative. Calculator growth and inflation rates are example assumptions shown to the user. Sources: Susada (2025), '
-    'n = 191, one institution, measures intention; BSP Consumer Finance and Inclusion Survey 2025.', tiny), PageBreak()]
+    'a survey of 191 students at one university, measuring intention to invest rather than actual investing; BSP Consumer Finance and Inclusion Survey 2025.', tiny), PageBreak()]
 
 # ======================= PAGE 3 · THE HABIT: HOW THEY KEEP GOING =======================
 p3l = [bandrow('WHERE IT LIVES: THE BPI APP', L2), Spacer(1, 3),
@@ -202,7 +204,7 @@ def annex():
             ('Access and literacy improved', 'BPI UITF minimum ₱10,000 → ₱1,000 (2023); 74% answer half the literacy questions, from 69%', 'BPI Wealth; BSP CFIS 2025'),
             ('Cash loses in real terms', 'Inflation 6.2% in July 2026', 'PSA (2026)'),
             ('Risk appetite went to crypto', 'Awareness 20% of adults, from 6%; 46% of owners are 18–34', 'BSP CFIS 2025; Triple-A'),
-            ('Confidence, not peers, drives investing', 'Strongest driver β = 0.502 (p < .001); peer pressure not significant', 'Susada (2025), n = 191'),
+            ('Confidence, not peers, drives investing', 'Strongest driver β = 0.502 (p < .001); peer pressure not significant', 'Susada (2025), survey of 191 students'),
             ('A saver gains from an early fall', f'Link between a strong start and the final amount: {X["corr_contrib"]:.2f} saving, +{X["corr_withdraw"]:.2f} withdrawing'.replace('-', '−'), f'Our shuffle test, {X["n_shuffles"]:,} orders')],
            [A*0.30, A*0.42, A*0.28], head=['Claim', 'Figure', 'Source']), Spacer(1, 4),
       bandrow('A2 · WHAT WE KILLED, AND WHY', A), Spacer(1, 1),

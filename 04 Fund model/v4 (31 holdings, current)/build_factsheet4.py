@@ -190,29 +190,40 @@ U4 = json.load(open('map/universe4.json')); st_ = [r['stage'] for r in U4]
 n_uni = sum(x != 'Outside universe' for x in st_); n_m = n_uni - sum(x.startswith('Reject (M') for x in st_)
 n_rej = sum(x.startswith('Reject (V') for x in st_); n_wl = sum(x.startswith('Watchlist') for x in st_); n_el = st_.count('Eligible')
 assert n_m - n_rej - n_wl == n_el, (n_m, n_rej, n_wl, n_el)
-big = ParagraphStyle('big', parent=base, fontName='Helvetica-Bold', fontSize=15, leading=16, textColor=GREEN)
-stp = ParagraphStyle('stp', parent=base, fontName='Helvetica-Bold', fontSize=7.4, leading=9)
-arw = ParagraphStyle('arw', parent=base, fontName='DJ', fontSize=13, leading=15, textColor=MUTED, alignment=TA_CENTER)
-steps = [(n_uni, '1 · Map the capacity', 'Up to the 20 largest listed companies (at least US$1bn) in each of eight kinds of essential capacity, anywhere in the world.'),
-         (n_m, '2 · Check the fit', 'At least half of revenue from that capacity, positive operating cash flow and a positive return on capital.'),
-         (n_el, '3 · Verify the merit', f'Survives a debt stress test sized to its industry; debt, value and quality judged against its own peers; tradeable; '
-                f'sound governance. {n_rej} rejected, {n_wl} watchlisted.'),
-         (NH, '4 · Position the risk', 'Added in merit order only if it improves diversification; weighted so each adds a similar share of risk. '
-                'Limits: 20% per company or group, 25% per kind of capacity; about 3% cash. Holdings reviewed monthly, weights reset quarterly.')]
-sw, aw_ = (CW - 3*12) / 4, 12
-cells = []
-for i, (n, t, d) in enumerate(steps):
-    cells.append([p(f'{n}', big), p(t, stp), Spacer(1, 1), p(d, small)])
-    if i < 3: cells.append(p('→', arw))
-fun = Table([cells], colWidths=[sw, aw_]*3 + [sw])
-fun.setStyle(TableStyle([('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LEFTPADDING', (0, 0), (-1, -1), 4), ('RIGHTPADDING', (0, 0), (-1, -1), 4),
-                         ('TOPPADDING', (0, 0), (-1, -1), 3), ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
-                         *[('BACKGROUND', (j, 0), (j, 0), SOFT) for j in (0, 2, 4, 6)], ('LEFTPADDING', (1, 0), (1, 0), 0),
-                         *[('VALIGN', (j, 0), (j, 0), 'MIDDLE') for j in (1, 3, 5)], *[('LEFTPADDING', (j, 0), (j, 0), 0) for j in (1, 3, 5)],
-                         *[('RIGHTPADDING', (j, 0), (j, 0), 0) for j in (1, 3, 5)]]))
-story += [bandrow(f'HOW WE BUILD THE PORTFOLIO · {n_uni} COMPANIES SCREENED → {NH} HELD · SAME PUBLISHED RULES FOR EVERY COMPANY', CW), Spacer(1, 2), fun,
-          Spacer(1, 2), p('Judgement sits in the published rules, not in picking favourites: the monthly review may remove a holding after a material event '
-            '(and logs why), but never resizes one by hand. Thresholds and every company\'s result are in the supporting proposal.', tiny), Spacer(1, 5)]
+FN = R['funnel']; assert (FN['universe'], FN['m_pass'], FN['eligible'], FN['held']) == (n_uni, n_m, n_el, NH)
+letter = ParagraphStyle('letter', parent=base, fontName='Helvetica-Bold', fontSize=26, leading=27, textColor=GREEN)
+stp = ParagraphStyle('stp', parent=base, fontName='Helvetica-Bold', fontSize=9.2, leading=11, textColor=DARK)
+num = ParagraphStyle('num', parent=base, fontName='Helvetica-Bold', fontSize=17, leading=19, textColor=DARK)
+numl = ParagraphStyle('numl', parent=base, fontSize=6.6, leading=8, textColor=MUTED)
+arw = ParagraphStyle('arw', parent=base, fontName='DJ', fontSize=15, leading=17, textColor=GREEN, alignment=TA_CENTER)
+mvp = [('M', 'Map the capacity', 'Find the companies that own, run or supply essential services: up to the 20 largest listed (at least US$1bn) in each of eight kinds, '
+              'anywhere in the world. Keep those that earn at least half their revenue from that service and generate cash.',
+        f'{n_uni} → {n_m}', f'{n_uni} screened · {n_m} fit the theme'),
+       ('V', 'Verify the merit', f'Check each company is a sound investment: survives a debt stress test sized to its industry, and compares well with its own peers on '
+              f'price and quality; tradeable; sound governance.',
+        f'{n_m} → {n_el}', f'{n_el} eligible · {n_rej} rejected · {n_wl} on watch'),
+       ('P', 'Position the risk', 'Add eligible companies in merit order, only if each one improves diversification. Size them so every holding adds a similar '
+              'share of risk, within limits: 20% per company or group, 25% per kind of service, about 3% cash.',
+        f'{n_el} → {NH}', f'{NH} held · {FN["watch_p"]} on watch (added too little diversification)')]
+cw3, ga = (CW - 2*14) / 3, 14
+def hdr(L, t):
+    h = Table([[p(L, letter), p(t, stp)]], colWidths=[27, cw3 - 39]); h.setStyle(TableStyle([('VALIGN', (0, 0), (-1, -1), 'MIDDLE'), ('LEFTPADDING', (0, 0), (-1, -1), 0), ('LEFTPADDING', (1, 0), (1, 0), 5), ('RIGHTPADDING', (0, 0), (-1, -1), 0), ('TOPPADDING', (0, 0), (-1, -1), 0), ('BOTTOMPADDING', (0, 0), (-1, -1), 0)]))
+    return h
+r0, r1, r2 = [], [], []
+for i, (L, t, d, n_, nl) in enumerate(mvp):
+    r0.append(hdr(L, t)); r1.append(p(d, small)); r2.append([p(n_, num), p(nl, numl)])
+    if i < 2: r0.append(''); r1.append(p('→', arw)); r2.append(p('→', arw))
+fun = Table([r0, r1, r2], colWidths=[cw3, ga, cw3, ga, cw3])
+cols = (0, 2, 4)
+fun.setStyle(TableStyle([('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LEFTPADDING', (0, 0), (-1, -1), 6), ('RIGHTPADDING', (0, 0), (-1, -1), 6),
+                         ('TOPPADDING', (0, 0), (-1, 0), 5), ('TOPPADDING', (0, 1), (-1, 1), 2), ('BOTTOMPADDING', (0, 1), (-1, 1), 5),
+                         ('TOPPADDING', (0, 2), (-1, 2), 5), ('BOTTOMPADDING', (0, 2), (-1, 2), 5),
+                         *[('BACKGROUND', (j, 0), (j, 1), SOFT) for j in cols], *[('BACKGROUND', (j, 2), (j, 2), colors.HexColor('#DCEBE2')) for j in cols],
+                         *[('LEFTPADDING', (j, 0), (j, -1), 0) for j in (1, 3)], *[('RIGHTPADDING', (j, 0), (j, -1), 0) for j in (1, 3)],
+                         *[('VALIGN', (j, 1), (j, 2), 'MIDDLE') for j in (1, 3)]]))
+story += [bandrow(f'M · V · P: HOW WE BUILD THE PORTFOLIO · {n_uni} COMPANIES SCREENED → {NH} HELD · THE SAME PUBLISHED RULES FOR EVERY COMPANY', CW), Spacer(1, 3), fun,
+          Spacer(1, 3), p('Judgement sits in the published rules, not in picking favourites. Holdings are reviewed monthly and may be removed after a material '
+            'event (with the reason logged), but are never resized by hand; weights are reset quarterly. Every company\'s result is in the supporting proposal.', tiny), Spacer(1, 5)]
 risks = [('Market', f'Share prices can fall sharply. In 36 years of industry-level history the worst 12 months lost {pct(-ps["cap"]["worst12"], 0)} and the deepest fall was {pct(-ps["cap"]["maxdd"], 0)}.'),
          ('Concentration', f'Digital networks are at the fund\'s 25% cap; data-centre spending drives about {pct(bt["Semiconductors"] + bt["Grid & power equipment"], 0)} of the fund but more of its past return '
           f'(memory-chip makers are near a cyclical peak); '
