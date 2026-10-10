@@ -13,11 +13,11 @@ masked text reveals, and thin line graphics.
 | Time | Scene | What happens |
 |---|---|---|
 | 0.0–2.9 | Intro | "SALARY CREDITED" chip · **You just got your first paycheck.** → **What do you do first?** The text clears and leaves one green dot |
-| 2.9–11.6 | Five firsts, 1.7 s each | Each has its own graphic, and each starts from the last frame of the one before (see below) |
-| 11.6–13.5 | Message | The notebook lines retract; five dots (the five firsts) gather into a ring · **Fund your firsts.** (underlined) |
-| 13.5–21.8 | Calculator | Step 01 name your first · 02 amount (₱150,000) · 03 when (slider dragged to 2 years snaps back to the 5-year minimum) · ₱2,500 / month (contributions only) · Start with ₱100 · the card shrinks into a list and three next firsts stack under it |
-| 21.8–24.2 | Payoff | Counter FIRST 06 → 99 → ∞ · **There will always be a new first.** |
-| 24.2–27.1 | Logo | Dark panel rises · ring draws · Firsts Fund · Fund your firsts. · Start with as little as ₱100 |
+| 2.9–10.6 | Five firsts, 1.55 s each | Each has its own graphic, and each starts from the last frame of the one before (see below) |
+| 10.6–12.6 | Message | The notebook lines retract; five dots (the five firsts) gather into a ring · **Fund your firsts.** (underlined) |
+| 12.6–21.3 | Calculator | Step 01 name your first · 02 amount (₱150,000) · 03 when (slider dragged to 2 years snaps back to the 5-year minimum) · ₱2,500 / month (contributions only) · Start with ₱100 · the card shrinks into a list and three next firsts stack under it |
+| 21.3–23.7 | Payoff | Counter FIRST 06 → 99 → ∞ · **There will always be a new first.** |
+| 23.7–27.1 | Logo | Dark panel rises · ring draws · Firsts Fund · Fund your firsts. · Start with as little as ₱100 |
 | 27.1–30.0 | Legal | Proposed-fund and UITF disclaimers |
 
 ### The five firsts and their transitions
@@ -85,6 +85,6 @@ Fonts (Geist Sans, plus Inter for the ₱ sign; both OFL) are bundled in `public
 ## Before release
 
 - [x] Voice-over (ElevenLabs, Emma) and sound effects (ElevenLabs).
-- [ ] **Music:** `public/audio/music.wav` is a synthesised placeholder. Replace it with a licensed 120–128 BPM track (Artlist, Epidemic, Uppbeat, YouTube Audio Library), keep the file name, and line its drops up with 11.6 s ("Fund your firsts.") and 22.7 s. If the tempo differs, change `bpm` in `timeline.json`.
+- [ ] **Music:** `public/audio/music.wav` is a synthesised placeholder. Replace it with a licensed 120–128 BPM track (Artlist, Epidemic, Uppbeat, YouTube Audio Library), keep the file name, and line its drops up with 10.6 s ("Fund your firsts.") and 22.3 s. If the tempo differs, change `bpm` in `timeline.json`.
 - [ ] Team check: the lines, the example first (Japan, ₱150,000, 5 years), and the legal text.
 - [ ] Keep calculator wording in line with the real calculator once it is built.
