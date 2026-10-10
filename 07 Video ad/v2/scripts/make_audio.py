@@ -1,8 +1,9 @@
-"""Placeholder soundtrack and sound effects for the Firsts Fund ad (v2).
+"""Placeholder music bed for the Firsts Fund ad (v2). Sound effects and voice now come from ElevenLabs
+(see scripts/prepare_audio.py); the old synthesised SFX function is kept below but no longer run.
 
 Everything is synthesised with numpy, so there is nothing to license. The music
 follows src/timeline.json beat for beat (124 BPM): sparse hook, building montage,
-drop on "Fund your firsts", groove under the calculator, one beat of silence, piano, drop, tail.
+drop on "Fund your firsts", groove under the calculator, piano, drop, tail.
 Swap public/audio/music.wav for a licensed track at the same tempo before release.
 
 Run from the project root: python3 scripts/make_audio.py
@@ -148,7 +149,7 @@ def build_music():
         root, triad = CHORDS[bar % 4]
         on_beat = b16 % 4 == 0
         off = b16 % 4 == 2
-        silent = in_("pause", b) or in_("legal", b) or (S["always"][0] <= b < S["always"][0] + 2)
+        silent = in_("legal", b) or (S["always"][0] <= b < S["always"][0] + 2)
         if silent:
             continue
         drop = in_("fund", b) or in_("always", b) or in_("logo", b)
@@ -173,7 +174,7 @@ def build_music():
 
     # risers into the calculator and into the silence
     put(riser(4 * BEAT), S["fund"][0] - 4, 1.0)
-    put(riser(4 * BEAT), S["pause"][0] - 4, 0.9)
+    put(riser(4 * BEAT), S["always"][0] - 4, 0.9)
     # piano note after the silence, drop two beats later
     pn = tone(440.0, 2.5, (1, 0.6, 0.3, 0.2, 0.1), decay=0.9) + tone(659.25, 2.5, (1, 0.5, 0.2), decay=0.8) * 0.6
     put(norm(pn, 0.5), S["always"][0])
@@ -245,5 +246,4 @@ if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     m = build_music()
     save("music.wav", None, stereo=m)
-    sfx()
     print("wrote", sorted(os.listdir(OUT)), f"music {len(m) / SR:.2f}s")

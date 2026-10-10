@@ -310,12 +310,12 @@ export const Calculator: React.FC = () => {
 	);
 };
 
-/** Sound cues, in beats from the start of the scene. */
-export const CALC_CUES: {beat: number; sfx: string; vol?: number}[] = [
-	...Array.from({length: 10}, (_, k) => ({beat: T.typeFrom + (k * (T.typeTo - T.typeFrom)) / 10, sfx: 'type', vol: 0.6})),
-	...Array.from({length: 8}, (_, k) => ({beat: T.countFrom + (k * (T.countTo - T.countFrom)) / 8, sfx: 'tick', vol: 0.5})),
-	{beat: T.snap, sfx: 'snap'},
-	{beat: K.result[0], sfx: 'shimmer', vol: 0.8},
-	{beat: T.press, sfx: 'tap'},
-	...T.rows.map((r) => ({beat: r, sfx: 'pop', vol: 0.8})),
+/** Sound cues, in beats from the start of the scene (ElevenLabs effects in public/audio/sfx). */
+export const CALC_CUES: {beat: number; sfx: string; vol?: number; max?: number}[] = [
+	{beat: T.typeFrom, sfx: 'typing', vol: 0.45},
+	{beat: T.countFrom, sfx: 'click', vol: 0.25, max: 0.25},
+	{beat: T.snap, sfx: 'click', vol: 0.5, max: 0.3},
+	{beat: K.result[0], sfx: 'success', vol: 0.45},
+	{beat: T.press, sfx: 'click', vol: 0.6, max: 0.3},
+	...T.rows.map((r) => ({beat: r, sfx: 'click', vol: 0.3, max: 0.2})),
 ];

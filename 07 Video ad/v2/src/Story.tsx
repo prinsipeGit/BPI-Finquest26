@@ -184,18 +184,6 @@ const Underlined: React.FC<{frame: number; u: number; children: React.ReactNode}
 	</span>
 );
 
-/* ---------- one beat of quiet ---------- */
-export const Pause: React.FC = () => {
-	const frame = useCurrentFrame();
-	const {u, width, height} = useLayout();
-	const d = 16 * u * (0.6 + 0.4 * Math.sin(ramp(frame, 0, 14) * Math.PI));
-	return (
-		<Fill bg={C.paper}>
-			<div style={{position: 'absolute', left: width / 2 - d / 2, top: height / 2 - d / 2, width: d, height: d, borderRadius: d, background: C.accent}} />
-		</Fill>
-	);
-};
-
 /* ---------- "There will always be a new first." ---------- */
 const AlwaysText: React.FC<{frame: number}> = ({frame}) => {
 	const {u, vertical, height} = useLayout();

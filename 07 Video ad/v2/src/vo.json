@@ -1,0 +1,98 @@
+[
+ {
+  "file": "audio/vo/01.wav",
+  "text": "You just got your first paycheck.",
+  "at": 0.1,
+  "dur": 2.071
+ },
+ {
+  "file": "audio/vo/02.wav",
+  "text": "So\u2026 what do you do first?",
+  "at": 2.18,
+  "dur": 1.685
+ },
+ {
+  "file": "audio/vo/03.wav",
+  "text": "Take Mom and Dad abroad.",
+  "at": 3.9,
+  "dur": 1.255
+ },
+ {
+  "file": "audio/vo/04.wav",
+  "text": "Your first car.",
+  "at": 5.15,
+  "dur": 1.047
+ },
+ {
+  "file": "audio/vo/05.wav",
+  "text": "Your first home.",
+  "at": 6.45,
+  "dur": 0.996
+ },
+ {
+  "file": "audio/vo/06.wav",
+  "text": "Your first business.",
+  "at": 8.2,
+  "dur": 1.379
+ },
+ {
+  "file": "audio/vo/07.wav",
+  "text": "Their first day of school.",
+  "at": 9.95,
+  "dur": 1.486
+ },
+ {
+  "file": "audio/vo/08.wav",
+  "text": "Fund your firsts.",
+  "at": 11.8,
+  "dur": 1.341
+ },
+ {
+  "file": "audio/vo/09.wav",
+  "text": "Name your first.",
+  "at": 13.65,
+  "dur": 0.97
+ },
+ {
+  "file": "audio/vo/10.wav",
+  "text": "Set the amount.",
+  "at": 15.1,
+  "dur": 0.84
+ },
+ {
+  "file": "audio/vo/11.wav",
+  "text": "Pick a date five years or more away.",
+  "at": 16.3,
+  "dur": 1.883
+ },
+ {
+  "file": "audio/vo/12.wav",
+  "text": "See what to set aside each month\u2026",
+  "at": 18.2,
+  "dur": 1.728
+ },
+ {
+  "file": "audio/vo/13.wav",
+  "text": "and start with as little as one hundred pesos.",
+  "at": 19.95,
+  "dur": 2.308
+ },
+ {
+  "file": "audio/vo/14.wav",
+  "text": "Because there will always be a new first.",
+  "at": 22.3,
+  "dur": 2.457
+ },
+ {
+  "file": "audio/vo/15.wav",
+  "text": "Firsts Fund.",
+  "at": 24.85,
+  "dur": 0.899
+ },
+ {
+  "file": "audio/vo/16.wav",
+  "text": "Fund your firsts.",
+  "at": 25.85,
+  "dur": 1.124
+ }
+]

@@ -30,6 +30,7 @@ and how to rerun everything. Update the **Decision log** and **Open items** when
 | 2026-10-10 | **Ad v2** (Remotion, `07 Video ad/v2/`): fast-paced (124 BPM, beat-cut), aimed at "is this for me?" with no fund technicals. Story: firsts 5+ years away → onboarding calculator (name, amount, years ≥ 5 → monthly = amount ÷ months, contributions only) → "There's always a new first" → "Fund your firsts." CTA "Start with as little as ₱100". v1 code is not in this repo. Music is a synthesised placeholder until a licensed track is chosen. |
 | 2026-10-10 | Ad v2 redesigned (user): **English only**, clean and modern look (paper, ink, emerald; Geist). Intro "You just got your first paycheck. What do you do first?" Six firsts, each with its own motion graphic and a chained transition (flight path → road → building → zoom through window → awning → shop → sign flips into notebook). Sound and ElevenLabs voice-over come next. |
 | 2026-10-10 | Ad v2 tweaks (user): labels use Geist (no mono font); "I do" removed, so five firsts at about 1.7 s each; home → business is now a zoom through the lit window that folds into the shop's awning. |
+| 2026-10-10 | Ad v2 sound: ElevenLabs voice-over ("Justin Case - Warm, Trustworthy, Clear", eleven_v4, take 3 of 4) cut into 16 lines on the cuts; 13 ElevenLabs sound effects. The silent pause beat was dropped (the voice sets the rhythm). Music is still the synthesised placeholder because the ElevenLabs connector in this workspace has no music generation. |
 
 ## The rules (v4, current; full text in `04 Fund model/v4 (31 holdings, current)/RULES_v4.md`)
 - **Theme**: listed businesses that own, operate or supply essential, hard-to-replace capacity and earn from it. Eight types (research
@@ -133,7 +134,7 @@ Ken French library. Conglomerate segment shares from annual reports (links in `i
 - [ ] Spot-check debt, cash flow, ROIC for the 31 holdings; memory makers at cyclical peak.
 - [ ] Calculator: contributions-only baseline + balanced scenarios (5-year+ examples only); glidepath schedule labelled illustrative.
 - [ ] Video script, site and app mock-ups: apply Section 8 consistency edits (not in this workspace).
-- [ ] Ad v2: sound pass (better SFX, ElevenLabs voice-over, licensed music); team check of lines and legal text.
+- [ ] Ad v2: real music (full ElevenLabs connector or a licensed track); team check of voice-over, lines and legal text.
 - [ ] Older "changes" deck (v2) is superseded; do not present it.
 
 ## Links
