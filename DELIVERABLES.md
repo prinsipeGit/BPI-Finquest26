@@ -1,8 +1,8 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.8  
+**Version:** 1.9  
 **Last updated:** 2026-10-10 (Sat)  
-**Updated by:** Prince Angelo C. Rivera
+**Updated by:** Luis Tengonciang
 
 | Milestone | Date | Days left (from last update) |
 | --- | --- | --- |
@@ -72,7 +72,7 @@ Current model is v4: 31 holdings plus 3% cash, ERC on 156 weekly peso returns, r
 | F2.8 | NFRA benchmark series: peso conversion, checksum 2523099084, 10.02% p.a. | 🟡 | Re-derive once. The comparison is vs an ETF *after its fee*, while the fund is shown after 1.50%; state that |
 | F2.9 | Currency: all returns are in PHP, unhedged on purpose | 🟡 | Have the one-line rationale ready, plus how much of the return came from USD/PHP |
 | F2.10 | Liquidity cap = (avg daily volume × price × 20% of volume × 5 days) ÷ ₱1bn fund size | 🟡 | Never binds at ₱1bn (tightest: OMA 12.1% vs 1.98% held). A smaller fund only loosens it. It would bind at roughly ₱6bn+ (OMA). Have one line ready on why ₱1bn |
-| F2.11 | Memory makers (SK hynix, Micron) at a cyclical peak; suppliers contributed about 71% p.a. | 🔴 | Show the result with suppliers removed, or at least the attribution |
+| F2.11 | Memory makers (SK hynix, Micron) at a cyclical peak; suppliers contributed about 71% p.a. | ✅ | Same simulation without the 7 chip and grid-equipment names: **18.7% a year, ₱100 → 237** (vs NFRA 10.0%), vol 9.6%, worst fall −7.0% (`ex_suppliers.py` → `ex_suppliers.json`). On the fact sheet (page 1 and Key risks) |
 | F2.12 | Early quarters hold fewer names (a name needs 104 weeks of history) | ✅ | 29 names (Q4 2021–Q1 2022), 30 (Q2–Q3 2022), 31 from Oct 2022. Footnote only |
 | F2.13 | 36-year proxy is industry-level, not our screens: "context only" label on every chart | ✅ | Already labelled in the reference deck |
 
@@ -100,7 +100,9 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 | G7 | Add a small "For a regular saver" box: ₱1,000 a month for 5 years, historical range (median 1.33× paid in; 11% of periods ended below paid-in), labelled illustrative. Depends on C5/C6 | P1 | Luis | ✅ |
 | G8 | Fees: add an estimated total annual cost line (1.50% + about 0.21% trading + about 0.37% withholding ≈ 2.1%) | P1 | Luis | ✅ |
 | G9 | Replace vague product terms: "Redemption settlement: per plan rules" → now "paid day 6 (T+5)", matching BPI's peso global equity class. **Product lead: confirm** | P1 | Product lead | 🟡 |
-| G10 | Light visual polish within 2 A4 pages. Done: taller chart, headline line, page-1 gap filled. Not done: allocation chart (optional) | P2 | TBD | 🟡 |
+| G10 | Light visual polish within 2 A4 pages. Done: taller chart, headline line, page-1 gap filled; Key facts left-aligned and shortened to one line each; "Swings" → "Volatility"; legend matches table (PSEi, price only); "Limit per company: 20% (BSP); largest today 5.8%". Not done: allocation chart (optional) | P2 | Luis | ✅ |
+| G12 | **Portfolio construction section** (guidelines ask for it; Fund Process is 20%): page-2 funnel 140 → 129 → 49 → 31 (Map, Check the fit, Verify the merit, Position the risk) with limits and the quarterly-review rule. Counts computed from `map/universe4.json` in the build | P0 | Luis | ✅ |
+| G13 | Disclose where the return came from: without chips and grid equipment, 18.7% a year (F2.11) | P0 | Luis | ✅ |
 | G11 | Final proofread, export, and file name `LosAngeles76ers_FirstsFund_FactSheet.pdf`; copy into `01 Phase 2 submission/`. Exported and copied; team proofread pending | P0 | TBD | 🟡 |
 
 ## C. Model and evidence open items (from AGENTS.md)
@@ -139,6 +141,7 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.9 | 2026-10-10 | Fact sheet: portfolio-construction funnel (G12), ex-supplier result 18.7% a year (G13, F2.11), Key facts and wording fixes (G10). Previous PDF moved to `superseded/`. |
 | 1.8 | 2026-10-10 | Ad v2 drafted in Remotion (`07 Video ad/v2/`): 16:9 and 9:16 renders, placeholder music (A2). |
 | 1.7 | 2026-10-08 | 36-year backtest (v4) checked: saved results match the fact sheet. Calculator bad year updated to −27.3% (C6). |
 | 1.6 | 2026-10-08 | Fact sheet polished: NFRA benchmark rebuilt and added, plain language, saver illustration, all-in cost, settlement terms, citation verified. Beta vs NFRA added (F2.7). |

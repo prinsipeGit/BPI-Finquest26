@@ -16,6 +16,7 @@ def P(s): return re.sub('([₱−≤≥→×])', r'<font name="DJ">\1</font>', s
 
 R = json.load(open('results4.json')); F5 = R['five']; PX = R['proxy']; PF = R['portfolio']
 B = json.load(open('bench.json')); NF = B['nfra']; nf = NF['stats']
+XS = json.load(open('ex_suppliers.json'))   # same simulation without chip and grid-equipment holdings (ex_suppliers.py)
 v4, aw = F5['v4']['stats'], F5['acwi']['stats']; NH = R['n_held']; ps = PX['stats']
 CN = {'PH': 'Philippines', 'IN': 'India', 'ES': 'Spain', 'FR': 'France', 'MY': 'Malaysia', 'TW': 'Taiwan', 'DE': 'Germany', 'JP': 'Japan',
       'US': 'United States', 'HK': 'Hong Kong / China', 'CH': 'Switzerland', 'MX': 'Mexico', 'BR': 'Brazil', 'IT': 'Italy', 'KR': 'South Korea',
@@ -29,7 +30,7 @@ dates = pd.to_datetime(['2021-10-01'] + R['dates'])
 fund = [100] + R['paths']['v4']; ref = [100] + R['paths']['acwi']; pse = [100] + R['paths']['psei']; bmk = [100] + NF['path']
 fig, ax = plt.subplots(figsize=(7.6, 1.85), dpi=220)
 ax.plot(dates, ref, color='#B4BBB7', lw=0.9, label=f'World stock market (MSCI ACWI ETF), reference: ₱{ref[-1]:.0f}')
-ax.plot(dates, pse, color='#C9761F', lw=0.9, label=f'Philippine market (PSEi via FMETF, price only), reference: ₱{pse[-1]:.0f}')
+ax.plot(dates, pse, color='#C9761F', lw=0.9, label=f'Philippine market (PSEi, price only), reference: ₱{pse[-1]:.0f}')
 ax.plot(dates, bmk, color='#1F4E9C', lw=1.3, label=f'Benchmark: global infrastructure (NFRA ETF): ₱{bmk[-1]:.0f}')
 ax.plot(dates, fund, color='#0F7A45', lw=1.7, label=f'Firsts Fund\'s current holdings, after all costs (hindsight): ₱{fund[-1]:.0f}')
 top = 50 * int(max(max(fund), max(ref)) / 50 + 1)
@@ -109,13 +110,13 @@ left = [bandrow('FUND OBJECTIVE AND THEME', LW), Spacer(1, 2),
           'only that investor\'s mix, not how this fund invests. Units are sold at the price of the day, at a gain or a loss, and the goal '
           'amount is not guaranteed.', small), LW), Spacer(1, 4), saver_box]
 tot = R['costs']['v4']['trading_pa'] + R['costs']['v4']['wht_pa'] + 0.015
-facts = [('Structure', 'Actively managed global equity UITF (proposed)'), ('Currency', 'Philippine peso; priced daily per unit (NAVPU)'),
-         ('Recommended horizon', '5 years or longer'), ('Risk classification', 'Aggressive'), ('Minimum (proposed)', '₱100 to start · ₱100 regular'),
-         ('Management fee (proposed)', '1.50% a year'), ('All-in cost (estimated)', f'about {pct(tot, 1)} a year incl. trading and dividend taxes'),
-         ('Buy or sell (proposed)', 'Any business day; paid day 6 (T+5); no lock-in or exit fee'),
+facts = [('Structure', 'Global equity UITF (proposed)'), ('Currency', 'Philippine peso; daily NAVPU'),
+         ('Horizon', '5 years or longer'), ('Risk classification', 'Aggressive'), ('Minimum (proposed)', '₱100 to start and per top-up'),
+         ('Fee (proposed)', '1.50% a year'), ('All-in cost (est.)', f'about {pct(tot, 1)} a year, all costs'),
+         ('Buy or sell (proposed)', 'Any business day; paid T+5; no exit fee'),
          ('Holdings', f'{NH} listed companies, {len(cnt)} markets'), ('Cash', 'About 3%, kept to pay redemptions'),
-         ('Most in one company', '20% of fund value (BSP rule)'), ('Benchmark', 'Global infrastructure: NFRA ETF, in pesos'), ('Trustee', 'BPI Wealth (proposed)')]
-right = [bandrow('KEY FACTS', RW), kv(facts, [RW*0.40, RW*0.60]), Spacer(1, 3), bandrow('ALLOCATION BY KIND OF CAPACITY', RW),
+         ('Limit per company', f'20% (BSP rule); largest today {pct(PF[0]["weight"], 1)}'), ('Benchmark', 'NFRA global infrastructure ETF, in pesos'), ('Trustee', 'BPI Wealth (proposed)')]
+right = [bandrow('KEY FACTS', RW), kv(facts, [RW*0.36, RW*0.64], right_cols=()), Spacer(1, 3), bandrow('ALLOCATION BY KIND OF CAPACITY', RW),
          kv([(k.replace('&', '&amp;'), pct(v)) for k, v in bt.items()] + [('Operating cash', '3.00%')], [RW*0.70, RW*0.30])]
 story += [two(left, right, LW, RW, GAP), Spacer(1, 4)]
 
@@ -142,10 +143,12 @@ calrows = [('Firsts Fund holdings, after costs', *[pct(cal[y], 1, True) for y in
            ('Benchmark: NFRA infrastructure ETF', *[pct(NF['cal'][y], 1, True) for y in ['2021', '2022', '2023', '2024', '2025', '2026']], pct(nf['cagr'], 1, True), pct(nf['vol'], 1), pct(nf['maxdd'], 1)),
            ('World market (MSCI ACWI ETF)', *[pct(cra[y], 1, True) for y in ['2021', '2022', '2023', '2024', '2025', '2026']], pct(aw['cagr'], 1, True), pct(aw['vol'], 1), pct(aw['maxdd'], 1)),
            ('Philippine market (PSEi, price only)', *[pct(F5['psei']['cal'][y], 1, True) for y in ['2021', '2022', '2023', '2024', '2025', '2026']], pct(F5['psei']['stats']['cagr'], 1, True), pct(F5['psei']['stats']['vol'], 1), pct(F5['psei']['stats']['maxdd'], 1))]
-pt = kv(calrows, [CW*0.25] + [CW*0.075]*9, head=['In pesos', '2021*', '2022', '2023', '2024', '2025', '2026*', 'A year', 'Swings', 'Worst fall'], right_cols=tuple(range(1, 10)), boldrows=(calrows[0],))
+pt = kv(calrows, [CW*0.25] + [CW*0.075]*9, head=['In pesos', '2021*', '2022', '2023', '2024', '2025', '2026*', 'A year', 'Volatility', 'Worst fall'], right_cols=tuple(range(1, 10)), boldrows=(calrows[0],))
 story += [pt, Spacer(1, 2), boxed(p(
     f'<b>How to read this.</b> These are past returns of the {NH} companies we hold today, after the 1.50% fee, trading costs and dividend taxes; '
-    f'because they were picked knowing how they did, the fund\'s real results would likely be lower. <b>Over the long run:</b> an industry-level '
+    f'because they were picked knowing how they did, the fund\'s real results would likely be lower. <b>Without the {len(XS["excluded"])} chip and '
+    f'grid-equipment companies</b>, the other {XS["n"]} returned {pct(XS["cagr"], 1)} a year (₱100 → ₱{XS["growth"]:.0f}), so the lead over the '
+    f'benchmark does not rest on them alone. <b>Over the long run:</b> an industry-level '
     f'version of the strategy returned {pct(ps["cap"]["cagr"], 1)} a year from 1990 to 2026, about the same as the world market ({pct(ps["mkt"]["cagr"], 1)}), '
     f'with a worst 12 months of {pct(ps["cap"]["worst12"], 0)}. Benchmark and references are ETFs after their own fees. *2021 from 1 Oct; 2026 to 2 Oct.', small), CW)]
 story += [Spacer(1, 3), p('<b>IMPORTANT.</b> Firsts Fund is a student competition proposal; no such fund exists and nothing here is an offer, solicitation or '
@@ -164,8 +167,37 @@ story += [bandrow(f'ALL {NH} HOLDINGS · WEIGHTED SO EACH COMPANY ADDS A SIMILAR
           p('Weights move as prices change and are reviewed quarterly and when material events affect a holding. Watchlisted and rejected companies, '
             'with reasons, and the full investment assessment for each holding are in the supporting proposal.', tiny), Spacer(1, 4)]
 cost = R['costs']['v4']
+# how we build the portfolio (funnel counts from map/funnel4_out.txt / universe4.json)
+U4 = json.load(open('map/universe4.json')); st_ = [r['stage'] for r in U4]
+n_uni = sum(x != 'Outside universe' for x in st_); n_m = n_uni - sum(x.startswith('Reject (M') for x in st_)
+n_rej = sum(x.startswith('Reject (V') for x in st_); n_wl = sum(x.startswith('Watchlist') for x in st_); n_el = st_.count('Eligible')
+assert n_m - n_rej - n_wl == n_el, (n_m, n_rej, n_wl, n_el)
+big = ParagraphStyle('big', parent=base, fontName='Helvetica-Bold', fontSize=15, leading=16, textColor=GREEN)
+stp = ParagraphStyle('stp', parent=base, fontName='Helvetica-Bold', fontSize=7.4, leading=9)
+arw = ParagraphStyle('arw', parent=base, fontName='DJ', fontSize=13, leading=15, textColor=MUTED, alignment=TA_CENTER)
+steps = [(n_uni, '1 · Map the capacity', 'Up to the 20 largest listed companies (at least US$1bn) in each of eight kinds of essential capacity, anywhere in the world.'),
+         (n_m, '2 · Check the fit', 'At least half of revenue from that capacity, positive operating cash flow and a positive return on capital.'),
+         (n_el, '3 · Verify the merit', f'Survives a debt stress test sized to its industry; debt, value and quality judged against its own peers; tradeable; '
+                f'sound governance. {n_rej} rejected, {n_wl} watchlisted.'),
+         (NH, '4 · Position the risk', 'Added in merit order only if it improves diversification; weighted so each adds a similar share of risk. '
+                'Limits: 20% per company or group, 25% per kind of capacity; about 3% cash. Re-weighted quarterly.')]
+sw, aw_ = (CW - 3*12) / 4, 12
+cells = []
+for i, (n, t, d) in enumerate(steps):
+    cells.append([p(f'{n}', big), p(t, stp), Spacer(1, 1), p(d, small)])
+    if i < 3: cells.append(p('→', arw))
+fun = Table([cells], colWidths=[sw, aw_]*3 + [sw])
+fun.setStyle(TableStyle([('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LEFTPADDING', (0, 0), (-1, -1), 4), ('RIGHTPADDING', (0, 0), (-1, -1), 4),
+                         ('TOPPADDING', (0, 0), (-1, -1), 3), ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+                         *[('BACKGROUND', (j, 0), (j, 0), SOFT) for j in (0, 2, 4, 6)], ('LEFTPADDING', (1, 0), (1, 0), 0),
+                         *[('VALIGN', (j, 0), (j, 0), 'MIDDLE') for j in (1, 3, 5)], *[('LEFTPADDING', (j, 0), (j, 0), 0) for j in (1, 3, 5)],
+                         *[('RIGHTPADDING', (j, 0), (j, 0), 0) for j in (1, 3, 5)]]))
+story += [bandrow(f'HOW WE BUILD THE PORTFOLIO · {n_uni} COMPANIES SCREENED → {NH} HELD · SAME PUBLISHED RULES FOR EVERY COMPANY', CW), Spacer(1, 2), fun,
+          Spacer(1, 2), p('Judgement sits in the published rules, not in picking favourites: a quarterly review may remove a holding for a material event '
+            '(and logs why), but never resizes one by hand. Thresholds and every company\'s result are in the supporting proposal.', tiny), Spacer(1, 5)]
 risks = [('Market', f'Share prices can fall sharply. In 36 years of industry-level history the worst 12 months lost {pct(-ps["cap"]["worst12"], 0)} and the deepest fall was {pct(-ps["cap"]["maxdd"], 0)}.'),
-         ('Concentration', f'Digital networks are at the fund\'s 25% cap; data-centre spending drives about {pct(bt["Semiconductors"] + bt["Grid & power equipment"], 0)}; '
+         ('Concentration', f'Digital networks are at the fund\'s 25% cap; data-centre spending drives about {pct(bt["Semiconductors"] + bt["Grid & power equipment"], 0)} of the fund but more of its past return '
+          f'(memory-chip makers are near a cyclical peak); '
           f'Saudi Arabia {pct(cnt.get("SA", 0), 0)} and US health policy about {pct(sum(x["weight"] for x in PF if x["key"] in ("HCA", "EHC")), 0)}.'),
          ('Currency', f'About {pct(1 - R["ph_now"] - 0.03, 0)} is in foreign currencies and not hedged; a stronger peso lowers returns in pesos.'),
          ('Liquidity', 'Some shares trade less often. Each holding is kept small enough to sell within a week without moving its price much '

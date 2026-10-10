@@ -35,6 +35,7 @@ and how to rerun everything. Update the **Decision log** and **Open items** when
 | 2026-10-10 | Ad v2 voiced cut, take 3: user's revised script ("Take Mom and Dad abroad? Get your first car? … Then, move on to your next first."), voice **Emma - Youthful, Upbeat Commercial** (eleven_v4, take 3), lines on the half-beat grid; dance-beat soundtrack back under the voice (user preferred it); warm bed dropped. |
 | 2026-10-10 | Ad v2 retimed (user: second half felt rushed): firsts 1.55 s each (was 1.7), calculator 8.7 s (was 8.2, longer "when" and "result" steps), payoff 2.4 s, logo 3.4 s (was 2.9); voice lines re-placed with almost no speed-up. |
 | 2026-10-10 | Ad v2 mix (user: voice too loud): voice at 0.6 (≈ −4.4 dB), music dips to 0.32 instead of 0.2 under it. |
+| 2026-10-10 | Fact sheet: page-2 portfolio-construction funnel (140 → 129 → 49 → 31); without the 7 chip and grid-equipment holdings the same simulation gives 18.7% a year, ₱100 → 237 (`v4/ex_suppliers.py`, reproduces 24.95% first), disclosed on page 1 and in Key risks; Key facts tidied. |
 
 ## The rules (v4, current; full text in `04 Fund model/v4 (31 holdings, current)/RULES_v4.md`)
 - **Theme**: listed businesses that own, operate or supply essential, hard-to-replace capacity and earn from it. Eight types (research
@@ -132,7 +133,7 @@ statistics pages (market cap, volume, EV/EBITDA, interest coverage, net cash, EB
 Ken French library. Conglomerate segment shares from annual reports (links in `inputs.py` SEGMENT).
 
 ## Open items
-- [ ] Team selects the benchmark (then add to fact sheet and deck).
+- [x] Benchmark: NFRA (fact sheet updated 8 Oct 2026).
 - [ ] Confirm dividend withholding rates (tax counsel) and stress shocks per type (cite episodes).
 - [ ] Check GICS sub-industries (team-assigned), esp. healthcare facilities and Kamigumi.
 - [ ] Spot-check debt, cash flow, ROIC for the 31 holdings; memory makers at cyclical peak.
