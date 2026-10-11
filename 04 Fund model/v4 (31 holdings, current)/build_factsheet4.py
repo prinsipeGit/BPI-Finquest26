@@ -197,10 +197,11 @@ stp = ParagraphStyle('stp', parent=base, fontName='Helvetica-Bold', fontSize=9.2
 num = ParagraphStyle('num', parent=base, fontName='Helvetica-Bold', fontSize=11.5, leading=13.5, textColor=DARK)
 numl = ParagraphStyle('numl', parent=base, fontSize=6.6, leading=8, textColor=MUTED)
 arw = ParagraphStyle('arw', parent=base, fontName='DJ', fontSize=12, leading=14, textColor=GREEN, alignment=TA_CENTER)
-mvp = [('M', 'Map the capacity', 'Find the companies that own, run or supply essential services: up to the 20 largest listed in each of eight kinds, anywhere in the world, '
-              'each worth at least US$1 billion (about ₱62 billion) on the stock market. Keep those that earn at least half their revenue from that service and generate cash.',
+mvp = [('M', 'Map the milestone', 'Start from what a saver\'s firsts depend on (power, water, connectivity, transport, health care) and find the businesses '
+              'providing those essential services and infrastructure: up to the 20 largest listed in each of eight kinds, anywhere in the world, each worth at '
+              'least US$1 billion (about ₱62 billion). Keep those earning at least half their revenue there and generating cash.',
         f'{n_uni} → {n_m}', f'{n_uni} screened · {n_m} fit the theme'),
-       ('V', 'Verify the merit', f'Check each company is a sound investment: survives a debt stress test sized to its industry, and compares well with its own peers on '
+       ('V', 'Verify the investment', f'Check each company is a sound investment: survives a debt stress test sized to its industry, and compares well with its own peers on '
               f'price and quality; tradeable; sound governance.',
         f'{n_m} → {n_el}', f'{n_el} eligible · {n_rej} rejected · {n_wl} on watch'),
        ('P', 'Position the risk', 'Add eligible companies in merit order, only if each one improves diversification. Size them so every holding adds a similar '
