@@ -73,17 +73,32 @@ def two(a, b, wa, wb, gap=8):
     return Table([[a, '', b]], colWidths=[wa, gap, wb], style=[('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LEFTPADDING', (0, 0), (-1, -1), 0), ('RIGHTPADDING', (0, 0), (-1, -1), 0)])
 
 W, H = A4; M = 9*mm; CW = W - 2*M
+# Firsts Fund icon ("1F"), drawn as vectors from `09 Brand assets/firsts-fund-icon-green.svg` (512 viewBox, rx 119, glyph at
+# translate(91.02 99.56) scale(2.8444)); forest variant: tile #073B2A, "1" #C5F06A.
+LOGO = {'green': ('#128C5E', '#FFFFFF', '#FFFFFF'), 'forest': ('#073B2A', '#C5F06A', '#FFFFFF')}
+LOGO_ONE = [(4, 32), (34, 14), (44, 14), (44, 96), (28, 96), (28, 32)]
+LOGO_F = [(48, 14), (112, 14), (102, 30), (64, 30), (64, 44), (92, 44), (83.25, 58), (64, 58), (64, 96), (48, 96)]
+def draw_logo(c, x, y, size, variant='green'):
+    tile, one, eff = LOGO[variant]; k = size / 512
+    c.saveState(); c.setFillColor(colors.HexColor(tile)); c.roundRect(x, y, size, size, 119*k, fill=1, stroke=0)
+    for pts, col in [(LOGO_ONE, one), (LOGO_F, eff)]:
+        path = c.beginPath()
+        for i, (px, py) in enumerate(pts):
+            X_, Y_ = x + (91.02 + 2.8444*px)*k, y + size - (99.56 + 2.8444*py)*k
+            path.moveTo(X_, Y_) if i == 0 else path.lineTo(X_, Y_)
+        path.close(); c.setFillColor(colors.HexColor(col)); c.drawPath(path, fill=1, stroke=0)
+    c.restoreState()
 def header(c, doc):
     c.saveState()
-    c.setFillColor(GREEN); c.rect(M, H - M - 18, 14, 18, fill=1, stroke=0)
-    c.setFillColor(DARK); c.setFont('Helvetica-Bold', 15); c.drawString(M + 20, H - M - 13, 'FIRSTS FUND')
+    draw_logo(c, M, H - M - 31, 31)
+    c.setFillColor(DARK); c.setFont('Helvetica-Bold', 15); c.drawString(M + 37, H - M - 13, 'FIRSTS FUND')
     c.setFont('Helvetica-Bold', 7.3)
-    c.drawString(M + 20, H - M - 23, {1: 'EXECUTIVE SUMMARY · THE PROBLEM, AND THE FUND THAT ANSWERS IT', 2: 'EXECUTIVE SUMMARY · THE HOOK: WHAT MAKES THEM START',
+    c.drawString(M + 37, H - M - 23, {1: 'EXECUTIVE SUMMARY · THE PROBLEM, AND THE FUND THAT ANSWERS IT', 2: 'EXECUTIVE SUMMARY · THE HOOK: WHAT MAKES THEM START',
                                       3: 'EXECUTIVE SUMMARY · THE HABIT: WHAT KEEPS THEM INVESTED', 4: 'FUND FACT SHEET · PROPOSED ACTIVELY MANAGED GLOBAL EQUITY UITF',
                                       5: 'FUND FACT SHEET · HOLDINGS, PORTFOLIO CONSTRUCTION, RISKS AND FEES',
                                       6: 'ANNEX · EVIDENCE, METHOD, LIMITS AND REGULATORY POSITION'}[doc.page + (3 if FO else 0)])
     c.setFont('Helvetica', 6.5); c.setFillColor(MUTED)
-    c.drawString(M + 20, H - M - 31, f'A FinQuest 2026 proposal, not an existing BPI product · Portfolio as of 2 October 2026 · Page {doc.page} of {2 if FO else 6}')
+    c.drawString(M + 37, H - M - 31, f'A FinQuest 2026 proposal, not an existing BPI product · Portfolio as of 2 October 2026 · Page {doc.page} of {2 if FO else 6}')
     c.setFillColor(GREEN); c.setFont('Helvetica-BoldOblique', 9); c.drawRightString(W - M, H - M - 14, '“Fund your firsts.”')
     c.setStrokeColor(GREEN); c.setLineWidth(1.2); c.line(M, H - M - 36, W - M, H - M - 36)
     c.restoreState()
