@@ -62,7 +62,7 @@ p1l = [bandrow('WHO IT IS FOR', L2), Spacer(1, 3),
     f'(−{bad*100:.0f}%) on a ₱5,000 balance would be <b>₱{bad*5000:,.0f}</b>. Risk is explained clearly before the saver commits, alongside balanced '
     'scenarios, without dwelling on the downside.', xb)]
 p1r = [bandrow('WHAT THE FUND OWNS', R2), Spacer(1, 3),
-  p(f'{NH} listed companies around the world that run essential, hard-to-replace services people use every day: power and water, phone and '
+  p(f'{NH} listed businesses around the world providing essential services and infrastructure people use every day: power and water, phone and '
     'internet networks, ports, airports, hospitals, and the equipment behind them. Technology exposure is assessed like everything else, not '
     'automatically excluded.', xb), Spacer(1, 3),
   p('<b>Chosen by our M · V · P framework:</b>', xb), Spacer(1, 1),
@@ -225,7 +225,7 @@ def annex():
         'Withdrawals and goal-service moves are ordinary sales of units, paid from cash first and then by selling shares, at the 0.30% trading cost.', xs), Spacer(1, 4),
       bandrow('A4 · LIMITS: RULE VS TODAY (ALL MET AT EVERY QUARTERLY RESET)', B), Spacer(1, 1),
       grid([('One company', '≤ 20% (BSP)', pct(PF[0]['weight'])), ('One group (e.g. Razon)', '≤ 20%', pct(grp_max)),
-            ('One kind of capacity', '≤ 25%', pct(max(bt.values()))), ('Liquidity', 'sell in 5 days at 20% of volume', 'never binds at ₱1bn'),
+            ('One type of service', '≤ 25%', pct(max(bt.values()))), ('Liquidity', 'sell in 5 days at 20% of volume', 'never binds at ₱1bn'),
             ('Operating cash', 'about 3%', '3.00%'), ('Country quota', 'none', f'Philippines {pct(R["ph_now"])} ({pct(R["ph_range"][0], 1)}–{pct(R["ph_range"][1], 1)})')],
            [B*0.36, B*0.32, B*0.32], head=['Limit', 'Rule', 'Actual'], right=(2,)), Spacer(1, 2),
       p(f'<b>Concentration, disclosed:</b> the {NH} holdings behave like about {R["eff_bets"]:.0f} independent groups; the two biggest common influences explain '

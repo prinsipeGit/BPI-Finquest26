@@ -105,9 +105,9 @@ saver_box = boxed([p(f'<b>For a regular saver (illustration, not a forecast).</b
     f'early 2009, at about ₱{round(60000*dca["worst"], -3):,.0f}. With the proposed goal service, the worst was about ₱{round(60000*dcg["worst"], -3):,.0f}.', small),
     Spacer(1, 1), p('Same fee and costs; contributions at the start of each month. It reflects the theme, not our company choices.', tiny)], None, SOFT)
 left = [bandrow('FUND OBJECTIVE AND THEME', LW), Spacer(1, 2),
-  p('<b>Objective.</b> Long-term capital growth by investing directly in listed companies around the world that own, operate or supply '
-    'essential, hard-to-replace capacity: power and water systems, digital networks, ports, airports, hospitals, and the equipment they run on.'), Spacer(1, 2),
-  p('<b>How the fund invests, in one line.</b> We identify businesses providing essential capacity, check their financial strength and value, '
+  p('<b>Objective.</b> Long-term capital growth by investing directly in listed businesses around the world providing '
+    'essential services and infrastructure: power and water, phone and internet networks, ports, airports, hospitals, and the equipment they run on.'), Spacer(1, 2),
+  p('<b>How the fund invests, in one line.</b> We identify businesses providing essential services and infrastructure, check their financial strength and value, '
     'and build a portfolio that balances opportunities with risk. How many companies we hold follows from that process. The fund is '
     '<b>actively managed with diversification and risk controls</b>; the manager may change holdings and weights within the mandate.'), Spacer(1, 2),
   p('<b>Why it exists.</b> An early-career Filipino earns and saves in pesos, so their future depends on one economy. Firsts Fund would let '
@@ -126,7 +126,7 @@ facts = [('Structure', 'Global equity UITF (proposed)'), ('Currency', 'Philippin
          ('Buy or sell (proposed)', 'Any business day; paid T+5; no exit fee'),
          ('Holdings', f'{NH} listed companies, {len(cnt)} markets'), ('Cash', 'About 3%, kept to pay redemptions'),
          ('Limit per company', f'20% (BSP rule); largest today {pct(PF[0]["weight"], 1)}'), ('Benchmark', 'NFRA global infrastructure ETF, in pesos'), ('Reviews', 'Holdings monthly; weights quarterly'), ('Trustee', 'BPI Wealth (proposed)')]
-right = [bandrow('KEY FACTS', RW), kv(facts, [RW*0.36, RW*0.64], right_cols=()), Spacer(1, 3), bandrow('ALLOCATION BY KIND OF CAPACITY', RW),
+right = [bandrow('KEY FACTS', RW), kv(facts, [RW*0.36, RW*0.64], right_cols=()), Spacer(1, 3), bandrow('ALLOCATION BY TYPE OF ESSENTIAL SERVICE', RW),
          kv([(k.replace('&', '&amp;'), pct(v)) for k, v in bt.items()] + [('Operating cash', '3.00%')], [RW*0.70, RW*0.30])]
 story += [two(left, right, LW, RW, GAP), Spacer(1, 4)]
 
@@ -134,7 +134,7 @@ SH0 = {'Bangkok Dusit Medical Services': 'Bangkok Dusit Medical', 'Dr. Sulaiman 
 other = [p(f'<b>No country quota.</b> Philippine-listed ICTSI is held at {pct(R["ph_now"])} because it passed the same tests as every '
            f'other company. Where a company is listed is not always where it earns its revenue.', small),
          Spacer(1, 2), p(f'<b>Shared drivers.</b> About {pct(bt["Semiconductors"] + bt["Grid & power equipment"], 0)} depends on data-centre spending '
-           f'(chips and grid equipment). Digital networks are at the fund\'s 25% cap per kind of capacity.', small)]
+           f'(chips and grid equipment). Digital networks are at the fund\'s 25% limit per type of service.', small)]
 ctab = kv([(CN.get(k, k), pct(v)) for k, v in list(cnt.items())[:8]] + [(f'{len(cnt) - 8} other markets', pct(sum(list(cnt.values())[8:])))],
           [CW*0.30*0.65, CW*0.30*0.35], head=['By listing market', ''], right_cols=(1,))
 other = [p(f'<b>Largest holdings.</b> ' + ', '.join(f'{SH0.get(x["name"], x["name"])} {pct(x["weight"], 1)}' for x in PF[:5]) +
@@ -176,7 +176,7 @@ SH = {'OMA (Centro Norte airports)': 'OMA (airports)', 'Dr. Sulaiman Al Habib Me
 half = (NH + 1) // 2
 def hrows(lst): return [(SH.get(x['name'], x['name']).replace('&', '&amp;'), x['country'], x['ctype'].replace('&', '&amp;').replace('Power generation &amp; grids', 'Power &amp; grids'), pct(x['weight']), pct(x['risk_share'], 1)) for x in lst]
 hw = CW/2 - 4
-ht = lambda rows: kv(rows, [hw*0.36, hw*0.07, hw*0.31, hw*0.13, hw*0.13], head=['Holding', '', 'Capacity', 'Weight', '% of risk'], right_cols=(3, 4))
+ht = lambda rows: kv(rows, [hw*0.36, hw*0.07, hw*0.31, hw*0.13, hw*0.13], head=['Holding', '', 'Essential service', 'Weight', '% of risk'], right_cols=(3, 4))
 story += [bandrow(f'ALL {NH} HOLDINGS · WEIGHTED SO EACH COMPANY ADDS A SIMILAR SHARE OF RISK · AS OF 2 OCTOBER 2026', CW), Spacer(1, 1),
           two(ht(hrows(PF[:half])), ht(hrows(PF[half:])), hw, hw), Spacer(1, 2),
           p(f'<b>Read the risk column, not the weight column.</b> Weights run from {pct(min(x["weight"] for x in PF), 1)} to {pct(PF[0]["weight"], 1)}, but the '
