@@ -118,6 +118,7 @@ TW 3.73, US 1.65. Owners 74.94 / Suppliers 15.06. ~5.9 independent bets; top-2 f
 | `05 36-year backtest/` | `backtest.py` (original proxy), `backtest_v3.py` (→ `results_v3.pkl`), `backtest_v4.py` (current, incl. Hlth → `results_v4.pkl`) |
 | `06 Phase 1 working files/` | Original Aug 2026 `finquest` folder |
 | `07 Video ad/v2/` | 30-s ad v2 in Remotion (`README.md` has the storyboard and render steps; renders in `out/`) |
+| `08 Consultation notes/` | `Summary of consultation.md` (final decisions by area) and `Final Consultation.md` (last mentor session notes). The executive summary is built from these |
 | `_duplicates/` | Byte-identical extra copies, old AGENTS.md and transfer bundles (.tgz); safe to delete |
 
 ### Files in `04 Fund model/v3 (21 holdings, superseded)/`
