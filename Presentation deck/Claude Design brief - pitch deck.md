@@ -8,7 +8,7 @@ Paste the prompt in section 1 into Claude Design. Upload the files in section 2 
 >
 > The attached script (`Pitch script (10 min) - draft v1.md`) is the source of truth: every slide supports one beat of it, and the words on a slide never repeat what the speaker says. Follow the slide list, brand and rules in the attached brief (`Claude Design brief - pitch deck.md`) exactly. Numbers must match the brief character for character. Do not invent statistics, logos or quotes.
 >
-> Style: clean, modern, warm. Paper background, ink text, one emerald accent, Geist font, lots of space, one idea per slide, big type. It should feel like the 30-second ad (attached frames), not like a bank report. Build the opening as a full-bleed black sequence with phone notifications.
+> Use my **Firsts Fund design system** for all colours, type, components and layout. Do not introduce new colours or fonts. Within it: lots of space, one idea per slide, big type. It should feel like the 30-second ad (attached frames), not like a bank report. Build the opening as a full-bleed dark sequence with phone notifications.
 >
 > Also produce the annex slides listed in the brief, in a denser but consistent style. Export as PPTX with speaker notes taken from the script.
 
@@ -18,14 +18,16 @@ Paste the prompt in section 1 into Claude Design. Upload the files in section 2 
 |---|---|
 | `Presentation deck/Pitch script (10 min) - draft v1.md` | Script and slide cues |
 | `Presentation deck/Claude Design brief - pitch deck.md` | This brief |
-| `09 Brand assets/firsts-fund-icon-forest.svg` | Main logo (lime 1, white F on forest) |
-| `09 Brand assets/firsts-fund-icon-green.svg` | Alternate logo |
+| `09 Brand assets/*.svg` | Logo files, only if the design system doesn't already hold them |
 | `04 Fund model/v4 (31 holdings, current)/growth4.png` | Reference for the ₱100 growth chart (have it redrawn in the deck style) |
 | `04 Fund model/v4 (31 holdings, current)/hist36.png` | Annex: 36-year history |
 | `01 Phase 2 submission/LosAngeles76ers_FirstsFund_FactSheet.pdf` | Annex content and numbers |
 | 3–4 screenshots from `07 Video ad/v2/out/FirstsFund_Ad_v2.mp4` | Visual style reference (calculator scene, a first, logo end card) |
 
-## 3 · Brand
+## 3 · Brand (fallback only)
+
+The Firsts Fund design system in Claude Design takes precedence. These are the ad's tokens, listed only to check that the system matches the video; ignore any that differ from the design system.
+
 
 | Token | Hex | Use |
 |---|---|---|
