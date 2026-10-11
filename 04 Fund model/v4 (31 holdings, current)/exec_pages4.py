@@ -3,14 +3,15 @@
 # Restores the Phase 1 "Hook" (marketing) and "Habit" (customer experience) content, rebuilt on v4 facts (10 Oct 2026).
 
 lead = ParagraphStyle('lead', parent=base, fontSize=9.4, leading=12.4)
-xb = ParagraphStyle('xb', parent=base, fontSize=7.7, leading=10.0)
-xs = ParagraphStyle('xs', parent=base, fontSize=7.2, leading=9.1)
+SC = float(os.environ.get('EXS', '1.22'))   # text scale for pages 1-3 and the annex, chosen so each page fills
+xb = ParagraphStyle('xb', parent=base, fontSize=7.7*SC, leading=10.0*SC)
+xs = ParagraphStyle('xs', parent=base, fontSize=7.2*SC, leading=9.1*SC)
 h2 = ParagraphStyle('h2', parent=base, fontName='Helvetica-Bold', fontSize=8.6, leading=10.6, textColor=GREEN, spaceBefore=1)
 kn = ParagraphStyle('kn', parent=base, fontName='Helvetica-Bold', fontSize=14, leading=16, textColor=DARK, alignment=TA_CENTER)
 kl = ParagraphStyle('kl', parent=base, fontSize=6.6, leading=8, textColor=MUTED, alignment=TA_CENTER)
 quote = ParagraphStyle('q', parent=base, fontName='Helvetica-Oblique', fontSize=7.4, leading=9.6, textColor=DARK)
 big2 = ParagraphStyle('big2', parent=base, fontName='Helvetica-Bold', fontSize=11.5, leading=14, textColor=GREEN)
-xc = ParagraphStyle('xc', parent=cell, fontSize=7.1, leading=8.8); xcb = ParagraphStyle('xcb', parent=xc, fontName='Helvetica-Bold')
+xc = ParagraphStyle('xc', parent=cell, fontSize=7.1*SC, leading=8.8*SC); xcb = ParagraphStyle('xcb', parent=xc, fontName='Helvetica-Bold')
 xcr = ParagraphStyle('xcr', parent=xc, alignment=TA_RIGHT)
 
 def grid(rows, widths, head=None, bold_first=True, right=()):
