@@ -250,7 +250,7 @@ red = [bandrow('FEES AND CHARGES', fw), kv(fees, [fw*0.45, fw*0.55], boldrows=(f
            [fw*0.37, fw*0.45, fw*0.18], head=['Compared with', 'What it is', 'Min.'], right_cols=(2,)))]
 story += [two([bandrow('KEY RISKS', rw), kv(risks, [rw*0.22, rw*0.78], right_cols=())], red, rw, fw), Spacer(1, 4)]
 story += [p('<b>Sources.</b> Company data: stockanalysis.com (S&amp;P Global Market Intelligence), 8 Oct 2026. Prices: Yahoo Finance total returns and PSE Edge '
-            '(with cash dividends), converted to pesos weekly. Benchmark: FlexShares STOXX Global Broad Infrastructure Index Fund (NFRA), Yahoo Finance '
+            '(with cash dividends), converted to pesos weekly. Benchmark: Northern Trust (formerly FlexShares) STOXX Global Broad Infrastructure ETF (NFRA), Yahoo Finance '
             'adjusted close in pesos; cross-check iShares Global Infrastructure ETF (IGF) returned ' + pct(B['igf']['stats']['cagr'], 1) + ' a year. '
             'Cash: BSP policy rate minus 0.50 pt. Industry-level history: Kenneth French Data Library and BIS exchange rates. Single-company limit: '
             'BSP Circular No. 1234, Series of 2026 (20 May 2026), a 20% ceiling, not a target. Comparison funds: BPI Wealth fund pages and Pag-IBIG. '
