@@ -105,8 +105,9 @@ saver_box = boxed([p(f'<b>For a regular saver (illustration, not a forecast).</b
     f'early 2009, at about ₱{round(60000*dca["worst"], -3):,.0f}. With the proposed goal service, the worst was about ₱{round(60000*dcg["worst"], -3):,.0f}.', small),
     Spacer(1, 1), p('Same fee and costs; contributions at the start of each month. It reflects the theme, not our company choices.', tiny)], None, SOFT)
 left = [bandrow('FUND OBJECTIVE AND THEME', LW), Spacer(1, 2),
-  p('<b>Objective.</b> Long-term capital growth by investing directly in listed businesses around the world providing '
-    'essential services and infrastructure: power and water, phone and internet networks, ports, airports, hospitals, and the equipment they run on.'), Spacer(1, 2),
+  p('<b>Theme: global real capacity.</b> Businesses providing essential services and infrastructure that are hard to replace, because they take '
+    'licences, decades and large capital to build: power and water, phone and internet networks, ports, airports, hospitals, and the equipment they run on.'), Spacer(1, 2),
+  p('<b>Objective.</b> Long-term capital growth by investing directly in these businesses, listed around the world.'), Spacer(1, 2),
   p('<b>How the fund invests, in one line.</b> We identify businesses providing essential services and infrastructure, check their financial strength and value, '
     'and build a portfolio that balances opportunities with risk. How many companies we hold follows from that process. The fund is '
     '<b>actively managed with diversification and risk controls</b>; the manager may change holdings and weights within the mandate.'), Spacer(1, 2),
@@ -120,7 +121,7 @@ left = [bandrow('FUND OBJECTIVE AND THEME', LW), Spacer(1, 2),
           'moves without their permission; it changes only their account, not how this fund invests; units are sold at that day\'s price, and the goal '
           'is not guaranteed.', small), LW), Spacer(1, 4), saver_box]
 tot = R['costs']['v4']['trading_pa'] + R['costs']['v4']['wht_pa'] + 0.015
-facts = [('Structure', 'Global equity UITF (proposed)'), ('Currency', 'Philippine peso; daily NAVPU'),
+facts = [('Theme', 'Global real capacity'), ('Structure', 'Global equity UITF (proposed)'), ('Currency', 'Philippine peso; daily NAVPU'),
          ('Horizon', '5 years or longer'), ('Risk classification', 'Aggressive'), ('Minimum (proposed)', '₱100 to start and per top-up'),
          ('Fee (proposed)', '1.50% a year'), ('All-in cost (est.)', f'about {pct(tot, 1)} a year, all costs'),
          ('Buy or sell (proposed)', 'Any business day; paid T+5; no exit fee'),

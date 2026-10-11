@@ -70,8 +70,8 @@ p1r = [bandrow('WHAT THIS IMPLIES, AND THE FUND IT PRODUCES', R2), Spacer(1, 3),
   p('<b>The objective changes.</b> Not “minimise the fall”, which is the retiree\'s goal, but <b>maximise the chance the saver is still contributing '
     'in year five</b>, because contributions decide where they end up. The Hook (page 2) and the Habit (page 3) serve that one number.', xb), Spacer(1, 3),
   p(f'<b>The mandate.</b> The proposed Firsts Fund is a peso-denominated, actively managed global equity UITF for goals <b>five years or more</b> away '
-    f'(a recommended horizon, not a lock-in). It invests directly in {NH} listed businesses providing essential services and infrastructure '
-    f'(power and water, phone and internet networks, ports, airports, hospitals, and the equipment behind them) across {len(R["by_country"])} markets. '
+    f'(a recommended horizon, not a lock-in). Its theme is <b>global real capacity</b>: it invests directly in {NH} listed businesses providing essential services and '
+    f'infrastructure that are hard to replace (power and water, phone and internet networks, ports, airports, hospitals, and the equipment behind them), across {len(R["by_country"])} markets. '
     'Technology exposure is assessed, not excluded. No fund-of-funds layer. ₱100 to start; 1.50% a year (proposed).', xb), Spacer(1, 3),
   p('<b>Chosen by M · V · P</b>, the same published rules for every company:', xb), Spacer(1, 1),
   grid([('<font color="#0F7A45" size="11">M</font> · Map the milestone', f'Essential services a saver\'s firsts depend on: <b>{n_uni0}</b> screened, <b>{n_m0}</b> fit'),
@@ -206,7 +206,7 @@ def annex():
     lim = R['portfolio']; grp_max = max(x['weight'] for x in lim if x['key'] in ('ICT', 'MWC', 'ENEL', 'ELE'))
     a1 = [bandrow('A1 · WHAT CHANGED AFTER THE BPI CONSULTATIONS', A), Spacer(1, 1),
       grid([('Horizon', 'Five years or longer throughout; a recommendation, not a lock-in or a promise of returns.'),
-            ('Theme', 'No blanket “non-tech” claim; essential services and infrastructure, with technology exposure assessed.'),
+            ('Theme', 'Global real capacity, defined as businesses providing essential services and infrastructure; no blanket “non-tech” claim; technology exposure assessed.'),
             ('Selection', 'M · V · P kept: Map the milestone, Verify the investment, Position the risk.'),
             ('Holdings', 'The earlier 16 was not retained; the holdings review under the current rules gives 31.'),
             ('Philippine share', 'The fixed 30% Philippines / 70% global split was dropped; countries follow from the same tests.'),
