@@ -35,114 +35,104 @@ L2, R2 = CW*0.555, CW*0.425; G2 = CW - L2 - R2
 bad = -ps['cap']['worst12']                                  # 36-year industry-level worst 12 months (positive number)
 dca, dcg = PX['contrib']['dca'], PX['contrib']['dca_glide']
 
-# ======================= PAGE 1 · THE PROBLEM, AND THE FUND THAT ANSWERS IT =======================
+# ======================= PAGE 1 · THE FUND AT A GLANCE (built from the BPI meeting notes) =======================
 PER = dict(pay=2000, months=60, goal=120000)                 # persona plan (illustrative)
 pm = {k: round(PER['goal'] * dca[k], -3) for k in ('median', 'p5', 'worst')}; pg = round(PER['goal'] * dcg['worst'], -3)
-story += [p('<b>Firsts Fund</b> helps early-career Filipinos invest for the big “firsts” five or more years away (taking Mom and Dad abroad, a first car, a first '
-            'home, a first business) by owning, from ₱100, the companies around the world that run the services everyday life depends on.', lead), Spacer(1, 5),
+story += [p('<b>The proposed Firsts Fund</b> is a peso-denominated global equity UITF for graduating students and early-career professionals saving '
+            'for a meaningful “first” at least five years away, such as taking their parents abroad, a first car, a first home or a first business.', lead), Spacer(1, 5),
           tiles([('₱100', 'to start and per top-up (proposed)'), (f'{NH}', f'companies in {len(R["by_country"])} markets, held directly'), ('1.50%', 'a year, one fee (proposed)'),
-                 ('5+ years', 'recommended horizon, not a lock-in'), ('Pesos', 'every key number shown in pesos, not just %')], 6), Spacer(1, 6)]
-p1l = [bandrow('THE PROBLEM', L2), Spacer(1, 3),
-  p('<b>At 22, your biggest asset is not money.</b> It is forty years of future pay: in pesos, tied to one economy, impossible to sell. A young '
-    'Filipino already depends almost entirely on the Philippines, without ever choosing to. Then look at what is easy to buy: savings and '
-    'money-market funds that park the money, the local stock index that adds even more Philippine exposure, or crypto. Two doors, '
-    '<b>park or gamble</b>, and the middle, where a long-term goal belongs, is empty.', xb), Spacer(1, 3),
-  p('<b>Access is no longer the problem.</b> BPI cut its UITF minimum from ₱10,000 to ₱1,000 in 2023; some platforms start at ₱50. PSE accounts rose '
-    '50.1% in a year, and 26.5% now belong to 18-to-29-year-olds. Young Filipinos are arriving. What has not changed is what they find when they arrive.', xb), Spacer(1, 4),
-  boxed(p('“Number one: you have to get global exposure… by diversifying some of that local exposure, you\'re actually lowering your volatility.” '
-          '<font name="Helvetica" color="#58635C">— Joaquin Rossano U. Veluz, Sun Life Investment Management and Trust Co.</font>', quote), L2, SOFT), Spacer(1, 5),
-  bandrow('WHY A SAVER SHOULD THINK ABOUT RISK DIFFERENTLY', L2), Spacer(1, 3),
-  p('Most risk questions are built to protect a balance you already have, which is right for someone living off their savings. A young saver '
-    'does the opposite: they add money every month. <b>For them, a fall early on means buying more units at a lower price.</b>', xb), Spacer(1, 2),
-  p(f'<b>We tested it.</b> We took the fund\'s own {X["months"]} monthly results and shuffled their order {X["n_shuffles"]:,} times, so the total return stays the '
-    f'same and only the timing changes. How much a strong first half helped the final amount:', xb), Spacer(1, 2),
-  grid([('Someone saving ₱1,000 a month', f'it hurt: {X["corr_contrib"]:.2f} (strongly negative)'.replace('-', '−')),
-        ('Someone withdrawing ₱900 a month', f'it helped: +{X["corr_withdraw"]:.2f} (strongly positive)')], [L2*0.48, L2*0.52]), Spacer(1, 2),
-  p('Same returns, opposite outcomes. This does not mean falls are good; a fall that never recovers hurts everyone. It means a saver with years to go '
-    'should not be judged by the same yardstick as a retiree.', xs), Spacer(1, 5),
-  bandrow('WHAT THIS MEANS FOR THE FUND', L2), Spacer(1, 3),
-  p('<b>Success is people still saving in year five.</b> Contributions decide where a young saver ends up, so everything in how people find the '
-    'fund (page 2) and how they use it (page 3) is built to keep them going.', xb), Spacer(1, 2),
-  p(f'<b>Numbers in pesos.</b> “−{bad*100:.0f}%” means little to a first-jobber; “₱{bad*5000:,.0f} on a ₱5,000 balance, about six weeks of saving” does. We show the '
-    'peso figure next to every percentage that matters.', xb)]
-p1r = [bandrow('THE FUND', R2), Spacer(1, 3),
-  p(f'<b>The proposed Firsts Fund</b> is a peso UITF that owns, directly, {NH} listed companies around the world that run essential, '
-    'hard-to-replace services: power and water, phone and internet networks, ports, airports, hospitals, and the equipment behind them. '
-    '<b>₱100 to start. One fee. No fund-of-funds layer.</b>', xb), Spacer(1, 3),
+                 ('5+ years', 'recommended horizon, not a lock-in'), ('Pesos', 'key numbers shown in pesos, not just %')], 6), Spacer(1, 6)]
+p1l = [bandrow('WHO IT IS FOR', L2), Spacer(1, 3),
+  p('<b>Graduating students to entry-level professionals</b> with regular income, a goal at least five years away, and the risk tolerance for a '
+    'stock fund. It is not for every beginner: money needed within five years, or emergency savings, belongs in a lower-risk product. People '
+    'further along in their careers can use it too, as long as their goal is five or more years away.', xb), Spacer(1, 5),
+  bandrow('THE NEED IT ADDRESSES', L2), Spacer(1, 3),
+  p('A young earner\'s salary, savings and future plans are all in pesos. The products that are easiest to start with are mostly savings or '
+    'money-market funds, built for short-term goals. Global stock funds are usually reached through funds that hold other funds, with a second '
+    'layer of fees and a higher minimum. Firsts Fund offers a long-term, global option from ₱100, with one fee, tied to a goal the saver chooses.', xb), Spacer(1, 5),
+  bandrow('HOW THE FUND RUNS, END TO END', L2), Spacer(1, 1),
+  grid([('1 · Money in', 'Saver sets a monthly plan or tops up in the BPI App. Money is pooled in one UITF, priced daily per unit (NAVPU).'),
+        ('2 · Choose companies', 'The M · V · P review (page 5) runs monthly and decides which companies the fund may hold.'),
+        ('3 · Set weights', 'Weights are reset quarterly so each holding adds a similar share of risk, within the limits.'),
+        ('4 · Keep cash', 'About 3% stays in cash to pay withdrawals without forced selling.'),
+        ('5 · Money out', 'Withdraw any business day at that day\'s price; paid on day 6 (T+5). No exit fee, no lock-in.'),
+        ('6 · Report', 'In-app progress view, transaction statements, and fund reports at least quarterly.')], [L2*0.25, L2*0.75]), Spacer(1, 5),
+  bandrow('WHAT A SAVER SEES, IN PESOS', L2), Spacer(1, 3),
+  p(f'Every key figure is shown in pesos, not only percentages. For example, a fall like the worst 12 months in our 36-year industry history '
+    f'(−{bad*100:.0f}%) on a ₱5,000 balance would be <b>₱{bad*5000:,.0f}</b>. Risk is explained clearly before the saver commits, alongside balanced '
+    'scenarios, without dwelling on the downside.', xb)]
+p1r = [bandrow('WHAT THE FUND OWNS', R2), Spacer(1, 3),
+  p(f'{NH} listed companies around the world that run essential, hard-to-replace services people use every day: power and water, phone and '
+    'internet networks, ports, airports, hospitals, and the equipment behind them. Technology exposure is assessed like everything else, not '
+    'automatically excluded.', xb), Spacer(1, 3),
   p('<b>Chosen by our M · V · P framework:</b>', xb), Spacer(1, 1),
   grid([('<font color="#0F7A45" size="11">M</font> · Map', f'Find essential-service companies worldwide: <b>{n_uni0}</b> screened, <b>{n_m0}</b> fit the theme'),
-        ('<font color="#0F7A45" size="11">V</font> · Verify', f'Debt stress test and value and quality against peers: <b>{n_el0}</b> pass'),
+        ('<font color="#0F7A45" size="11">V</font> · Verify', f'Debt stress test, and value and quality against peers: <b>{n_el0}</b> pass'),
         ('<font color="#0F7A45" size="11">P</font> · Position', f'Add only what improves diversification, size by risk: <b>{NH}</b> held')],
        [R2*0.25, R2*0.75]), Spacer(1, 2),
   p('Same published rules for every company, including the Philippines\' ICTSI. Full process on page 5.', xs), Spacer(1, 5),
-  tiles([(f'{pct(v4["cagr"], 1)} <font color="#58635C" size="10">vs</font> {pct(nf["cagr"], 1)}', 'a year over the past 5 years: today\'s holdings (hindsight) vs the benchmark, NFRA global infrastructure ETF')], 4, R2), Spacer(1, 2),
-  tiles([(pct(XS['cagr'], 1), 'holdings without chip and grid-equipment makers, same 5 years'), (pct(ps['cap']['cagr'], 1), 'a year over 36 years, industry-level history')], 4, R2), Spacer(1, 3),
-  p(f'<b>Read honestly.</b> The companies were picked in 2026 and tested backwards, so {pct(v4["cagr"], 1)} is a best case, not a forecast. The two lower '
-    f'numbers are the checks: the result does not rest on chipmakers, and over 36 years the approach grew about as fast as the world market '
-    f'({pct(ps["mkt"]["cagr"], 1)}) with a worst year of −{bad*100:.0f}%. Expect market-like growth from businesses people cannot do without.', xs), Spacer(1, 5),
+  tiles([(f'{pct(v4["cagr"], 1)} <font color="#58635C" size="10">vs</font> {pct(nf["cagr"], 1)}', 'a year over the past 5 years: today\'s holdings (backtested, hindsight) vs the benchmark, NFRA global infrastructure ETF')], 4, R2), Spacer(1, 2),
+  tiles([(pct(XS['cagr'], 1), 'holdings without chip and grid-equipment makers, same 5 years'), (pct(ps['cap']['cagr'], 1), 'a year over 36 years, industry-level history (context)')], 4, R2), Spacer(1, 3),
+  p(f'<b>How to read these.</b> These are backtested results, not actual fund performance. The companies were picked in 2026 and tested backwards, '
+    f'so {pct(v4["cagr"], 1)} is a best case, not a forecast. The lower two numbers are checks: the result does not rest on chipmakers, and over 36 years the '
+    f'approach grew about as fast as the world market ({pct(ps["mkt"]["cagr"], 1)}).', xs), Spacer(1, 5),
   bandrow('HOW IT COMPARES WITH WHAT IS AVAILABLE TODAY', R2), Spacer(1, 1),
-  grid([('Money market fund', 'Short-term debt; ₱50–1,000', 'Safe, but likely to trail rising prices over five years.'),
-        ('Pag-IBIG MP2', 'Government savings; ₱500', 'Tax-free and never negative. Better for a first 3–5 years away; we point people there.'),
-        ('Local stock index fund', 'PSEi shares; ₱1,000', 'Adds more of the Philippine exposure a young earner already has.'),
-        ('Global fund-of-funds', 'Owns other funds; ₱1,000', 'Global, but with a second layer of fees, and you cannot see what you own.'),
-        ('Firsts Fund (proposed)', f'{NH} companies directly; ₱100', 'Global, in pesos, one fee, and you can see every company.')],
-       [R2*0.27, R2*0.30, R2*0.43], head=['Product', 'What it is; minimum', 'What it does not solve']), Spacer(1, 2),
-  p('A comparison of design, not of returns: ours are simulated, theirs are real.', xs)]
+  grid([('Money market fund', 'Short-term debt; from ₱50', 'Suited to short-term goals.'),
+        ('Pag-IBIG MP2', 'Government savings; ₱500', 'Better for a goal 3–5 years away; we point people there.'),
+        ('Local stock index fund', 'PSEi shares; ₱1,000', 'Philippine companies only.'),
+        ('Global fund-of-funds', 'Owns other funds; ₱1,000', 'Global, with a second layer of fees.'),
+        ('Firsts Fund (proposed)', f'{NH} companies directly; ₱100', 'Global, in pesos, one fee, every company named.')],
+       [R2*0.27, R2*0.30, R2*0.43], head=['Product', 'What it is; minimum', 'Best suited to']), Spacer(1, 2),
+  p('A comparison of design, not of returns.', xs)]
 story += [two(p1l, p1r, L2, R2, G2), Spacer(1, 4),
-  p('Sources: PSE investor profile 2024 (via Manila Bulletin, 2025); BPI Wealth. Shuffle test: v4 holdings\' monthly results after costs; the result comes '
-    'from the arithmetic of saving versus withdrawing, not from how high the returns were. 36-year history: Kenneth French Data Library, in pesos.', tiny), PageBreak()]
+  p('Backtests: weekly peso returns after the 1.50% fee, trading costs and dividend taxes. 36-year history: Kenneth French Data Library, in pesos; '
+    'industry-level context only.', tiny), PageBreak()]
 
-# ======================= PAGE 2 · THE HOOK: WHO IT IS FOR, AND HOW THEY FIND IT =======================
+# ======================= PAGE 2 · MARKETING: ONE CLEAR MESSAGE =======================
 p2l = [bandrow('ONE MESSAGE', L2), Spacer(1, 4),
-  p('Fund your firsts.', big2), p('<font color="#58635C">Pondohan ang mga una mo. There will always be a new first.</font>', h2), Spacer(1, 3),
-  p('Retirement is too far away for a 22-year-old to picture, and every product already uses it. <b>A first is different: it has a name, a peso '
-    'cost and a date.</b> The fund\'s holdings support that promise in the background; the details live in the fact sheet and annex.', xb), Spacer(1, 5),
-  bandrow('WHO IT IS FOR', L2), Spacer(1, 3),
-  p('<b>Graduating students and early-career professionals</b> with regular income, a goal at least five years away, and the risk tolerance for '
-    'a stock fund. Not every beginner: money needed sooner, or emergency savings, belongs elsewhere. Anyone further along with a five-year goal can use it too.', xb), Spacer(1, 3),
+  p('Fund your firsts.', big2), Spacer(1, 3),
+  p('The central promise is simple: fund a meaningful future first by investing consistently. How the portfolio is built supports that promise in '
+    'the background; the details live in the fact sheet (pages 4–5) and the annex.', xb), Spacer(1, 5),
+  bandrow('WHO WE TALK TO', L2), Spacer(1, 3),
+  p('Young Filipinos preparing for a meaningful long-term first. We separate a person\'s <b>first milestone</b> from their <b>first investment</b>: '
+    'the fund suits savers with a five-year-plus goal and the appetite for a stock fund, not every beginner.', xb), Spacer(1, 3),
   boxed([p('<b>Meet Bea (illustrative).</b> 23, first job as a junior accountant, takes home about <b>₱28,000 a month</b>.', xs), Spacer(1, 2),
          grid([('Rent and bills', '₱8,000'), ('Food', '₱7,000'), ('Helping at home', '₱4,000'), ('Transport', '₱3,000'), ('Emergency savings', '₱2,000'),
                ('Personal', '₱2,000'), ('<b>Her first: Japan with her parents in 5 years</b>', '<b>₱2,000</b>')], [L2*0.64, L2*0.24], bold_first=False, right=(1,))],
         L2, SOFT), Spacer(1, 5),
-  bandrow('CHOOSING A FIRST', L2), Spacer(1, 3),
-  p('Each user starts with <b>one main first</b>: picked from suggestions, typed in freely, or found with <b>“Help me choose my first”</b>. Saving for '
-    'several firsts at once is on the roadmap (page 3).', xb), Spacer(1, 2),
-  grid([('Take Mom and Dad abroad', 'First car', 'First home'), ('First business', 'First time sending money home and keeping some', 'Something else: type it in')],
-       [L2/3]*3, bold_first=False), Spacer(1, 5),
-  bandrow('WHY WE BUILD CONFIDENCE, NOT HYPE', L2), Spacer(1, 3),
-  p('A survey of 191 Filipino students (Susada, 2025) found that feeling capable, through knowledge and confidence, was the strongest driver of '
-    'intending to invest; pressure from friends and family was not. The BSP also measures financial literacy rising (74%, from 69%). So we '
-    'explain, we do not push: no raffles, cash rewards, leaderboards or countdown timers in the launch. Rewards stay a future idea if costs and '
-    'approvals allow.', xb)]
-p2r = [bandrow('THE GOAL CALCULATOR: THE CENTRE OF THE CAMPAIGN', R2), Spacer(1, 3),
-  p('Name the first, enter the cost and the date (at least five years away). The calculator shows two things side by side, with its assumptions on screen:', xb), Spacer(1, 2),
+  bandrow('HOW WE TALK ABOUT IT', L2), Spacer(1, 1),
+  grid([('Plain language', 'No jargon in customer materials. Detailed method stays in the fact sheet and annex.'),
+        ('Concrete, not abstract', '“Essential services” explained through real businesses: the power company that keeps the lights on, the port that brings in goods, the hospital down the road.'),
+        ('No safety claims', 'Never “safe” or “guaranteed”. Five years is a recommended horizon, not a promise of a positive return.'),
+        ('Pesos first', 'Examples in pesos, supported by percentages where useful.')], [L2*0.28, L2*0.72]), Spacer(1, 5),
+  bandrow('WHAT PEOPLE SEE', L2), Spacer(1, 3),
+  p('One central story (a relatable person and a concrete first), the goal calculator, and app mock-ups. These are the main visual assets; the '
+    'numbers and methodology sit in the appendix.', xb)]
+p2r = [bandrow('THE GOAL CALCULATOR: WHERE EVERY CHANNEL LEADS', R2), Spacer(1, 3),
+  p('Name the first, enter the cost and the date (at least five years away). The calculator shows, with its assumptions on screen:', xb), Spacer(1, 2),
   grid([('Contributions only', f'₱{PER["goal"]:,} ÷ {PER["months"]} months = <b>₱{PER["pay"]:,} a month</b>. No growth assumed.'),
         ('With illustrative growth', 'At an assumed 6% a year, about <b>₱1,710 a month</b>. An example, not a promise.'),
-        ('Prices rise (optional)', f'At 4% a year inflation the trip costs about ₱146,000 by then: ₱2,430 a month, contributions only.')],
+        ('Prices rise (optional)', 'At 4% a year inflation the trip costs about ₱146,000 by then: ₱2,430 a month, contributions only.')],
        [R2*0.30, R2*0.70]), Spacer(1, 3),
-  p('<b>Before committing, clear risk information in pesos.</b> Bea\'s plan (₱2,000 a month for 5 years, ₱120,000 paid in), run through every '
-    f'five-year stretch of our 36-year history ({dca["n"]} of them):', xb), Spacer(1, 2),
+  p(f'<b>Balanced scenarios before committing.</b> Bea\'s plan (₱2,000 a month for 5 years, ₱120,000 paid in) across every five-year stretch of our '
+    f'36-year industry history ({dca["n"]} of them):', xb), Spacer(1, 2),
   grid([('Typical outcome', f'₱{pm["median"]:,.0f}'), ('1 in 20 stretches ended at or below', f'₱{pm["p5"]:,.0f}'),
-        ('Worst stretch (ending early 2009)', f'₱{pm["worst"]:,.0f}'), ('Worst, with the goal service (page 3)', f'₱{pg:,.0f}')],
+        ('Weakest stretch (ending early 2009)', f'₱{pm["worst"]:,.0f}'), ('Weakest, with the goal service (page 3)', f'₱{pg:,.0f}')],
        [R2*0.68, R2*0.32], right=(1,)), Spacer(1, 2),
-  p('Industry-level history, after the fee and costs; not a forecast.', xs), Spacer(1, 5),
-  bandrow('WHERE PEOPLE FIND IT: EVERY CHANNEL LEADS TO THE CALCULATOR', R2), Spacer(1, 1),
-  grid([('Campus talks and caravans', 'On-site financial-literacy sessions with student organisations, close to graduation.'),
-        ('Early-career workplace sessions', 'Financial-wellness talks at employers, including companies on BPI payroll, timed with a first job.'),
-        ('Short-form social content', 'Short, plain videos built on Bea\'s story; creators support but do not lead, to keep costs down.'),
-        ('BPI App, with “Chat with us”', 'Online visitors can ask a person before they start.')], [R2*0.36, R2*0.64]), Spacer(1, 3),
-  boxed([p('<b>Launch timing: the 13th month.</b>', xs),
-         p('Arrives every December and is money no first-jobber budgeted. <i>“Your 13th month was never in the budget. Give it a first.”</i> '
-           'December opens the account; the monthly plan keeps it going.', xs)], R2, SOFT), Spacer(1, 5),
-  bandrow('THE BUSINESS CASE FOR A ₱100 MINIMUM', R2), Spacer(1, 3),
-  p(f'₱100 at 1.50% earns BPI ₱1.50 a year, so the value is in steady monthly saving. A ₱2,000-a-month plan like Bea\'s reaches about '
-    f'₱{pm["median"]:,.0f} in a typical five-year stretch, roughly <b>₱{round(pm["median"]*0.015, -2):,.0f} a year</b> in fees. The fund also needs '
-    'seed money and a minimum size before opening, to cover custody and audit costs. A sketch, not a costed model.', xs)]
+  p('Industry-level history, after the fee and costs; illustrative, not a forecast.', xs), Spacer(1, 5),
+  bandrow('WHERE PEOPLE FIND IT', R2), Spacer(1, 1),
+  grid([('Talks and caravans', 'On-site financial-literacy talks and campus caravans: the priority channel.'),
+        ('Campus events', 'Sessions with student organisations, close to graduation.'),
+        ('Early-career workplaces', 'Financial-wellness sessions at employers, timed with a first job.'),
+        ('Short-form social', 'Kept lean (paid creator content is costly); creators support, not lead.'),
+        ('BPI App, “Chat with us”', 'Online visitors can ask a person before starting.')], [R2*0.34, R2*0.66]), Spacer(1, 2),
+  p('Each channel has one next step: try the goal calculator.', xs), Spacer(1, 5),
+  bandrow('REWARDS AND PROMOS', R2), Spacer(1, 3),
+  p('No raffles or financial rewards in the launch. The fund must be compelling without them; they stay optional future ideas if costs and approvals allow.', xs)]
 story += [two(p2l, p2r, L2, R2, G2), Spacer(1, 4),
-  p('Bea and her budget are illustrative. Calculator growth and inflation rates are example assumptions shown to the user. Sources: Susada (2025), '
-    'a survey of 191 students at one university, measuring intention to invest rather than actual investing; BSP Consumer Finance and Inclusion Survey 2025.', tiny), PageBreak()]
+  p('Bea and her budget are illustrative. Calculator growth and inflation rates are example assumptions shown to the user.', tiny), PageBreak()]
 
-# ======================= PAGE 3 · THE HABIT: HOW THEY KEEP GOING =======================
+# ======================= PAGE 3 · CUSTOMER EXPERIENCE: HOW THEY KEEP GOING =======================
 p3l = [bandrow('WHERE IT LIVES: THE BPI APP', L2), Spacer(1, 3),
   p('The BPI App is the proposed home for Firsts Fund. Users are already verified there, so opening is a confirmation, not a new application, '
     'and pay usually lands in the same bank. All Firsts Fund screens would be new and are labelled as proposed.', xb), Spacer(1, 5),
@@ -199,29 +189,30 @@ def annex():
     out = []
     A = CW*0.49; B = CW - A - 8
     lim = R['portfolio']; grp_max = max(x['weight'] for x in lim if x['key'] in ('ICT', 'MWC', 'ENEL', 'ELE'))
-    a1 = [bandrow('A1 · EVIDENCE BASE: EVERY LOAD-BEARING CLAIM AND ITS SOURCE', A), Spacer(1, 1),
-      grid([('Young Filipinos are arriving', '18–29 = 26.5% of PSE accounts, from 19.5%; PSE accounts +50.1% in a year', 'PSE investor profile 2024, via Manila Bulletin (2025)'),
-            ('Access and literacy improved', 'BPI UITF minimum ₱10,000 → ₱1,000 (2023); 74% answer half the literacy questions, from 69%', 'BPI Wealth; BSP CFIS 2025'),
-            ('Cash loses in real terms', 'Inflation 6.2% in July 2026', 'PSA (2026)'),
-            ('Risk appetite went to crypto', 'Awareness 20% of adults, from 6%; 46% of owners are 18–34', 'BSP CFIS 2025; Triple-A'),
-            ('Confidence, not peers, drives investing', 'Strongest driver β = 0.502 (p < .001); peer pressure not significant', 'Susada (2025), survey of 191 students'),
-            ('A saver gains from an early fall', f'Link between a strong start and the final amount: {X["corr_contrib"]:.2f} saving, +{X["corr_withdraw"]:.2f} withdrawing'.replace('-', '−'), f'Our shuffle test, {X["n_shuffles"]:,} orders')],
-           [A*0.30, A*0.42, A*0.28], head=['Claim', 'Figure', 'Source']), Spacer(1, 4),
-      bandrow('A2 · WHAT WE KILLED, AND WHY', A), Spacer(1, 1),
-      grid([('“The suitability check is the barrier”', 'Access clearly improved; the claim argued against its own evidence.'),
-            ('“Participation fell 36% → 23%”', 'Could not be confirmed from BSP releases; not used.'),
-            ('A fixed 30% Philippines share', 'No basis. Countries now follow from the same tests (ICTSI 4.8%).'),
-            ('A 10% cash reserve; 16 fixed holdings', 'About 3% cash covers withdrawals; the count follows from the rules (31).'),
-            ('“Show the bad year first” as its own step', 'Consultants: balanced risk information, not a scare step. Now in the calculator.'),
-            ('Streaks and a months-funded counter', 'Replaced by contributions, value, gain or loss and goal progress.'),
-            ('Sukli at launch, through e-wallets', 'A future enhancement, tested inside the BPI App first.'),
-            ('Automatic glidepath with set transfer rates', 'The user decides, after a yearly review; no promised schedule or protection.'),
-            ('A blanket “non-tech” label', 'Technology exposure is assessed, not excluded (chips 8%).')],
-           [A*0.40, A*0.60]), Spacer(1, 4),
-      bandrow('A6 · WHAT WOULD CHANGE OUR MIND', A), Spacer(1, 3),
-      p('The shuffle result is arithmetic. But the case rests on people <b>continuing to contribute</b>, modelled as 60 uninterrupted monthly payments, '
-        'which no source we found measures for this group. If people stop much more often, the fund\'s risk level should come down. How often people '
-        'keep going through a losing year is the first thing we would test with real data, and the honest weak point of this proposal.', xs)]
+    a1 = [bandrow('A1 · WHAT CHANGED AFTER THE BPI CONSULTATIONS', A), Spacer(1, 1),
+      grid([('Horizon', 'Five years or longer throughout; a recommendation, not a lock-in or a promise of returns.'),
+            ('Theme', 'No blanket “non-tech” claim; essential services and infrastructure, with technology exposure assessed.'),
+            ('Selection', 'M · V · P kept; how many companies are held now follows from the rules (31), not a fixed number.'),
+            ('Philippine share', 'The fixed 30% Philippines / 70% global split was dropped; countries follow from the same tests.'),
+            ('Benchmark', 'NFRA global infrastructure ETF in pesos; world and Philippine indices shown as market context only.'),
+            ('Performance', 'Labelled as backtested, never as actual fund results; calendar years and balanced risk shown.'),
+            ('Persona and goals', 'Early-career saver; one main first; “Help me choose my first”; several firsts later.'),
+            ('Calculator', 'Contributions-only plus an illustrative scenario, optional inflation, assumptions visible.'),
+            ('Contributions', 'Monthly plan plus top-ups at launch; Sukli a future enhancement, starting in the BPI App.'),
+            ('Missed months', 'Goal date unchanged; user chooses a top-up, a higher amount or a later date; no automatic increase.'),
+            ('Dashboard', 'Contributions, value, gain or loss, goal progress; no streaks.'),
+            ('Risk messaging', 'No “bad year first” step; clear risk information before committing, balanced scenarios.'),
+            ('Goal service', 'Account-level, explained simply; yearly review and a reminder two years before; the user decides.'),
+            ('Marketing', 'One message, “Fund your firsts”; talks, caravans, campus and workplaces first; no raffles at launch.'),
+            ('Structure and platform', 'A peso global UITF; the BPI App as the proposed entry point; new screens labelled proposed.')],
+           [A*0.27, A*0.73]), Spacer(1, 4),
+      bandrow('A2 · STILL TO BE VALIDATED', A), Spacer(1, 1),
+      grid([('Goal service', 'Moving units to a lower-risk fund for one saver needs operational checks; it is not promised as automatic.'),
+            ('Sukli', 'Which purchases count, consent, where spare change waits, and when it moves; BPI App first.'),
+            ('Running costs', 'Custody, currency and audit costs of holding foreign shares directly; the fund needs seed money and a minimum size.'),
+            ('Dividend taxes', 'Rates are approximate; to be confirmed by a tax adviser.'),
+            ('Staying power', 'How many savers keep contributing through a losing year; the first thing to test with real data.')],
+           [A*0.27, A*0.73])]
     a2 = [bandrow('A3 · BACK-TEST METHOD AND ITS LIMITS', B), Spacer(1, 3),
       p(f'<b>Method.</b> Weekly peso returns including dividends, 1 Oct 2021 – 2 Oct 2026. Each quarter, weights were set using only the previous three '
         f'years of prices, under every limit ({R["rebalances"]} times). After the 1.50% fee, 0.30% trading cost and dividend taxes. Benchmark NFRA, in pesos.', xs), Spacer(1, 2),
@@ -242,9 +233,8 @@ def annex():
       bandrow('A5 · REGULATORY POSITION', B), Spacer(1, 3),
       p('<b>The fund.</b> A peso UITF holding foreign shares directly, priced daily (NAVPU), with a 20% single-company ceiling per BSP Circular No. 1234 '
         '(2026). Our reading, not reviewed by counsel; any launch would need that review first.', xs), Spacer(1, 2),
-      p('<b>Suitability.</b> We are not asking BPI to relax the Client Suitability Assessment, to allow an education-based override, or to sell an '
-        'aggressive fund to a client rated conservative. We propose recording the investor\'s horizon and contribution plan in the suitability file, '
-        'with an audit trail, and letting the goal service carry risk down as the date approaches.', xs), Spacer(1, 2),
+      p('<b>Suitability.</b> The standard BPI suitability assessment applies unchanged. The saver\'s goal and date are recorded with their plan; '
+        'goals under five years are pointed to lower-risk options.', xs), Spacer(1, 2),
       p('<b>Sukli (future).</b> Starts inside the BPI App. Needs clear, revocable consent, rules on which purchases count, and a regulated place for '
         'spare change to wait before it is invested; e-wallets only after that works and partner agreements exist.', xs), Spacer(1, 2),
       p('<b>Reports.</b> Separate in-app progress view, transaction statements, and fund disclosures, with fund reports at least quarterly.', xs)]
