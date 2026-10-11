@@ -44,7 +44,7 @@ and how to rerun everything. Update the **Decision log** and **Open items** when
 | 2026-10-11 | User: follow the BPI meeting notes only; **no Phase 1 narrative** (no “park or gamble”, “At 22…”, Sun Life quote, shuffle-test argument, confidence/Susada section, 13th-month launch, ₱100 business case, Filipino tagline). Pages 1–2 and annex A1/A2 rebuilt from the notes' final decisions; page 1 now includes “How the fund runs, end to end”. |
 | 2026-10-10 | Fact sheet checked against the BPI meeting notes (Mac folder, `BPI FinQuest Meeting (1).md`, `(2).md`, not in repo): CX and marketing pages rewritten to the decisions (persona Bea; Sukli future, BPI App first; no bad-year-first step; no streaks; goal service user-decided with yearly review; holdings reviewed monthly). Open: revenue look-through. Benchmark confirmed NFRA by user on 10 Oct (notes' blended idea not used). |
 | 2026-10-10 | User: features from the 6-page Phase 1 submission must not be lost. Fact sheet is now 6 pages: executive summary (Problem & fund, Hook, Habit; `exec_pages4.py`), fact sheet (pp 4–5), annex (p 6). Sequence test rerun on v4 (`seq4.py` → `extra4.json`: −0.85 / +0.85, 20,000 orderings). Retired by v3/v4 decisions and not restored: 30% PH, 10% reserve, role quotas, MSCI ACWI benchmark, dated-target test, performance digs at BPI funds. |
-| 2026-10-11 | **Logo** added (user's assets, `09 Brand assets/`: green and forest "1F" icons, SVG). Fact sheet header now shows the green icon on every page in place of the green block, drawn as vectors in `build_factsheet4.py` (`draw_logo`); both PDFs rebuilt, content unchanged. |
+| 2026-10-11 | **Logo** added (user's assets, `09 Brand assets/`: green and forest "1F" icons, SVG). Fact sheet header shows the forest icon (user's pick over green) on every page in place of the green block, drawn as vectors in `build_factsheet4.py` (`draw_logo`); both PDFs rebuilt, content unchanged. |
 | 2026-10-10 | User: fact sheet must include the executive summary, and holdings should appear once. PDF is now 3 pages (executive summary, then fact sheet); top-10 table dropped. Same file name, built by `build_factsheet4.py`. |
 
 ## The rules (v4, current; full text in `04 Fund model/v4 (31 holdings, current)/RULES_v4.md`)
@@ -121,7 +121,7 @@ TW 3.73, US 1.65. Owners 74.94 / Suppliers 15.06. ~5.9 independent bets; top-2 f
 | `06 Phase 1 working files/` | Original Aug 2026 `finquest` folder |
 | `07 Video ad/v2/` | 30-s ad v2 in Remotion (`README.md` has the storyboard and render steps; renders in `out/`) |
 | `08 Consultation notes/` | `Summary of consultation.md` (final decisions by area) and `Final Consultation.md` (last mentor session notes). The executive summary is built from these |
-| `09 Brand assets/` | Firsts Fund icon, SVG: `firsts-fund-icon-green.svg` (white 1F on #128C5E, used on the fact sheet) and `firsts-fund-icon-forest.svg` (lime 1, white F on #073B2A, for dark backgrounds) |
+| `09 Brand assets/` | Firsts Fund icon, SVG: `firsts-fund-icon-green.svg` (white 1F on #128C5E) and `firsts-fund-icon-forest.svg` (lime 1, white F on #073B2A; used on the fact sheet) |
 | `_duplicates/` | Byte-identical extra copies, old AGENTS.md and transfer bundles (.tgz); safe to delete |
 
 ### Files in `04 Fund model/v3 (21 holdings, superseded)/`

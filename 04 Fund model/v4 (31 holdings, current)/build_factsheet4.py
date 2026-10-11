@@ -90,7 +90,7 @@ def draw_logo(c, x, y, size, variant='green'):
     c.restoreState()
 def header(c, doc):
     c.saveState()
-    draw_logo(c, M, H - M - 31, 31)
+    draw_logo(c, M, H - M - 31, 31, 'forest')
     c.setFillColor(DARK); c.setFont('Helvetica-Bold', 15); c.drawString(M + 37, H - M - 13, 'FIRSTS FUND')
     c.setFont('Helvetica-Bold', 7.3)
     c.drawString(M + 37, H - M - 23, {1: 'EXECUTIVE SUMMARY · THE PROBLEM, AND THE FUND THAT ANSWERS IT', 2: 'EXECUTIVE SUMMARY · THE HOOK: WHAT MAKES THEM START',
