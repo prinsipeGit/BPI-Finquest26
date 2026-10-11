@@ -78,8 +78,8 @@ def header(c, doc):
     c.setFillColor(GREEN); c.rect(M, H - M - 18, 14, 18, fill=1, stroke=0)
     c.setFillColor(DARK); c.setFont('Helvetica-Bold', 15); c.drawString(M + 20, H - M - 13, 'FIRSTS FUND')
     c.setFont('Helvetica-Bold', 7.3)
-    c.drawString(M + 20, H - M - 23, {1: 'EXECUTIVE SUMMARY · THE FUND AT A GLANCE', 2: 'EXECUTIVE SUMMARY · MARKETING: ONE CLEAR MESSAGE',
-                                      3: 'EXECUTIVE SUMMARY · CUSTOMER EXPERIENCE: HOW SAVERS KEEP GOING', 4: 'FUND FACT SHEET · PROPOSED ACTIVELY MANAGED GLOBAL EQUITY UITF',
+    c.drawString(M + 20, H - M - 23, {1: 'EXECUTIVE SUMMARY · THE PROBLEM, AND THE FUND THAT ANSWERS IT', 2: 'EXECUTIVE SUMMARY · THE HOOK: WHAT MAKES THEM START',
+                                      3: 'EXECUTIVE SUMMARY · THE HABIT: WHAT KEEPS THEM INVESTED', 4: 'FUND FACT SHEET · PROPOSED ACTIVELY MANAGED GLOBAL EQUITY UITF',
                                       5: 'FUND FACT SHEET · HOLDINGS, PORTFOLIO CONSTRUCTION, RISKS AND FEES',
                                       6: 'ANNEX · EVIDENCE, METHOD, LIMITS AND REGULATORY POSITION'}[doc.page + (3 if FO else 0)])
     c.setFont('Helvetica', 6.5); c.setFillColor(MUTED)
