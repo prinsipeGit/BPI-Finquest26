@@ -13,12 +13,13 @@ quote = ParagraphStyle('q', parent=base, fontName='Helvetica-Oblique', fontSize=
 big2 = ParagraphStyle('big2', parent=base, fontName='Helvetica-Bold', fontSize=11.5, leading=14, textColor=GREEN)
 xc = ParagraphStyle('xc', parent=cell, fontSize=7.1*SC, leading=8.8*SC); xcb = ParagraphStyle('xcb', parent=xc, fontName='Helvetica-Bold')
 xcr = ParagraphStyle('xcr', parent=xc, alignment=TA_RIGHT)
+jc = ParagraphStyle('jc', parent=cell, fontSize=7.2, leading=8.5); jcb = ParagraphStyle('jcb', parent=jc, fontName='Helvetica-Bold')
 
-def grid(rows, widths, head=None, bold_first=True, right=()):
-    data = []
-    if head: data.append([p(h, xcb) for h in head])
+def grid(rows, widths, head=None, bold_first=True, right=(), st_=None):
+    c_, cb_ = st_ or (xc, xcb); data = []
+    if head: data.append([p(h, cb_) for h in head])
     for r_ in rows:
-        data.append([p(str(c), xcb if (i == 0 and bold_first) else (xcr if i in right else xc)) for i, c in enumerate(r_)])
+        data.append([p(str(c), cb_ if (i == 0 and bold_first) else (xcr if i in right else c_)) for i, c in enumerate(r_)])
     t = Table(data, colWidths=widths)
     st = [('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LEFTPADDING', (0, 0), (-1, -1), 2.5), ('RIGHTPADDING', (0, 0), (-1, -1), 2.5),
           ('TOPPADDING', (0, 0), (-1, -1), 1.6), ('BOTTOMPADDING', (0, 0), (-1, -1), 1.6), ('LINEBELOW', (0, 0), (-1, -1), 0.3, RULE)]
@@ -132,9 +133,9 @@ p2r = [bandrow('THE CAMPAIGN: THE GOAL CALCULATOR', R2), Spacer(1, 3),
   grid([('Talks and caravans', 'On-site financial-literacy talks and campus caravans. The priority channel.'),
         ('Campus events', 'Student organisations and graduating classes.'),
         ('Early-career workplaces', 'Financial-wellness sessions for new hires, including employers on BPI payroll.'),
-        ('Short-form social', 'Kept lean (paid creator content is costly); creators support, not lead.'),
+        ('Film and short-form', 'The graduate-story campaign film and short cuts; creators support, not lead.'),
         ('BPI App, “Chat with us”', 'Online visitors can ask a person before starting.')], [R2*0.33, R2*0.67]), Spacer(1, 2),
-  p('Every channel has one next action: try the goal calculator.', xs), Spacer(1, 3),
+  p('Every channel has one next action: name your first in the goal calculator.', xs), Spacer(1, 3),
   boxed([p('<b>The anchor: launch on the 13th month.</b>', xs),
          p('The most predictable cash event in the Filipino year: it lands in December and is money no first-jobber budgeted. <i>“Your 13th month was never '
            'in the budget. Give it a first.”</i> December opens the account; the monthly plan keeps it going.', xs)], R2, SOFT), Spacer(1, 5),
@@ -152,10 +153,36 @@ story += [two(p2l, p2r, L2, R2, G2), Spacer(1, 4),
     'Finance and Inclusion Survey 2025; Triple-A.', tiny), PageBreak()]
 
 # ---------------- PAGE 3 · THE HABIT · WHAT KEEPS THEM INVESTED ----------------
+# Final customer journey (team, 11 Oct 2026): six stages, discovery to the next first.
+JOURNEY = [
+  ('1 · Discover your first', '“I have so many plans. Where do I begin?”',
+   'Encounter the graduate-story campaign and connect a personal aspiration with the habit of investing. <b>Next action: Name your first.</b>',
+   'Campaign film, short-form content, creators, campus activities, workplace financial-literacy sessions'),
+  ('2 · Name your first', '“What am I working towards?”',
+   'Choose one primary goal from suggestions or enter a custom first. Set its estimated cost and a date at least five years away. Use the calculator '
+   'to compare contributions alone with an illustrative investment scenario, with assumptions and optional inflation adjustment visible. Check suitability before proceeding.',
+   'Goal selection screen, calculator, concise fund overview, risk assessment and disclosures'),
+  ('3 · Take the first step', '“How do I begin?”',
+   'Complete account opening, select the funding account and contribution schedule, and authorize investments. The optional account-level glide path '
+   'is explained; users who enroll give standing authorization.',
+   'Account-opening flow, contribution setup, glide-path enrollment, plan confirmation'),
+  ('4 · Manage your first', '“How is my plan progressing?”',
+   'Make scheduled contributions and voluntary top-ups. See total contributions, current value, gain/loss, goal progress and the next contribution. '
+   'Review the plan when circumstances change.',
+   'Goal dashboard, contribution confirmations, payday reminders, periodic summaries, allocation view, transfer schedule, transaction confirmations'),
+  ('5 · Fulfil your first', '“Am I ready to use my investment?”',
+   'Review the amount available and request redemption when needed, allowing for settlement. If the amount falls short or the goal changes, revise the plan. '
+   'The goal date does not trigger an assumed success or a compulsory withdrawal.',
+   'Goal review, redemption flow, completion acknowledgement'),
+  ('6 · Name your next first', '“What comes next?”',
+   'Keep the account, choose another goal and confirm a new contribution plan. Suitability and the allocation are reassessed for the new timeline.',
+   'Next-goal invitation, saved account details, new plan confirmation')]
+story += [bandrow('THE CUSTOMER JOURNEY: FROM DISCOVERING A FIRST TO NAMING THE NEXT ONE', CW), Spacer(1, 1),
+  grid(JOURNEY, [CW*0.14, CW*0.15, CW*0.45, CW*0.26], head=['Stage', 'Investor\'s question', 'Experience and action', 'Main touchpoints'], st_=(jc, jcb)), Spacer(1, 5)]
 p3l = [bandrow('THE PLATFORM DECISION', L2), Spacer(1, 3),
   p('<b>The account and the plan live in the BPI App</b> (proposed entry point, subject to confirmation). The saver is already verified, so opening is '
     'a confirmation, not an application; the salary usually lands in the same bank, which makes payday a natural trigger. Suitability, statements and '
-    'withdrawals stay under one regulated roof, and the goal service needs two funds (growth and lower-risk) that BPI already runs. All Firsts Fund '
+    'withdrawals stay under one regulated roof, and the optional glide path needs two funds (growth and lower-risk) that BPI already runs. All Firsts Fund '
     'screens are new and labelled proposed.', xb), Spacer(1, 5),
   bandrow('HOW MONEY GOES IN', L2), Spacer(1, 3),
   p('<b>At launch: a regular monthly plan plus top-ups whenever you like.</b> Either one alone keeps a goal on track.', xb), Spacer(1, 2),
@@ -169,27 +196,21 @@ p3l = [bandrow('THE PLATFORM DECISION', L2), Spacer(1, 3),
   grid([('1', 'No daily balance notification. Ever.'), ('2', 'The main screen shows goal progress: total put in, current value and gain or loss, in pesos.'),
         ('3', 'Notifications follow payday and the goal date, never the price.'), ('4', 'Checking the balance is one tap further than adding to it.'),
         ('5', 'No streaks. Missing a month should never feel like losing.')], [L2*0.06, L2*0.94]), Spacer(1, 3),
-  p('<b>Sign-up, four screens:</b> confirm identity from the BPI record and the standard suitability questions → choose one main first (suggested, typed in, or '
-    '“Help me choose my first”) → see the calculator and the risk in pesos → set the monthly plan from ₱100. <b>Details view:</b> units, price per unit and every '
-    'transaction. <b>Reports:</b> in-app progress, transaction statements, and fund reports at least quarterly.', xs)]
-p3r = [bandrow('THE LOOP', R2), Spacer(1, 1),
-  grid([('1', 'Name the first and its date, five years or more away.'), ('2', 'Fund it: monthly plan and top-ups.'),
-        ('3', 'See the risk in pesos, with balanced scenarios, before committing.'),
-        ('4', 'Review the goal every year; get a reminder two years before the date.'),
-        ('5', 'Reach it, then name the next first in the same account. Suitability is checked again.')], [R2*0.08, R2*0.92]), Spacer(1, 5),
-  bandrow('THE GOAL SERVICE: WHY AND HOW, IN SIMPLE WORDS', R2), Spacer(1, 3),
-  p('<b>Why.</b> Early on, a fall gives a saver time to recover. Close to the goal date there is no time left. The fund itself cannot slow down for one person, '
-    'because everyone in it has a different date.', xs), Spacer(1, 2),
-  p('<b>How.</b> It happens in the saver\'s own account, not in the fund. At the yearly review, or the two-year reminder, the saver can choose to move part of '
-    f'their units to a lower-risk BPI fund. Nothing moves without their permission; it lowers risk but does not guarantee the goal. In Bea\'s plan over 36 years '
-    f'of history, the weakest outcome improves from ₱{pm["worst"]:,.0f} to ₱{pg:,.0f}. A future capability that still needs operational checks.', xs), Spacer(1, 5),
+  p('<b>Details view:</b> units, price per unit and every transaction. <b>Reports:</b> in-app progress, periodic summaries, transaction confirmations, '
+    'and fund reports at least quarterly.', xs)]
+p3r = [bandrow('THE OPTIONAL GLIDE PATH: WHY AND HOW, IN SIMPLE WORDS', R2), Spacer(1, 3),
+  p('<b>Why.</b> Near the goal date there is no time left to recover from a fall, and the fund cannot slow down for one person. '
+    '<b>How.</b> In the saver\'s own account, not the fund. Explained at plan set-up (stage 3); savers who enroll give standing '
+    f'authorization for part of their units to move to a lower-risk BPI fund as the date nears. Nothing moves for anyone else; it lowers risk '
+    f'but does not guarantee the goal. In Bea\'s plan over 36 years of history, the weakest outcome improves from ₱{pm["worst"]:,.0f} to ₱{pg:,.0f}. '
+    'A proposed platform feature that still needs operational checks.', xs), Spacer(1, 5),
   bandrow('THE WITHDRAWAL SCREEN: WHERE FUNDS LOSE PEOPLE', R2), Spacer(1, 3),
   boxed([p('<b>WITHDRAW · CONFIRM</b>  <font color="#58635C">(proposed screen, example numbers)</font>', xs), p('<b>₱26,500</b>', big2),
          p('You have put in ₱28,000 over 14 months; it is worth ₱26,500 today. You are ₱93,500 from your first: Japan with your parents, October 2031.', xs), Spacer(1, 1),
-         p('If you keep saving, your next contributions buy units at a lower price.', xs), Spacer(1, 2),
+         Spacer(1, 1),
          p('<b>[ Pause the plan for 3 months ]</b>     Withdraw ₱26,500', xs)], R2, colors.white), Spacer(1, 2),
-  p('Pausing comes first on screen; withdrawing stays one tap away. No holding period, no exit fee. Many goals may fall due on the same dates; the manager sees '
-    'goal dates ahead and keeps about 3% cash to pay withdrawals.', xs), Spacer(1, 5),
+  p('Pausing comes first; withdrawing stays one tap away, with settlement time shown. No holding period or exit fee, and the goal date never forces a '
+    'withdrawal. The manager sees goal dates ahead and keeps about 3% cash for withdrawals.', xs), Spacer(1, 5),
   bandrow('HOW WE WOULD KNOW IT WORKED', R2), Spacer(1, 1),
   grid([('Still contributing in month 60', '≥ 55%', '< 40%'), ('Kept contributing through the first losing quarter', '≥ 80%', '< 60%'),
         ('Chose “pause” over “withdraw”', '≥ 3 to 1', '< 1 to 1'), ('Months contributed in year 1 (median)', '≥ 10 of 12', '< 7'),
@@ -218,12 +239,14 @@ def annex():
             ('Missed months', 'Goal date unchanged; user chooses a top-up, a higher amount or a later date; no automatic increase.'),
             ('Dashboard', 'Contributions, value, gain or loss, goal progress; no streaks.'),
             ('Risk messaging', 'No “bad year first” step; clear risk information before committing, balanced scenarios.'),
-            ('Goal service', 'Account-level, explained simply; yearly review and a reminder two years before; the user decides.'),
+            ('Customer journey', 'Six stages: discover, name, take the first step, manage, fulfil, name the next first.'),
+            ('Glide path', 'Optional, account-level, explained at plan set-up; enrolled savers give standing authorization.'),
+            ('Redemption', 'Goal date never forces a withdrawal or assumes success; shortfall or new goal means revising the plan.'),
             ('Marketing', 'One message, “Fund your firsts”; talks, caravans, campus and workplaces first; no raffles at launch.'),
             ('Structure and platform', 'A peso global UITF; the BPI App as the proposed entry point; new screens labelled proposed.')],
            [A*0.27, A*0.73]), Spacer(1, 4),
       bandrow('A2 · STILL TO BE VALIDATED', A), Spacer(1, 1),
-      grid([('Goal service', 'Moving units to a lower-risk fund for one saver needs operational checks; it is not promised as automatic.'),
+      grid([('Glide path', 'Moving units to a lower-risk fund for one saver needs operational checks; it is not promised as automatic.'),
             ('Sukli', 'Which purchases count, consent, where spare change waits, and when it moves; BPI App first.'),
             ('Running costs', 'Custody, currency and audit costs of holding foreign shares directly; the fund needs seed money and a minimum size.'),
             ('Dividend taxes', 'Rates are approximate; to be confirmed by a tax adviser.'),

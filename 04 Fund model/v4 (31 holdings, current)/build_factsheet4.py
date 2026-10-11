@@ -102,7 +102,7 @@ dca, dcg = PX['contrib']['dca'], PX['contrib']['dca_glide']
 saver_box = boxed([p(f'<b>For a regular saver (illustration, not a forecast).</b> ₱1,000 a month for 5 years is ₱60,000 paid in. Across every '
     f'5-year stretch from 1990 to 2026 in the industry-level history ({dca["n"]} start months), the typical saver ended with about '
     f'<b>₱{round(60000*dca["median"], -3):,.0f}</b>. About 1 in {round(1/dca["below1"])} stretches ended below ₱60,000; the worst, ending in '
-    f'early 2009, at about ₱{round(60000*dca["worst"], -3):,.0f}. With the proposed goal service, the worst was about ₱{round(60000*dcg["worst"], -3):,.0f}.', small),
+    f'early 2009, at about ₱{round(60000*dca["worst"], -3):,.0f}. With the optional glide path, the worst was about ₱{round(60000*dcg["worst"], -3):,.0f}.', small),
     Spacer(1, 1), p('Same fee and costs; contributions at the start of each month. It reflects the theme, not our company choices.', tiny)], None, SOFT)
 left = [bandrow('FUND OBJECTIVE AND THEME', LW), Spacer(1, 2),
   p('<b>Theme: global real capacity.</b> Businesses providing essential services and infrastructure that are hard to replace, because they take '
@@ -116,9 +116,9 @@ left = [bandrow('FUND OBJECTIVE AND THEME', LW), Spacer(1, 2),
     'with a single fee.'), Spacer(1, 2),
   p('<b>Suitable investor.</b> Regular income, a goal at least <b>five years</b> away, and the risk tolerance for an equity fund that can '
     'fall sharply in a bad year. Not suitable for money needed within five years or for emergency savings.'), Spacer(1, 3),
-  boxed(p('<b>Goal service (proposed, in the investor\'s own account).</b> Close to a goal date there is little time to recover from a fall. A yearly '
-          'goal review, plus a reminder two years before the date, lets the investor choose to move part of their units to a lower-risk fund. Nothing '
-          'moves without their permission; it changes only their account, not how this fund invests; units are sold at that day\'s price, and the goal '
+  boxed(p('<b>Optional glide path (proposed, in the investor\'s own account).</b> Close to a goal date there is little time to recover from a fall. '
+          'Investors who enroll when setting up their plan give standing authorization to move part of their units to a lower-risk fund as the date nears. Nothing '
+          'moves for those who do not enroll; it changes only their account, not how this fund invests; units are sold at that day\'s price, and the goal '
           'is not guaranteed.', small), LW), Spacer(1, 4), saver_box]
 tot = R['costs']['v4']['trading_pa'] + R['costs']['v4']['wht_pa'] + 0.015
 facts = [('Theme', 'Global real capacity'), ('Structure', 'Global equity UITF (proposed)'), ('Currency', 'Philippine peso; daily NAVPU'),
