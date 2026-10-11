@@ -232,7 +232,8 @@ PG = PX['growth']; mo = pd.PeriodIndex(PX['months'], freq='M').to_timestamp(how=
 fig, ax = plt.subplots(figsize=(4.3, 1.55), dpi=220)
 for k, lab, c, lw in [('mkt', 'US stock market', '#B07A2E', 0.9), ('tech', 'Tech industries', '#7C8CB0', 0.9), ('cap', 'Firsts Fund strategy', '#0F7A45', 1.6)]:
     ax.plot(mo, PG[k], color=c, lw=lw, label=f'{lab}: ₱{PG[k][-1]:,.0f}')
-ax.set_yscale('log'); ax.set_yticks([100, 1000, 10000]); ax.set_yticklabels(['₱100', '₱1,000', '₱10,000']); ax.minorticks_off()
+top36 = 2000 * int(max(max(PG[k]) for k in PG) / 2000 + 1)
+ax.set_ylim(0, top36); ax.set_yticks(range(0, top36 + 1, 2000)); ax.set_yticklabels([f'₱{v:,}' for v in range(0, top36 + 1, 2000)]); ax.minorticks_off()
 ax.tick_params(labelsize=5.5); ax.grid(axis='y', color='#E3E8E5', lw=0.5); [ax.spines[x].set_visible(False) for x in ['top', 'right']]
 ax.set_xlim(mo[0], mo[-1]); ax.legend(fontsize=5.3, frameon=False, loc='upper left')
 fig.tight_layout(pad=0.2); fig.savefig('hist36.png'); plt.close(fig)
