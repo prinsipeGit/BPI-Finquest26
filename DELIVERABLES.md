@@ -1,7 +1,7 @@
 # Firsts Fund — Deliverables Tracker
 
-**Version:** 1.8  
-**Last updated:** 2026-10-10 (Sat)  
+**Version:** 1.9  
+**Last updated:** 2026-10-11 (Sun)  
 **Updated by:** Prince Angelo C. Rivera
 
 | Milestone | Date | Days left (from last update) |
@@ -21,7 +21,7 @@ Send by email to **finquest@bpi.com.ph** with the subject **`FINALIST_LosAngeles
 | ID | Deliverable | Format | Owner | Status | Where it lives | Next action |
 | --- | --- | --- | --- | --- | --- | --- |
 | A1 | Final fund fact sheet | PDF | Luis | 🟡 | `01 Phase 2 submission/LosAngeles76ers_FirstsFund_FactSheet.pdf` (v4) | Polished 8 Oct (section G). Team read-through; confirm G9 settlement; check numbers against the team pitch |
-| A2 | 30-second marketing video (team-made) | .mp4 | TBD | 🟡 | `07 Video ad/v2/out/FirstsFund_Ad_v2.mp4` (draft, 30.0 s; 9:16 version too) | v2 in Remotion: fast cut, onboarding calculator, "Fund your firsts." Replace the placeholder music; team check of lines and legal text |
+| A2 | 30-second marketing video | .mp4 | Prince | 🟡 | `01 Phase 2 submission/LosAngeles76ers_FirstsFund_Video.mp4` (final export, 1920×1080, 30.0 s, −16 LUFS; source in `07 Video ad/v2/`) | Team check of voice-over and legal text; music is still a coded placeholder |
 | A3 | One-slide customer roadmap (discovery → ongoing engagement) | Slide inside A4 | TBD | ❔ | Team's pitch deck | Confirm it's planned in the team deck |
 | A4 | Final presentation deck for the 10-minute pitch (team-made; Investment + Marketing + CX pillars) | .pptx | TBD | 🟡 | Team's own files (add to repo when final) | See section B |
 | A5 | Google Drive folder with A1, A2, A4 (view access for BPI) | Link | TBD | 🔴 | — | Create the folder, set sharing, test the link from a logged-out browser |
@@ -139,6 +139,7 @@ Inputs: Phase 2 guidelines (strategy, objective, portfolio construction, suitabi
 
 | Version | Date | Change |
 | --- | --- | --- |
+| 1.9 | 2026-10-11 | Final landscape export of ad v2 saved as `01 Phase 2 submission/LosAngeles76ers_FirstsFund_Video.mp4` (A2). |
 | 1.8 | 2026-10-10 | Ad v2 drafted in Remotion (`07 Video ad/v2/`): 16:9 and 9:16 renders, placeholder music (A2). |
 | 1.7 | 2026-10-08 | 36-year backtest (v4) checked: saved results match the fact sheet. Calculator bad year updated to −27.3% (C6). |
 | 1.6 | 2026-10-08 | Fact sheet polished: NFRA benchmark rebuilt and added, plain language, saver illustration, all-in cost, settlement terms, citation verified. Beta vs NFRA added (F2.7). |
