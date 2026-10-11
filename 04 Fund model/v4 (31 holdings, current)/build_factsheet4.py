@@ -227,6 +227,30 @@ fun.setStyle(TableStyle([('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LEFTPADDING', (0
 story += [bandrow(f'M · V · P: HOW WE BUILD THE PORTFOLIO · {n_uni} COMPANIES SCREENED → {NH} HELD · THE SAME PUBLISHED RULES FOR EVERY COMPANY', CW), Spacer(1, 3), fun,
           Spacer(1, 3), p('Judgement sits in the published rules, not in picking favourites. Holdings are reviewed monthly and may be removed after a material '
             'event (with the reason logged), but are never resized by hand; weights are reset quarterly. Every company\'s result is in the supporting proposal.', tiny), Spacer(1, 5)]
+# ---- 36-year industry-level history (context only; results4.json 'proxy', built by backtest_v4.py) ----
+PG = PX['growth']; mo = pd.PeriodIndex(PX['months'], freq='M').to_timestamp(how='end')
+fig, ax = plt.subplots(figsize=(4.3, 1.55), dpi=220)
+for k, lab, c, lw in [('mkt', 'US stock market', '#B07A2E', 0.9), ('tech', 'Tech industries', '#7C8CB0', 0.9), ('cap', 'Firsts Fund strategy', '#0F7A45', 1.6)]:
+    ax.plot(mo, PG[k], color=c, lw=lw, label=f'{lab}: ₱{PG[k][-1]:,.0f}')
+ax.set_yscale('log'); ax.set_yticks([100, 1000, 10000]); ax.set_yticklabels(['₱100', '₱1,000', '₱10,000']); ax.minorticks_off()
+ax.tick_params(labelsize=5.5); ax.grid(axis='y', color='#E3E8E5', lw=0.5); [ax.spines[x].set_visible(False) for x in ['top', 'right']]
+ax.set_xlim(mo[0], mo[-1]); ax.legend(fontsize=5.3, frameon=False, loc='upper left')
+fig.tight_layout(pad=0.2); fig.savefig('hist36.png'); plt.close(fig)
+cs = ps['cap']; ms = ps['mkt']; ts_ = ps['tech']
+h36 = kv([('₱100 in Jan 1990 became', f'₱{cs["growth"]:,.0f}', f'₱{ms["growth"]:,.0f}', f'₱{ts_["growth"]:,.0f}'),
+          ('A year', pct(cs['cagr'], 1), pct(ms['cagr'], 1), pct(ts_['cagr'], 1)),
+          ('Deepest fall', pct(cs['maxdd'], 0), pct(ms['maxdd'], 0), pct(ts_['maxdd'], 0)),
+          ('Worst 12 months', pct(cs['worst12'], 0), pct(ms['worst12'], 0), pct(ts_['worst12'], 0)),
+          ('Months to recover', f'{cs["months_peak_to_recovery"]}', f'{ms["months_peak_to_recovery"]}', f'{ts_["months_peak_to_recovery"]}')] +
+         [(n.split(',')[0], pct(v['cap'], 0, True), pct(v['mkt'], 0, True), pct(v['tech'], 0, True)) for n, v in PX['crises'].items() if not n.startswith('Asian')],
+         [CW*0.44*0.40, CW*0.44*0.20, CW*0.44*0.20, CW*0.44*0.20], head=['In pesos, 1990–2026', 'Strategy', 'Market', 'Tech'], right_cols=(1, 2, 3),
+         boldrows=())
+story += [bandrow('36 YEARS OF HISTORY · INDUSTRY-LEVEL VERSION OF THE STRATEGY, IN PESOS · CONTEXT, NOT THE FUND\'S RESULTS', CW), Spacer(1, 2),
+          two([Image('hist36.png', width=CW*0.54, height=CW*0.54*1.55/4.3)], [h36], CW*0.54, CW*0.44, CW*0.02), Spacer(1, 2),
+          p(f'The same kinds of businesses (utilities, telecoms, transport, health care, electrical equipment and chips), tracked as US industry groups from '
+            f'1990 to August 2026 after the 1.50% fee, converted to pesos. It does not use our 31 companies, so it shows how the theme behaves through '
+            f'crises, not a forecast: about the market\'s return ({pct(cs["cagr"], 1)} vs {pct(ms["cagr"], 1)} a year) with somewhat shallower falls. '
+            f'Last four rows: change during each crisis. Source: Kenneth French Data Library; BIS exchange rates.', tiny), Spacer(1, 4)]
 risks = [('Market', f'Share prices can fall sharply. In 36 years of industry-level history the worst 12 months lost {pct(-ps["cap"]["worst12"], 0)} and the deepest fall was {pct(-ps["cap"]["maxdd"], 0)}.'),
          ('Concentration', f'Digital networks are at the fund\'s 25% cap; data-centre spending drives about {pct(bt["Semiconductors"] + bt["Grid & power equipment"], 0)} of the fund but more of its past return '
           f'(memory-chip makers are near a cyclical peak); '
@@ -245,10 +269,7 @@ red = [bandrow('FEES AND CHARGES', fw), kv(fees, [fw*0.45, fw*0.55], boldrows=(f
        p('Buy units with a one-time amount, a regular monthly plan, or top-ups whenever you like. Sell on any business day at that day\'s price '
          'per unit (NAVPU); the money is paid on day 6, end of day, in line with BPI\'s peso global equity funds. A missed monthly contribution '
          'does not change your goal date and is not taken automatically later.', small), Spacer(1, 3),
-       (p('<b>Compared with other products</b> a young Filipino can buy today: see page 1.', small) if not FO else
-        kv([('Money market fund', 'Short-term debt', 'from ₱50'), ('Pag-IBIG MP2', 'Government savings', '₱500'), ('Local stock index fund', 'PSEi shares', '₱1,000'),
-            ('Global fund-of-funds', 'Owns other funds; two fee layers', '₱1,000'), ('Firsts Fund (proposed)', 'Global companies directly; one fee', '₱100')],
-           [fw*0.37, fw*0.45, fw*0.18], head=['Compared with', 'What it is', 'Min.'], right_cols=(2,)))]
+       p('<b>Compared with other products</b> a young Filipino can buy today: see page 1.', small) if not FO else Spacer(1, 1)]
 story += [two([bandrow('KEY RISKS', rw), kv(risks, [rw*0.22, rw*0.78], right_cols=())], red, rw, fw), Spacer(1, 4)]
 story += [p('<b>Sources.</b> Company data: stockanalysis.com (S&amp;P Global Market Intelligence), 8 Oct 2026. Prices: Yahoo Finance total returns and PSE Edge '
             '(with cash dividends), converted to pesos weekly. Benchmark: Northern Trust (formerly FlexShares) STOXX Global Broad Infrastructure ETF (NFRA), Yahoo Finance '
