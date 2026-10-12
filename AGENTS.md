@@ -36,6 +36,7 @@ and how to rerun everything. Update the **Decision log** and **Open items** when
 | 2026-10-10 | Ad v2 retimed (user: second half felt rushed): firsts 1.55 s each (was 1.7), calculator 8.7 s (was 8.2, longer "when" and "result" steps), payoff 2.4 s, logo 3.4 s (was 2.9); voice lines re-placed with almost no speed-up. |
 | 2026-10-10 | Ad v2 mix (user: voice too loud): voice at 0.6 (≈ −4.4 dB), music dips to 0.32 instead of 0.2 under it. |
 | 2026-10-11 | Final ad export (landscape, voiced): `01 Phase 2 submission/LosAngeles76ers_FirstsFund_Video.mp4`, 1920×1080, 30 fps, 30.0 s, H.264 CRF 16, AAC 320k, soundtrack lifted +4 dB to −16 LUFS (peak −2.2 dB). |
+| 2026-10-12 | Portrait export added for the team to choose: `01 Phase 2 submission/LosAngeles76ers_FirstsFund_Video_Portrait.mp4`, 1080×1920, same settings and mix. |
 
 ## The rules (v4, current; full text in `04 Fund model/v4 (31 holdings, current)/RULES_v4.md`)
 - **Theme**: listed businesses that own, operate or supply essential, hard-to-replace capacity and earn from it. Eight types (research
@@ -103,7 +104,7 @@ TW 3.73, US 1.65. Owners 74.94 / Suppliers 15.06. ~5.9 independent bets; top-2 f
 | Folder | Contents |
 | --- | --- |
 | `AGENTS.md` | This file |
-| `01 Phase 2 submission/` | `LosAngeles76ers_FirstsFund_FactSheet.pdf`: 2-page investor fact sheet, v4. `LosAngeles76ers_FirstsFund_Video.mp4`: final 30-s ad (landscape, voiced). `superseded/` holds older versions |
+| `01 Phase 2 submission/` | `LosAngeles76ers_FirstsFund_FactSheet.pdf`: 2-page investor fact sheet, v4. `LosAngeles76ers_FirstsFund_Video.mp4` (landscape) and `…_Video_Portrait.mp4` (portrait): final 30-s ad, voiced; team picks one. `superseded/` holds older versions |
 | `02 Phase 1 submission/` | Phase 1 PDFs and HTML drafts |
 | `03 Competition rules/` | Primers and Phase 2 finalist guidelines |
 | `04 Fund model/` | One subfolder per version. `v4 (31 holdings, current)/` = current engine (RULES_v4.md, map/, engine4.py, analyze4.py, build_factsheet4.py, gen_deck4.py, gen_doc4.py, notes4.py, sens4.py, results4.json). `v3 (21 holdings, superseded)/`, `v2 (33 holdings, superseded)/`, `v1 (15 holdings, superseded)/` |
@@ -139,7 +140,7 @@ Ken French library. Conglomerate segment shares from annual reports (links in `i
 - [ ] Spot-check debt, cash flow, ROIC for the 31 holdings; memory makers at cyclical peak.
 - [ ] Calculator: contributions-only baseline + balanced scenarios (5-year+ examples only); glidepath schedule labelled illustrative.
 - [ ] Video script, site and app mock-ups: apply Section 8 consistency edits (not in this workspace).
-- [ ] Ad v2: real music (full ElevenLabs connector or a licensed track); team check of voice-over, lines and legal text.
+- [ ] Ad v2: team picks landscape or portrait; real music (full ElevenLabs connector or a licensed track); team check of voice-over, lines and legal text.
 - [ ] Older "changes" deck (v2) is superseded; do not present it.
 
 ## Links
